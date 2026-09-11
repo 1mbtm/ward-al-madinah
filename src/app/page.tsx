@@ -637,14 +637,10 @@ export default function ExactTemplatePage() {
                     As Medina Rose grows and welcomes visitors from around the globe in Al-Madinah, we apply these standards at scale—raising expectations for flavor quality, spatial design, and authentic Saudi hospitality. Our goal is to create unforgettable dessert rituals near the Prophet's Mosque that guests return to and cherish.
                   </p>
                 </div>
-                <div className="mission__image-wrapper" data-aos="fade-left">
-                  <img
-                    src="/images/medina-rose-hand.png"
-                    alt="Hand holding Medina Rose Soft Serve Ice Cream"
-                    className="mission__ice-cream-img"
-                  />
-                </div>
               </div>
+            </div>
+            <div className="mission__frame-slot" data-aos="fade-left">
+              {/* Empty visible 0px sharp curved full-height right frame slot */}
             </div>
           </section>
 
