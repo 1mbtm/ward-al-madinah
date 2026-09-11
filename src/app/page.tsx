@@ -26,6 +26,7 @@ export default function ExactTemplatePage() {
   const [activeLocationTab, setActiveLocationTab] = useState('UAE');
   const [cartCount, setCartCount] = useState(0);
   const [cartToast, setCartToast] = useState(false);
+  const [branchDropdownOpen, setBranchDropdownOpen] = useState(false);
 
   // Active Branch Popup Modal State
   const [activePopupId, setActivePopupId] = useState<number | null>(null);
@@ -443,7 +444,7 @@ export default function ExactTemplatePage() {
             <div className="header__content">
               {/* Brand Logo */}
               <div className="header__logo" style={{ width: 'auto' }}>
-                <a href="#hero" style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#000' }}>
+                <a href="#hero" style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#FFF' }}>
                   <span style={{ fontSize: '22px', fontWeight: 700, letterSpacing: '1px' }}>MEDINA ROSE | ميد روز</span>
                 </a>
               </div>
@@ -460,24 +461,36 @@ export default function ExactTemplatePage() {
                 </ul>
               </nav>
 
-              {/* Contact Actions */}
-              <div className="header__content-contact">
-                <a
-                  href="https://wa.me/966500000000"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="header__whatsapp-btn"
-                  title="WhatsApp"
+              {/* Right: Branches Dropdown */}
+              <div className="header__branches-dropdown" onMouseLeave={() => setBranchDropdownOpen(false)}>
+                <button
+                  className="header__branches-btn"
+                  onMouseEnter={() => setBranchDropdownOpen(true)}
+                  onClick={() => setBranchDropdownOpen(!branchDropdownOpen)}
+                  aria-expanded={branchDropdownOpen}
                 >
-                  {/* WhatsApp minimal SVG icon */}
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.531 5.851L.057 23.886a.5.5 0 0 0 .614.614l6.035-1.474A11.951 11.951 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.951 9.951 0 0 1-5.197-1.462l-.37-.22-3.835.936.956-3.835-.243-.393A9.951 9.951 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+                  <span>Our Branches</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="6 9 12 15 18 9" />
                   </svg>
-                </a>
-                <a className="header__content-contact--tel" href="https://www.instagram.com/medinarose.sa" target="_blank" rel="noopener noreferrer">
-                  @medinarose.sa
-                </a>
+                </button>
+                {branchDropdownOpen && (
+                  <div className="header__branches-menu">
+                    <a href="#branches" className="header__branches-menu-item" onClick={() => setBranchDropdownOpen(false)}>
+                      <span className="header__branches-dot" />
+                      Prophet's Mosque (Gate 333)
+                    </a>
+                    <a href="#branches" className="header__branches-menu-item" onClick={() => setBranchDropdownOpen(false)}>
+                      <span className="header__branches-dot" />
+                      Quba Walkway
+                    </a>
+                    <a href="#branches" className="header__branches-menu-item header__branches-menu-item--soon" onClick={() => setBranchDropdownOpen(false)}>
+                      <span className="header__branches-dot" />
+                      Sultana Drive-Thru
+                      <span className="header__branches-soon-tag">Soon</span>
+                    </a>
+                  </div>
+                )}
               </div>
 
               {/* Mobile Burger Toggle */}
@@ -557,37 +570,8 @@ export default function ExactTemplatePage() {
             <div className="container">
               <div className="hero__content" data-aos="fade-up">
                 <h1>
-                  Where ice cream is more <br /> than a treat <mark>It’s a Medina ritual.</mark>
+                  Where ice cream is more <br /> than a treat <mark>It's a Medina ritual.</mark>
                 </h1>
-              </div>
-              <div className="hero__list" data-aos="fade-up" data-aos-delay="200">
-                <p>Visit Our Madinah Branches</p>
-                <ul className="hero__list-ul">
-                  <li className="hero__list-item">
-                    <button
-                      className={`hero__list-link ${activeLocationTab === 'Prophet Mosque Gate 333' ? 'hero__list--link--active' : ''}`}
-                      onClick={() => setActiveLocationTab('Prophet Mosque Gate 333')}
-                    >
-                      Prophet's Mosque (Gate 333)
-                    </button>
-                  </li>
-                  <li className="hero__list-item">
-                    <button
-                      className={`hero__list-link ${activeLocationTab === 'Quba Walkway' ? 'hero__list--link--active' : ''}`}
-                      onClick={() => setActiveLocationTab('Quba Walkway')}
-                    >
-                      Quba Walkway
-                    </button>
-                  </li>
-                  <li className="hero__list-item">
-                    <button
-                      className={`hero__list-link ${activeLocationTab === 'Sultana' ? 'hero__list--link--active' : ''}`}
-                      onClick={() => setActiveLocationTab('Sultana')}
-                    >
-                      Sultana Drive-Thru (Coming Soon)
-                    </button>
-                  </li>
-                </ul>
               </div>
             </div>
             <div className="hero__bg--image">

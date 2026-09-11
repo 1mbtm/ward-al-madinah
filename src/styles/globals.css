@@ -24,21 +24,21 @@
   --wp--preset--font-size--x-large: 42px;
   --wp--preset--font-size--huge: 42px;
 
-  /* Medina Rose Brand Colors (Pure Luxury Off-White & Rose Gold) */
-  --contrast: #23161C;
+  /* Medina Rose Brand Colors (Burgundy Rose) */
+  --contrast: #8F4151;
   --contrast-2: #574B52;
   --contrast-3: #B29CA4;
   --base: #FDFBFB;
   --base-2: #F7F5F5;
   --base-3: #FFFFFF;
-  --accent: #E86A92;
-  --accent-gold: #D4AF37;
-  --accent-rose: #E86A92;
-  --border-gold: rgba(212, 175, 55, 0.3);
-  --brand-green-gradient: linear-gradient(135deg, #E86A92 0%, #D4AF37 100%);
+  --accent: #8F4151;
+  --accent-gold: #d08595;
+  --accent-rose: #8F4151;
+  --border-gold: rgba(143, 65, 81, 0.25);
+  --brand-green-gradient: linear-gradient(135deg, #8F4151 0%, #d08595 100%);
 
   /* Swiper */
-  --swiper-theme-color: #E86A92;
+  --swiper-theme-color: #8F4151;
   --swiper-navigation-size: 44px;
 }
 
@@ -373,6 +373,102 @@ ul, ol {
   background-color: #FFF;
   transition: background-color 0.3s ease, width 0.3s ease, transform 0.3s ease;
   border-radius: 2px;
+}
+
+/* ==========================================================================
+   BRANCHES DROPDOWN
+   ========================================================================== */
+.header__branches-dropdown {
+  position: relative;
+}
+
+.header__branches-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  padding: 8px 14px;
+  color: #FFF;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.header__branches-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.header__branches-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 230px;
+  background: rgba(143, 65, 81, 0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  z-index: 200;
+  animation: dropdownFadeIn 0.15s ease;
+}
+
+@keyframes dropdownFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.header__branches-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 18px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header__branches-menu-item:last-child {
+  border-bottom: none;
+}
+
+.header__branches-menu-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFF;
+}
+
+.header__branches-menu-item--soon {
+  opacity: 0.7;
+}
+
+.header__branches-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #d08595;
+  flex-shrink: 0;
+}
+
+.header__branches-soon-tag {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 2px 7px;
+  border-radius: 4px;
+  color: rgba(255,255,255,0.75);
 }
 
 /* ==========================================================================
