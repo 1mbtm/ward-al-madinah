@@ -934,6 +934,42 @@ ul, ol {
   position: relative;
 }
 
+.menu-slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(35, 22, 28, 0.1);
+  box-shadow: 0 8px 24px rgba(35, 22, 28, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #23161C;
+}
+
+.menu-slider-btn:hover {
+  background: #23161C;
+  color: #FFF;
+  border-color: #23161C;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 12px 28px rgba(35, 22, 28, 0.25);
+}
+
+.menu-slider-btn--prev {
+  left: 12px;
+}
+
+.menu-slider-btn--next {
+  right: 12px;
+}
+
 .menu-track {
   display: flex;
   gap: 20px;

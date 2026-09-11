@@ -750,6 +750,21 @@ export default function ExactTemplatePage() {
 
               {/* Menu Image Carousel */}
               <div className="menu-carousel" data-aos="fade-up" data-aos-delay="200">
+                <button
+                  className="menu-slider-btn menu-slider-btn--prev"
+                  onClick={() => setMenuSlideIndex((prev) => (prev > 0 ? prev - 1 : menuSlides.length - 3))}
+                  aria-label="Previous menu items"
+                >
+                  <ChevronLeft size={22} />
+                </button>
+                <button
+                  className="menu-slider-btn menu-slider-btn--next"
+                  onClick={() => setMenuSlideIndex((prev) => (prev < menuSlides.length - 3 ? prev + 1 : 0))}
+                  aria-label="Next menu items"
+                >
+                  <ChevronRight size={22} />
+                </button>
+
                 <div
                   className="menu-track"
                   style={{ transform: `translateX(-${menuSlideIndex * 360}px)` }}
@@ -759,20 +774,6 @@ export default function ExactTemplatePage() {
                       <img src={src} alt={`Menu highlight ${idx + 1}`} />
                     </div>
                   ))}
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginTop: '32px' }}>
-                  <button
-                    className="slider-btn"
-                    onClick={() => setMenuSlideIndex((prev) => (prev > 0 ? prev - 1 : 0))}
-                  >
-                    <ChevronLeft size={20} />
-                  </button>
-                  <button
-                    className="slider-btn"
-                    onClick={() => setMenuSlideIndex((prev) => (prev < menuSlides.length - 3 ? prev + 1 : 0))}
-                  >
-                    <ChevronRight size={20} />
-                  </button>
                 </div>
               </div>
             </div>
