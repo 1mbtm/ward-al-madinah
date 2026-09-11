@@ -207,10 +207,10 @@ ul, ol {
   border-radius: 11px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  background-color: rgba(253, 245, 247, 0.85);
-  border: 1px solid rgba(232, 106, 146, 0.25);
+  background-color: rgba(143, 65, 81, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   z-index: -1;
-  box-shadow: 0 4px 24px rgba(232, 106, 146, 0.12);
+  box-shadow: 0 4px 24px rgba(143, 65, 81, 0.3);
 }
 
 .header__content {
@@ -229,7 +229,7 @@ ul, ol {
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #23161C;
+  color: #FFF;
 }
 
 .header__logo img {
@@ -238,21 +238,18 @@ ul, ol {
 }
 
 .header__nav {
-  max-width: 626px;
-  padding: 12px 18px;
-  width: 100%;
-  border-radius: 11px;
-  background: rgba(35, 22, 28, 0.90);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  padding: 0;
+  width: auto;
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
 }
 
 .header__menu {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 18px;
+  gap: 28px;
 }
 
 .header__menu li {
@@ -260,17 +257,18 @@ ul, ol {
 }
 
 .header__menu li a {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  font-weight: 500;
   line-height: 1.2;
   text-decoration: none;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
+  letter-spacing: 0.5px;
+  transition: color 0.25s ease;
   white-space: nowrap;
 }
 
 .header__menu li a:hover {
-  color: #E86A92;
-  text-shadow: 0 0 10px rgba(232, 106, 146, 0.6);
+  color: #FFF;
 }
 
 .header__content-contact {
@@ -280,26 +278,20 @@ ul, ol {
 }
 
 .header__content-contact--link {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  color: #000;
-  text-decoration: none;
-  font-size: 13px;
-  line-height: 1.2;
-  font-weight: 700;
+  display: none;
 }
 
 .header__whatsapp-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   background: #25D366;
   border-radius: 50%;
   color: white;
-  transition: transform 0.3s;
+  transition: transform 0.25s, box-shadow 0.25s;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.4);
 }
 
 .header__whatsapp-btn:hover {
@@ -341,23 +333,24 @@ ul, ol {
 }
 
 .header__content-contact--tel {
-  padding: 12px 22px;
-  border-radius: 11px;
-  background: var(--brand-green-gradient);
+  padding: 9px 18px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #E1306C 0%, #C13584 40%, #833AB4 100%);
   color: #FFF !important;
   text-align: center;
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
   line-height: 1.2;
   text-decoration: none;
   display: inline-block;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  transition: opacity 0.3s, transform 0.2s;
+  box-shadow: 0 4px 12px rgba(193, 53, 132, 0.35);
+  transition: opacity 0.25s, transform 0.2s;
+  letter-spacing: 0.3px;
 }
 
 .header__content-contact--tel:hover {
   transform: translateY(-1px);
-  opacity: 0.95;
+  opacity: 0.9;
 }
 
 .header__burger {
@@ -377,7 +370,7 @@ ul, ol {
   display: block;
   width: 100%;
   height: 2px;
-  background-color: #000;
+  background-color: #FFF;
   transition: background-color 0.3s ease, width 0.3s ease, transform 0.3s ease;
   border-radius: 2px;
 }
@@ -449,31 +442,30 @@ ul, ol {
 }
 
 .hero__list-link {
-  padding: 14px;
+  padding: 10px 14px;
   display: flex;
   width: 100%;
-  border-radius: 11px;
-  background: rgba(232, 106, 146, 0.12);
-  border: 1px solid rgba(232, 106, 146, 0.3);
-  backdrop-filter: blur(8px);
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(35, 22, 28, 0.15);
   color: #23161C;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 500;
   line-height: 1.2;
-  justify-content: center;
+  justify-content: flex-start;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   cursor: pointer;
+  letter-spacing: 0.3px;
 }
 
 .hero__list-link.hero__list--link--active,
 .hero__list-link:hover {
-  border-radius: 11px;
-  background: linear-gradient(135deg, #E86A92 0%, #D4AF37 100%);
-  border-color: transparent;
-  backdrop-filter: blur(8px);
-  color: #FFF;
-  box-shadow: 0 6px 20px rgba(232, 106, 146, 0.35);
+  background: transparent;
+  border-bottom-color: #8F4151;
+  color: #8F4151;
+  padding-left: 20px;
 }
 
 .hero__bg--image {
