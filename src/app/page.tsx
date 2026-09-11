@@ -1001,23 +1001,6 @@ export default function ExactTemplatePage() {
                 </p>
                 <a href="mailto:beans@roasterscoffee.ae">beans@roasterscoffee.ae</a>
                 <a href="https://roasterscoffee.ae" target="_blank" rel="noopener noreferrer">www.roasterscoffee.ae</a>
-                <ul className="contact-list">
-                  <li className="contact-list-item">
-                    <a href="https://www.instagram.com/roasterscoffee_dxb/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                      <Instagram size={20} />
-                    </a>
-                  </li>
-                  <li className="contact-list-item">
-                    <a href="https://www.linkedin.com/company/roasters-specialty-coffee-house/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                      <Linkedin size={20} />
-                    </a>
-                  </li>
-                  <li className="contact-list-item">
-                    <a href="https://m.facebook.com/100083362985889/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                      <Facebook size={20} />
-                    </a>
-                  </li>
-                </ul>
               </address>
             </div>
 
