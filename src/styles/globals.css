@@ -642,7 +642,7 @@ ul, ol {
   top: 0;
   bottom: 0;
   height: 100%;
-  width: 50%;
+  aspect-ratio: 1 / 1;
   border: 2px solid #23161C;
   border-radius: 0px !important;
   background: rgba(255, 255, 255, 0.1);
