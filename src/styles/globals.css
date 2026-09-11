@@ -1455,6 +1455,161 @@ ul, ol {
 }
 
 /* ==========================================================================
+   RESTAURANT SOCIAL SCROLL MARQUEE STRIP
+   ========================================================================== */
+.social-scroll-section {
+  width: 100%;
+  padding: 40px 0 10px;
+  overflow: hidden;
+  position: relative;
+  contain: paint layout;
+  z-index: 5;
+}
+
+.social-scroll-row {
+  overflow: hidden;
+  width: 100%;
+  padding: 12px 0;
+  contain: content;
+}
+
+.social-scroll-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  padding: 8px 0;
+  will-change: transform;
+}
+
+.social-scroll-card {
+  width: 280px;
+  height: 155px;
+  border-radius: 18px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(28, 28, 28, 0.94) 0%, rgba(18, 18, 18, 0.96) 50%, rgba(10, 10, 10, 0.98) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  cursor: pointer;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  text-decoration: none;
+}
+
+.social-scroll-card:hover {
+  border-color: rgba(208, 133, 149, 0.6);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px rgba(143, 65, 81, 0.35);
+}
+
+.social-scroll-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, transparent 45%, rgba(255, 255, 255, 0.03) 65%, transparent 100%);
+}
+
+.social-scroll-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 10;
+}
+
+.social-scroll-icon {
+  padding: 8px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.social-scroll-card:hover .social-scroll-icon {
+  transform: scale(1.1);
+}
+
+.social-scroll-category {
+  font-family: monospace, sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+}
+
+.social-scroll-card-bottom {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-scroll-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFF;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.social-scroll-handle {
+  font-family: monospace, sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 2px 0 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.social-scroll-arrow {
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.2s ease;
+  padding-bottom: 2px;
+}
+
+.social-scroll-card:hover .social-scroll-arrow {
+  color: #FFF;
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 768px) {
+  .social-scroll-section {
+    padding: 24px 0 10px;
+  }
+
+  .social-scroll-card {
+    width: 250px;
+    height: 140px;
+    padding: 16px;
+  }
+
+  .social-scroll-title {
+    font-size: 14px;
+  }
+
+  .social-scroll-handle {
+    font-size: 11px;
+    max-width: 150px;
+  }
+}
+
+/* ==========================================================================
    RETAIL BEANS SECTION (WITH CUPPING SCORE COUNTERS & CAROUSEL)
    ========================================================================== */
 .retail {

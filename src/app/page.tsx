@@ -19,6 +19,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { RestaurantSocialScroll } from '@/components/RestaurantSocialScroll';
 
 export default function ExactTemplatePage() {
   // Navigation & Drawer State
@@ -1019,6 +1020,10 @@ export default function ExactTemplatePage() {
                 </ul>
               </address>
             </div>
+
+            {/* Scroll-Driven Social & Contact Marquee Strip */}
+            <RestaurantSocialScroll />
+
             <div className="contact-bg">
               <img
                 src="https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/contact-bg.png"
