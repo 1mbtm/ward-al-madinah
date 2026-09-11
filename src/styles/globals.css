@@ -1956,9 +1956,9 @@ ul, ol {
    FOOTER
    ========================================================================== */
 .footer {
-  background: linear-gradient(180deg, #2D1B24 0%, #1A0F15 100%);
-  border-top: 2px solid #E86A92;
-  color: #fff;
+  background: linear-gradient(180deg, #8F4151 0%, #6E2D3B 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  color: #FAF0F3;
   padding: 80px 32px 30px;
   position: relative;
   z-index: 10;
@@ -1983,14 +1983,13 @@ ul, ol {
   font-size: 22px;
   font-weight: 700;
   letter-spacing: 1px;
-  color: #E86A92;
-  text-shadow: 0 0 12px rgba(232, 106, 146, 0.4);
+  color: #FAF0F3;
 }
 
 .footer__text {
   font-size: 16px;
   line-height: 1.6;
-  color: #E4D6DA;
+  color: rgba(250, 240, 243, 0.75);
   margin-bottom: 24px;
   max-width: 320px;
 }
@@ -2000,6 +1999,7 @@ ul, ol {
   gap: 16px;
 }
 
+/* Icons: off-white by default, brand color on hover */
 .footer__socials a {
   display: flex;
   align-items: center;
@@ -2007,24 +2007,36 @@ ul, ol {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(232, 106, 146, 0.18);
-  border: 1px solid rgba(232, 106, 146, 0.4);
-  color: #E86A92;
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FAF0F3;
+  transition: all 0.25s ease;
 }
 
-.footer__socials a:hover {
-  background: linear-gradient(135deg, #E86A92 0%, #D4AF37 100%);
-  color: #fff;
+/* Instagram hover — real IG gradient */
+.footer__socials a[aria-label="Instagram"]:hover {
+  background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+  border-color: transparent;
+  color: #FFF;
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(232, 106, 146, 0.4);
+  box-shadow: 0 6px 20px rgba(238, 42, 123, 0.45);
+}
+
+/* WhatsApp hover — WA green */
+.footer__socials a[aria-label="WhatsApp"]:hover {
+  background: #25D366;
+  border-color: transparent;
+  color: #FFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
 }
 
 .footer__title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   margin-bottom: 24px;
-  color: #D4AF37;
+  color: #FAF0F3;
+  letter-spacing: 0.5px;
 }
 
 .footer__nav,
@@ -2040,40 +2052,40 @@ ul, ol {
 }
 
 .footer__nav a {
-  color: #E4D6DA;
+  color: rgba(250, 240, 243, 0.75);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
   font-size: 16px;
 }
 
 .footer__nav a:hover {
-  color: #E86A92;
+  color: #FAF0F3;
 }
 
 .footer__contact li {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #E4D6DA;
+  color: rgba(250, 240, 243, 0.75);
   font-size: 16px;
 }
 
 .footer__contact a {
-  color: #E4D6DA;
+  color: rgba(250, 240, 243, 0.75);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
 }
 
 .footer__contact a:hover {
-  color: #E86A92;
+  color: #FAF0F3;
 }
 
 .footer__bottom {
-  border-top: 1px solid rgba(232, 106, 146, 0.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
   padding-top: 30px;
   text-align: center;
   font-size: 14px;
-  color: #B29CA4;
+  color: rgba(250, 240, 243, 0.5);
 }
 
 /* ==========================================================================
