@@ -20,9 +20,18 @@ export interface SocialCardItem {
     category: string;
     url: string;
     icon: ReactNode;
+    bg: string;
+    border: string;
+    shadow: string;
+    textColor: string;
+    categoryColor: string;
+    handleColor: string;
+    badgeBg: string;
+    badgeBorder: string;
+    arrowColor: string;
 }
 
-// 🍽️ 6 RESTAURANT SOCIAL & CONTACT CHANNELS (IN 1 ROW)
+// 🍽️ 6 RESTAURANT SOCIAL & CONTACT CHANNELS WITH OFFICIAL APP BRAND COLORS
 export const RESTAURANT_CHANNELS: SocialCardItem[] = [
     {
         id: 'instagram',
@@ -30,7 +39,16 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
         handle: '@medinarose.icecream',
         category: 'Visuals & Menu',
         url: 'https://instagram.com/medinarose.icecream',
-        icon: <Instagram className="w-6 h-6 text-[#E1306C]" />,
+        icon: <Instagram className="w-6 h-6 text-white" />,
+        bg: 'linear-gradient(135deg, #405DE6 0%, #833AB4 28%, #C13584 52%, #FD1D1D 74%, #F56040 88%, #FCAF45 100%)',
+        border: 'rgba(255, 255, 255, 0.35)',
+        shadow: '0 12px 32px rgba(193, 53, 132, 0.45)',
+        textColor: '#FFFFFF',
+        categoryColor: 'rgba(255, 255, 255, 0.85)',
+        handleColor: 'rgba(255, 255, 255, 0.92)',
+        badgeBg: 'rgba(255, 255, 255, 0.22)',
+        badgeBorder: 'rgba(255, 255, 255, 0.35)',
+        arrowColor: '#FFFFFF',
     },
     {
         id: 'facebook',
@@ -38,7 +56,16 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
         handle: 'Medina Rose Gelateria',
         category: 'Community & Updates',
         url: 'https://facebook.com',
-        icon: <Facebook className="w-6 h-6 text-[#1877F2]" />,
+        icon: <Facebook className="w-6 h-6 text-white" fill="white" />,
+        bg: 'linear-gradient(145deg, #1877F2 0%, #1162cc 55%, #0a4696 100%)',
+        border: 'rgba(255, 255, 255, 0.3)',
+        shadow: '0 12px 32px rgba(24, 119, 242, 0.45)',
+        textColor: '#FFFFFF',
+        categoryColor: 'rgba(255, 255, 255, 0.85)',
+        handleColor: 'rgba(255, 255, 255, 0.92)',
+        badgeBg: 'rgba(255, 255, 255, 0.2)',
+        badgeBorder: 'rgba(255, 255, 255, 0.3)',
+        arrowColor: '#FFFFFF',
     },
     {
         id: 'snapchat',
@@ -46,7 +73,16 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
         handle: 'medinarose',
         category: 'Daily Stories',
         url: 'https://snapchat.com',
-        icon: <Ghost className="w-6 h-6 text-[#FFFC00]" />,
+        icon: <Ghost className="w-6 h-6 text-black" fill="white" stroke="#000000" strokeWidth={2.2} />,
+        bg: 'linear-gradient(145deg, #FFFC00 0%, #FFE600 55%, #F0C400 100%)',
+        border: 'rgba(0, 0, 0, 0.18)',
+        shadow: '0 12px 32px rgba(230, 196, 0, 0.45)',
+        textColor: '#000000',
+        categoryColor: 'rgba(0, 0, 0, 0.72)',
+        handleColor: 'rgba(0, 0, 0, 0.88)',
+        badgeBg: 'rgba(0, 0, 0, 0.08)',
+        badgeBorder: 'rgba(0, 0, 0, 0.16)',
+        arrowColor: '#000000',
     },
     {
         id: 'googlemap',
@@ -54,7 +90,16 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
         handle: 'Find Location',
         category: 'Madinah, KSA',
         url: 'https://maps.google.com',
-        icon: <MapPin className="w-6 h-6 text-[#34A853]" />,
+        icon: <MapPin className="w-6 h-6 text-white" fill="#EA4335" stroke="#FFFFFF" strokeWidth={1.5} />,
+        bg: 'linear-gradient(145deg, #1A73E8 0%, #1557b0 50%, #0d3b7a 100%)',
+        border: 'rgba(255, 255, 255, 0.3)',
+        shadow: '0 12px 32px rgba(26, 115, 232, 0.45)',
+        textColor: '#FFFFFF',
+        categoryColor: 'rgba(255, 255, 255, 0.85)',
+        handleColor: 'rgba(255, 255, 255, 0.92)',
+        badgeBg: 'rgba(255, 255, 255, 0.2)',
+        badgeBorder: 'rgba(255, 255, 255, 0.3)',
+        arrowColor: '#FFFFFF',
     },
     {
         id: 'whatsapp',
@@ -62,7 +107,16 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
         handle: 'Orders & Booking',
         category: 'Instant Chat',
         url: 'https://wa.me/966500000000',
-        icon: <MessageCircle className="w-6 h-6 text-[#25D366]" />,
+        icon: <MessageCircle className="w-6 h-6 text-white" fill="white" />,
+        bg: 'linear-gradient(145deg, #25D366 0%, #128C7E 55%, #075E54 100%)',
+        border: 'rgba(255, 255, 255, 0.3)',
+        shadow: '0 12px 32px rgba(37, 211, 102, 0.45)',
+        textColor: '#FFFFFF',
+        categoryColor: 'rgba(255, 255, 255, 0.85)',
+        handleColor: 'rgba(255, 255, 255, 0.92)',
+        badgeBg: 'rgba(255, 255, 255, 0.2)',
+        badgeBorder: 'rgba(255, 255, 255, 0.3)',
+        arrowColor: '#FFFFFF',
     },
     {
         id: 'call',
@@ -70,7 +124,16 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
         handle: '+966 50 000 0000',
         category: 'Phone Inquiries',
         url: 'tel:+966500000000',
-        icon: <PhoneCall className="w-6 h-6 text-[#F59E0B]" />,
+        icon: <PhoneCall className="w-6 h-6 text-white" fill="white" />,
+        bg: 'linear-gradient(145deg, #4CD964 0%, #2bb043 55%, #1877F2 100%)',
+        border: 'rgba(255, 255, 255, 0.3)',
+        shadow: '0 12px 32px rgba(76, 217, 100, 0.45)',
+        textColor: '#FFFFFF',
+        categoryColor: 'rgba(255, 255, 255, 0.85)',
+        handleColor: 'rgba(255, 255, 255, 0.92)',
+        badgeBg: 'rgba(255, 255, 255, 0.2)',
+        badgeBorder: 'rgba(255, 255, 255, 0.3)',
+        arrowColor: '#FFFFFF',
     },
 ];
 
@@ -183,39 +246,65 @@ export const RestaurantSocialScroll: FC = () => {
                                         e.stopPropagation();
                                     }
                                 }}
-                                className="social-scroll-card w-[250px] h-[140px] sm:w-[280px] sm:h-[155px] rounded-2xl flex-shrink-0 relative overflow-hidden bg-gradient-to-b from-[#1c1c1c]/90 via-[#141414]/90 to-[#0a0a0a]/90 border border-white/15 shadow-lg md:hover:border-white/40 md:hover:-translate-y-1 transition-all duration-200 group flex flex-col justify-between p-5 cursor-grab active:cursor-grabbing select-none backdrop-blur-sm"
+                                className="social-scroll-card w-[250px] h-[140px] sm:w-[280px] sm:h-[155px] rounded-2xl flex-shrink-0 relative overflow-hidden transition-all duration-200 group flex flex-col justify-between p-5 cursor-grab active:cursor-grabbing select-none backdrop-blur-md"
+                                style={{
+                                    background: item.bg,
+                                    border: `1px solid ${item.border}`,
+                                    boxShadow: item.shadow,
+                                }}
                             >
                                 {/* Subtle glass reflection sheen */}
                                 <div
-                                    className="social-scroll-sheen absolute inset-0 pointer-events-none opacity-40"
+                                    className="social-scroll-sheen absolute inset-0 pointer-events-none opacity-25"
                                     style={{
                                         background:
-                                            'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 45%, rgba(255,255,255,0.03) 65%, transparent 100%)',
+                                            'linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 45%, rgba(255,255,255,0.05) 65%, transparent 100%)',
                                     }}
                                 />
 
                                 {/* Top: Icon + Category */}
                                 <div className="social-scroll-card-top flex items-center justify-between relative z-10 pointer-events-none">
-                                    <div className="social-scroll-icon p-2 rounded-xl bg-white/[0.05] border border-white/10 group-hover:scale-110 transition-transform">
+                                    <div
+                                        className="social-scroll-icon p-2 rounded-xl group-hover:scale-110 transition-transform"
+                                        style={{
+                                            backgroundColor: item.badgeBg,
+                                            border: `1px solid ${item.badgeBorder}`,
+                                        }}
+                                    >
                                         {item.icon}
                                     </div>
-                                    <span className="social-scroll-category font-mono text-[9px] sm:text-[10px] uppercase tracking-widest text-white/50">
+                                    <span
+                                        className="social-scroll-category font-mono text-[9px] sm:text-[10px] uppercase tracking-widest font-bold"
+                                        style={{ color: item.categoryColor }}
+                                    >
                                         {item.category}
                                     </span>
                                 </div>
 
                                 {/* Bottom: Title, Handle & Arrow Link */}
-                                <div className="social-scroll-card-bottom relative z-10 flex items-end justify-between pt-3 border-t border-white/10 pointer-events-none">
+                                <div
+                                    className="social-scroll-card-bottom relative z-10 flex items-end justify-between pt-3 border-t pointer-events-none"
+                                    style={{ borderColor: item.badgeBorder }}
+                                >
                                     <div>
-                                        <h3 className="social-scroll-title font-bold text-sm sm:text-base text-white group-hover:text-white transition-colors">
+                                        <h3
+                                            className="social-scroll-title font-bold text-sm sm:text-base transition-colors"
+                                            style={{ color: item.textColor }}
+                                        >
                                             {item.name}
                                         </h3>
-                                        <p className="social-scroll-handle font-mono text-[11px] sm:text-xs text-white/60 truncate max-w-[160px] sm:max-w-[190px]">
+                                        <p
+                                            className="social-scroll-handle font-mono text-[11px] sm:text-xs truncate max-w-[160px] sm:max-w-[190px]"
+                                            style={{ color: item.handleColor }}
+                                        >
                                             {item.handle}
                                         </p>
                                     </div>
-                                    <div className="social-scroll-arrow text-white/60 group-hover:text-white transition-colors pb-0.5">
-                                        <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                    <div
+                                        className="social-scroll-arrow group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform pb-0.5"
+                                        style={{ color: item.arrowColor }}
+                                    >
+                                        <ArrowUpRight className="w-4 h-4" />
                                     </div>
                                 </div>
                             </a>
