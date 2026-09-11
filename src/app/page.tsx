@@ -640,7 +640,11 @@ export default function ExactTemplatePage() {
               </div>
             </div>
             <div className="mission__frame-slot" data-aos="fade-left">
-              {/* Empty visible 0px sharp curved full-height right frame slot */}
+              <img
+                src="/images/medina-rose-hand.png"
+                alt="Medina Rose Gelato"
+                className="mission__frame-img"
+              />
             </div>
           </section>
 
