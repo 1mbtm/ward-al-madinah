@@ -1,0 +1,521 @@
+import { CafeConfig } from '@/types';
+
+export const cafeConfig: CafeConfig = {
+  meta: {
+    brandName: 'Medina Rose',
+    tagline: 'The Viral Signature Rose Ice Cream of Al-Madinah',
+    description: 'Artisanal soft serve misted with authentic Medina rose water, premium gelato, and authentic local flavors near Al-Masjid an-Nabawi.',
+    foundedYear: 2022,
+    headquarters: 'Madinah, Saudi Arabia',
+    logoText: 'MEDINA ROSE | ميد روز',
+  },
+
+  features: {
+    showBranches: true,
+    showRoastery: true,
+    showRetail: true,
+    showOnlineOrdering: true,
+    showGallery: true,
+    showEvents: true,
+    showJournal: true,
+    showTeam: true,
+    showSustainability: true,
+    showContactForm: true,
+    showStory: true,
+  },
+
+  theme: {
+    accentColor: '#E86A92',
+    accentHover: '#F08BAE',
+    accentAmber: '#D4AF37',
+    bgPrimary: '#141215',
+    bgSecondary: '#1C191E',
+    bgTertiary: '#252128',
+    textPrimary: '#FFFFFF',
+    textSecondary: '#E4D6DA',
+    textMuted: '#9E8B92',
+  },
+
+  contact: {
+    primaryPhone: '+966 50 000 0000',
+    whatsappNumber: '966500000000',
+    email: 'hello@medinarose.sa',
+    headOfficeAddress: 'Madinah International Food Street, Gate 333, Al-Masjid an-Nabawi, Madinah, Saudi Arabia',
+    socials: {
+      instagram: 'https://www.instagram.com/medinarose.sa',
+      facebook: 'https://www.facebook.com/medinarose.sa',
+      linkedin: 'https://linkedin.com',
+    },
+  },
+
+  regions: ["Prophet's Mosque (Gate 333)", 'Quba Walkway', 'Sultana Boulevard'],
+
+  story: {
+    title: 'About Us',
+    tagline: 'A Pursuit of Specialty Coffee Mastery',
+    paragraphs: [
+      'Founded with a pure passion for exceptional coffee, our house was born from a vision to bring the world’s finest micro-lots to our community.',
+      'We believe great coffee is an intimate dialogue between terroir, diligent farming, master roasting, and scientific brewing precision. Every cup we serve reflects that chain of dedication.',
+      'Welcome to an immersive sanctuary designed for those who appreciate the subtle nuances of origin, aroma, and refined modern hospitality.',
+    ],
+    highlightQuote: 'Where precision craftsmanship meets sensory indulgence.',
+    stats: [
+      { value: '24+', label: 'Origin Countries Sourced' },
+      { value: '88+', label: 'Average SCA Cupping Score' },
+      { value: '100%', label: 'Direct Trade Transparent' },
+    ],
+  },
+
+  roasteryCraft: {
+    title: 'Sourcing & Roasting Excellence',
+    subtitle: 'From High-Altitude Terroirs to Custom Roast Curves',
+    paragraphs: [
+      'We work directly with certified organic and sustainable coffee estates across East Africa, Central America, and the Pacific Rim to procure rare micro-lots.',
+      'Each green coffee shipment undergoes rigorous moisture, density, and sample roast evaluation before profile development on our state-of-the-art cast-iron drum roasters.',
+    ],
+    features: [
+      {
+        title: 'Direct Trade Transparency',
+        description: 'Ensuring fair pricing above market minimums and long-term agricultural sustainability for partner farmers.',
+      },
+      {
+        title: 'Micro-Batch Profiling',
+        description: 'Custom airflow, drum speed, and rate-of-rise profiling tailored to celebrate the unique genetic profile of every varietal.',
+      },
+      {
+        title: 'Quality Lab Standards',
+        description: 'Every roast batch is cupped and scored in accordance with strict Specialty Coffee Association sensory protocols.',
+      },
+    ],
+  },
+
+  sustainability: {
+    title: 'Conscious Sustainability',
+    subtitle: 'Crafting World-Class Coffee with Environmental Responsibility',
+    pillars: [
+      {
+        title: 'Zero Single-Use Plastic',
+        description: 'All takeaway packaging, cups, lids, and straws are certified 100% commercially compostable or recycled.',
+      },
+      {
+        title: 'Ethical Farm Partnerships',
+        description: 'Direct relationships supporting shade-grown, biodiverse cultivation and water-conservation washing stations.',
+      },
+      {
+        title: 'Closed-Loop Roasting',
+        description: 'High-efficiency roasting technology with recirculating thermal oxidizers to minimize carbon emissions.',
+      },
+    ],
+  },
+
+  branches: [
+    {
+      id: 'branch-1',
+      name: 'Flagship Promenade',
+      region: 'Downtown Flagship',
+      address: 'Suite 101, Luxury Boulevard, Central District',
+      phone: 'Your Phone Number',
+      hoursSummary: 'Mon – Sun: 7:00 AM – 12:00 AM',
+      openingTime: '07:00',
+      closingTime: '24:00',
+      googleMapsUrl: 'https://maps.google.com',
+      coordinates: { xPercent: 28, yPercent: 44 },
+      images: [
+        'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80',
+      ],
+      isComingSoon: false,
+    },
+    {
+      id: 'branch-2',
+      name: 'Waterfront Pavilion',
+      region: 'Waterfront',
+      address: 'Marina Walk, Pier 4, Waterfront District',
+      phone: 'Your Phone Number',
+      hoursSummary: 'Daily: 7:30 AM – 11:30 PM',
+      openingTime: '07:30',
+      closingTime: '23:30',
+      googleMapsUrl: 'https://maps.google.com',
+      coordinates: { xPercent: 48, yPercent: 62 },
+      images: [
+        'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=1200&q=80',
+      ],
+      isComingSoon: false,
+    },
+    {
+      id: 'branch-3',
+      name: 'Uptown Roastery Lounge',
+      region: 'Uptown District',
+      address: 'Avenue of the Arts, Uptown Quarter',
+      phone: 'Your Phone Number',
+      hoursSummary: 'Mon – Sun: 8:00 AM – 11:00 PM',
+      openingTime: '08:00',
+      closingTime: '23:00',
+      googleMapsUrl: 'https://maps.google.com',
+      coordinates: { xPercent: 72, yPercent: 36 },
+      images: [
+        'https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1200&q=80',
+      ],
+      isComingSoon: false,
+    },
+    {
+      id: 'branch-4',
+      name: 'Metropolitan Galleria',
+      region: 'Upcoming Locations',
+      address: 'Financial Center Mall, Level 1',
+      hoursSummary: 'Opening Next Season',
+      coordinates: { xPercent: 82, yPercent: 70 },
+      images: [
+        'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80',
+      ],
+      isComingSoon: true,
+    },
+  ],
+
+  retailProducts: [
+    {
+      id: 'bean-1',
+      name: 'Panama Geisha Natural',
+      originCountry: 'Panama',
+      countryFlagEmoji: '🇵🇦',
+      cuppingScore: 92,
+      tastingNotes: ['White Peach', 'Jasmine Blossom', 'Bergamot', 'Wild Honey'],
+      roastLevel: 'Light',
+      process: 'Natural',
+      elevation: '1750m – 1950m',
+      varietal: 'Green Tip Geisha',
+      price: '48.00',
+      currency: '$',
+      bagWeight: '250g',
+      image: 'https://images.unsplash.com/photo-1587734195503-904fca47e0e9?auto=format&fit=crop&w=800&q=80',
+      inStock: true,
+    },
+    {
+      id: 'bean-2',
+      name: 'Ethiopia Yirgacheffe G1',
+      originCountry: 'Ethiopia',
+      countryFlagEmoji: '🇪🇹',
+      cuppingScore: 89,
+      tastingNotes: ['Meyer Lemon', 'Earl Grey', 'Candied Ginger', 'Floral'],
+      roastLevel: 'Light',
+      process: 'Washed',
+      elevation: '1900m – 2200m',
+      varietal: 'Heirloom',
+      price: '34.00',
+      currency: '$',
+      bagWeight: '250g',
+      image: 'https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?auto=format&fit=crop&w=800&q=80',
+      inStock: true,
+    },
+    {
+      id: 'bean-3',
+      name: 'Colombia Pink Bourbon',
+      originCountry: 'Colombia',
+      countryFlagEmoji: '🇨🇴',
+      cuppingScore: 90,
+      tastingNotes: ['Papaya', 'Pink Grapefruit', 'Sugar Cane', 'Vanilla'],
+      roastLevel: 'Medium-Light',
+      process: 'Anaerobic',
+      elevation: '1650m – 1850m',
+      varietal: 'Pink Bourbon',
+      price: '38.00',
+      currency: '$',
+      bagWeight: '250g',
+      image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=800&q=80',
+      inStock: true,
+    },
+    {
+      id: 'bean-4',
+      name: 'Signature Reserve Espresso',
+      originCountry: 'House Blend',
+      countryFlagEmoji: '☕',
+      cuppingScore: 88,
+      tastingNotes: ['Dark Cocoa', 'Toasted Hazelnut', 'Caramelized Fig', 'Silky Crema'],
+      roastLevel: 'Medium',
+      process: 'Washed / Honey',
+      elevation: '1400m – 1800m',
+      varietal: 'Bourbon & Caturra',
+      price: '28.00',
+      currency: '$',
+      bagWeight: '250g / 1kg',
+      image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80',
+      inStock: true,
+    },
+  ],
+
+  galleryItems: [
+    {
+      id: 'gal-1',
+      title: 'Espresso Extraction at the Bar',
+      category: 'Coffee Craft',
+      image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=80',
+      aspectRatio: 'landscape',
+    },
+    {
+      id: 'gal-2',
+      title: 'Architectural Lounge Interior',
+      category: 'Spaces',
+      image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=80',
+      aspectRatio: 'portrait',
+    },
+    {
+      id: 'gal-3',
+      title: 'Direct-Flame Drum Roasting',
+      category: 'Roastery',
+      image: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1200&q=80',
+      aspectRatio: 'square',
+    },
+    {
+      id: 'gal-4',
+      title: 'Handcrafted Pour-Over Ceremony',
+      category: 'Coffee Craft',
+      image: 'https://images.unsplash.com/photo-1509785307050-d4066910ec1e?auto=format&fit=crop&w=1200&q=80',
+      aspectRatio: 'landscape',
+    },
+    {
+      id: 'gal-5',
+      title: 'Artisanal Croissant & Pastry Selection',
+      category: 'Spaces',
+      image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
+      aspectRatio: 'portrait',
+    },
+    {
+      id: 'gal-6',
+      title: 'Cupping & Sensory Workshop',
+      category: 'Community',
+      image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1200&q=80',
+      aspectRatio: 'square',
+    },
+  ],
+
+  menuCategories: [
+    {
+      id: 'cat-espresso',
+      name: 'Espresso & Milk Craft',
+      slug: 'espresso',
+      description: 'Precision extracted shots paired with silky textured micro-foam or served unadorned.',
+      items: [
+        {
+          id: 'item-1',
+          name: 'Double Origin Espresso',
+          description: 'Single-estate seasonal pull with crisp acidity and velvety body.',
+          price: '5.50',
+          currency: '$',
+          dietaryTags: ['Single-Origin'],
+        },
+        {
+          id: 'item-2',
+          name: 'Cortado 1:1',
+          description: 'Equal parts espresso and warm silky milk served in a tempered glass.',
+          price: '6.00',
+          currency: '$',
+        },
+        {
+          id: 'item-3',
+          name: 'Velvet Flat White',
+          description: 'Double ristretto with micro-textured whole milk or oat alternative.',
+          price: '6.50',
+          currency: '$',
+          dietaryTags: ['Signature'],
+        },
+        {
+          id: 'item-4',
+          name: 'Spanish Gold Latte',
+          description: 'Infused with organic Madagascar vanilla bean and subtle condensed milk essence.',
+          price: '7.50',
+          currency: '$',
+          dietaryTags: ['Signature'],
+        },
+      ],
+    },
+    {
+      id: 'cat-filter',
+      name: 'Manual Pour-Over Bar',
+      slug: 'filter',
+      description: 'Single origin micro-lots brewed using V60, Kalita Wave, and Chemex methods.',
+      items: [
+        {
+          id: 'item-5',
+          name: 'Panama Geisha Reserve',
+          description: 'Delicate floral tea-like clarity with notes of peach blossom and bergamot.',
+          price: '14.00',
+          currency: '$',
+          dietaryTags: ['Single-Origin', 'Signature'],
+        },
+        {
+          id: 'item-6',
+          name: 'Ethiopia Yirgacheffe Natural',
+          description: 'Bursting with ripe berry sweetness, candied citrus, and jasmine finish.',
+          price: '9.00',
+          currency: '$',
+          dietaryTags: ['Single-Origin', 'Organic'],
+        },
+        {
+          id: 'item-7',
+          name: '24-Hour Kyoto Slow Drip',
+          description: 'Cold water gravity-extracted drop by drop over 24 hours for supreme chocolate richness.',
+          price: '10.00',
+          currency: '$',
+          dietaryTags: ['Signature'],
+        },
+      ],
+    },
+    {
+      id: 'cat-bakery',
+      name: 'Artisan Bakery & Brunch',
+      slug: 'bakery',
+      description: 'Laminated French viennoiserie baked fresh every morning by our pastry atelier.',
+      items: [
+        {
+          id: 'item-8',
+          name: 'French Butter Croissant',
+          description: 'AOP Charentes-Poitou butter, 72-hour fermented dough with golden flaky crumb.',
+          price: '5.50',
+          currency: '$',
+        },
+        {
+          id: 'item-9',
+          name: 'Pistachio Rose Cruffin',
+          description: 'Crisp pastry muffin filled with pure Sicilian pistachio cream and Persian rose water glaze.',
+          price: '8.00',
+          currency: '$',
+          dietaryTags: ['Signature'],
+        },
+        {
+          id: 'item-10',
+          name: 'Truffle Scrambled Brioche',
+          description: 'Slow-cooked organic pasture eggs, black summer truffle butter, chives on toasted milk bread.',
+          price: '16.50',
+          currency: '$',
+        },
+        {
+          id: 'item-11',
+          name: 'Avocado Tartine with Za’atar',
+          description: 'Crushed Hass avocado, heirloom tomatoes, radish, Aleppo chili oil on sourdough.',
+          price: '15.00',
+          currency: '$',
+          dietaryTags: ['Vegan'],
+        },
+      ],
+    },
+    {
+      id: 'cat-desserts',
+      name: 'Couture Desserts',
+      slug: 'desserts',
+      description: 'Refined sweet pairings designed to complement delicate coffee profiles.',
+      items: [
+        {
+          id: 'item-12',
+          name: 'Single Origin Tiramisu',
+          description: 'Savoiardi ladyfingers steeped in Geisha espresso with whipped mascarpone zabaione.',
+          price: '11.00',
+          currency: '$',
+          dietaryTags: ['Signature'],
+        },
+        {
+          id: 'item-13',
+          name: 'Valrhona Dark Chocolate Ganache',
+          description: '70% Guanaja chocolate tart with smoked sea salt and espresso caramel.',
+          price: '12.00',
+          currency: '$',
+          dietaryTags: ['Gluten-Free'],
+        },
+      ],
+    },
+  ],
+
+  events: [
+    {
+      id: 'event-1',
+      title: 'Morning Coffee Rave & Live Ambient Set',
+      subtitle: 'Weekend Acoustic & Vinyl Sessions',
+      description: 'A vibrant weekend ritual uniting specialty cold brew elixirs, live downtempo vinyl DJ sets, and a passionate coffee community.',
+      dateOrSchedule: 'Every Saturday & Sunday • 8:00 AM – 12:00 PM',
+      location: 'Flagship Promenade & Waterfront',
+      images: [
+        'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1200&q=80',
+      ],
+    },
+    {
+      id: 'event-2',
+      title: 'Master Sensory & Cupping Workshop',
+      subtitle: 'Certified SCA Flavor Wheel Exploration',
+      description: 'An intimate 90-minute tasting journey through 6 world origins led by our Head Roaster. Learn to score aroma, acidity, and mouthfeel.',
+      dateOrSchedule: 'Bi-Weekly Thursdays • 6:30 PM',
+      location: 'Uptown Roastery Lab',
+      images: [
+        'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80',
+      ],
+    },
+  ],
+
+  team: [
+    {
+      id: 'team-1',
+      name: 'Your Founder & Visionary',
+      role: 'Co-Founder & Creative Director',
+      bio: 'Leading the brand ethos, spatial design, and culinary partnerships.',
+      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
+    },
+    {
+      id: 'team-2',
+      name: 'Your Master Roaster',
+      role: 'Head of Coffee & Green Sourcing',
+      bio: 'Q-Grader certified with 12 years of direct-origin sourcing across 18 countries.',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80',
+    },
+    {
+      id: 'team-3',
+      name: 'Your Executive Pastry Chef',
+      role: 'Head of Viennoiserie & Bakery',
+      bio: 'French culinary trained, crafting all-butter laminations and seasonal pastries.',
+      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80',
+    },
+  ],
+
+  journal: [
+    {
+      id: 'post-1',
+      slug: 'the-secret-of-panama-geisha',
+      title: 'The Terroir & Chemistry of High-Altitude Panama Geisha',
+      excerpt: 'Exploring why the volcanic slopes of Boquete produce some of the most sought-after and floral coffee varietals on earth.',
+      content: `Panama Geisha represents one of the most remarkable discoveries in specialty coffee history. Originating from the Gori Gesha forest in Ethiopia, the varietal found its true home in the nutrient-dense volcanic soil and microclimates surrounding Volcán Barú.
+
+The combination of continuous mist, high elevation (1700m+), and slow cherry maturation allows complex sugars and aromatic terpene compounds to concentrate inside the bean. When lightly roasted, it yields cup clarity that tastes more like jasmine tea, bergamot, and ripe white peach than conventional dark coffee.
+
+At our roastery, we roast our Geisha lots exclusively in 5kg micro-batches with minimal conductive heat to protect its delicate floral volatile aromatics.`,
+      category: 'Origin Stories',
+      publishedDate: 'March 15, 2026',
+      readTimeMinutes: 4,
+      image: 'https://images.unsplash.com/photo-1587734195503-904fca47e0e9?auto=format&fit=crop&w=1200&q=80',
+    },
+    {
+      id: 'post-2',
+      slug: 'dialing-in-espresso-at-home',
+      title: 'The Art of Precision: Dialing in Single-Origin Espresso',
+      excerpt: 'A comprehensive guide to basket distribution, water temperature, pressure profiling, and yield ratios for light roasts.',
+      content: `Extracting light-roast single origins on an espresso machine requires a shift in brewing philosophy compared to traditional medium-dark blends.
+
+Because light roasts are denser and less soluble, they benefit from higher brewing temperatures (93°C–95°C), finer grind settings, and a slightly longer extraction ratio—often 1:2.2 to 1:2.5 rather than standard 1:2.
+
+We recommend using precision portafilter baskets, thorough WDT needle distribution to eliminate channeling, and a 6-bar declining pressure profile to extract smooth, sweet acidity without astringency.`,
+      category: 'Brew Guides',
+      publishedDate: 'February 28, 2026',
+      readTimeMinutes: 5,
+      image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=80',
+    },
+    {
+      id: 'post-3',
+      slug: 'sustainable-coffee-future',
+      title: 'Conscious Sourcing: Why Direct Trade Matters for Tomorrow',
+      excerpt: 'How paying above fair-trade floor prices ensures clean water systems, soil health, and thriving farmer communities.',
+      content: `True sustainability in specialty coffee begins at origin with economic equity. When producers receive premium compensation for high-scoring lots, they can reinvest in shade canopy preservation, organic composting, and solar drying beds.
+
+Our direct trade charter ensures that 100% of our green coffees are traceable to specific washing stations and families with verified premiums that directly fund community development and climate resilience.`,
+      category: 'Sustainability',
+      publishedDate: 'January 20, 2026',
+      readTimeMinutes: 3,
+      image: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1200&q=80',
+    },
+  ],
+};
