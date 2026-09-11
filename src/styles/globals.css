@@ -1481,6 +1481,14 @@ ul, ol {
   width: max-content;
   padding: 8px 0;
   will-change: transform;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+}
+
+.social-scroll-track:active {
+  cursor: grabbing;
 }
 
 .social-scroll-card {
@@ -1498,10 +1506,17 @@ ul, ol {
   flex-direction: column;
   justify-content: space-between;
   padding: 20px;
-  cursor: pointer;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   text-decoration: none;
+}
+
+.social-scroll-card:active {
+  cursor: grabbing;
 }
 
 .social-scroll-card:hover {

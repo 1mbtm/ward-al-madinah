@@ -2,7 +2,7 @@
 
 import type { FC, ReactNode } from 'react';
 import { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
+import { motion, useScroll, useTransform, useReducedMotion, useMotionValue } from 'framer-motion';
 import {
     Instagram,
     Facebook,
@@ -74,13 +74,17 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
     },
 ];
 
-// 3x repetition to cover continuous infinite scroll across all screen widths
-const singleRowCards = Array(3).fill(RESTAURANT_CHANNELS).flat();
+// 4x repetition to cover continuous infinite scroll across all screen widths and full drag range
+const singleRowCards = Array(4).fill(RESTAURANT_CHANNELS).flat();
 
 export const RestaurantSocialScroll: FC = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
+    const isDraggingRef = useRef(false);
     const shouldReduceMotion = useReducedMotion();
     const [isMobile, setIsMobile] = useState(false);
+
+    // Dedicated MotionValue for manual user drag/swipe offset
+    const dragX = useMotionValue(0);
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -94,7 +98,7 @@ export const RestaurantSocialScroll: FC = () => {
         offset: ['start end', 'end start'],
     });
 
-    // Smooth single-row scroll translation (120fps hardware accelerated)
+    // Smooth single-row scroll translation driven by vertical page scroll (120fps hardware accelerated)
     const rowX = useTransform(
         scrollYProgress,
         [0, 1],
@@ -105,14 +109,27 @@ export const RestaurantSocialScroll: FC = () => {
                 : ['-800px', '100px']
     );
 
+    // Optional horizontal trackpad / mouse-wheel listener for smooth horizontal scroll
+    const handleWheel = (e: React.WheelEvent) => {
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+            const current = dragX.get();
+            const minBound = isMobile ? -2800 : -3600;
+            const maxBound = isMobile ? 800 : 1200;
+            const next = Math.max(minBound, Math.min(maxBound, current - e.deltaX * 1.2));
+            dragX.set(next);
+        }
+    };
+
     return (
         <div
             ref={sectionRef}
             className="social-scroll-section w-full py-8 md:py-12 overflow-hidden relative"
             style={{ contain: 'paint layout' }}
+            onWheel={handleWheel}
         >
-            {/* Single Scroll Row */}
+            {/* Single Scroll Row Container */}
             <div className="social-scroll-row overflow-hidden w-full py-3" style={{ contain: 'content' }}>
+                {/* 1. Outer Motion Layer: Driven by Vertical Page Scroll */}
                 <motion.div
                     style={{
                         x: rowX,
@@ -120,51 +137,90 @@ export const RestaurantSocialScroll: FC = () => {
                         backfaceVisibility: 'hidden',
                         WebkitBackfaceVisibility: 'hidden',
                     }}
-                    className="social-scroll-track flex gap-4 sm:gap-6 w-max py-2 will-change-transform transform-gpu"
+                    className="w-max will-change-transform transform-gpu"
                 >
-                    {singleRowCards.map((item, index) => (
-                        <a
-                            key={`social-${item.id}-${index}`}
-                            href={item.url}
-                            target={item.url.startsWith('http') ? '_blank' : undefined}
-                            rel={item.url.startsWith('http') ? 'noopener noreferrer' : undefined}
-                            className="social-scroll-card w-[250px] h-[140px] sm:w-[280px] sm:h-[155px] rounded-2xl flex-shrink-0 relative overflow-hidden bg-gradient-to-b from-[#1c1c1c]/90 via-[#141414]/90 to-[#0a0a0a]/90 border border-white/15 shadow-lg md:hover:border-white/40 md:hover:-translate-y-1 transition-all duration-200 group flex flex-col justify-between p-5 cursor-pointer backdrop-blur-sm"
-                        >
-                            {/* Subtle glass reflection sheen */}
-                            <div
-                                className="social-scroll-sheen absolute inset-0 pointer-events-none opacity-40"
-                                style={{
-                                    background:
-                                        'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 45%, rgba(255,255,255,0.03) 65%, transparent 100%)',
+                    {/* 2. Inner Motion Layer: Interactive Touch Swipe & Mouse Drag with Momentum */}
+                    <motion.div
+                        drag="x"
+                        style={{
+                            x: dragX,
+                            touchAction: 'pan-y',
+                        }}
+                        dragConstraints={{
+                            left: isMobile ? -2800 : -3600,
+                            right: isMobile ? 800 : 1200,
+                        }}
+                        dragElastic={0.12}
+                        dragTransition={{
+                            power: 0.35,
+                            timeConstant: 250,
+                            bounceStiffness: 400,
+                            bounceDamping: 25,
+                        }}
+                        whileDrag={{ cursor: 'grabbing' }}
+                        onDragStart={() => {
+                            isDraggingRef.current = true;
+                        }}
+                        onDragEnd={() => {
+                            // Brief delay so synthetic click event from pointerup doesn't trigger card link
+                            setTimeout(() => {
+                                isDraggingRef.current = false;
+                            }, 80);
+                        }}
+                        className="social-scroll-track flex gap-4 sm:gap-6 w-max py-2 cursor-grab active:cursor-grabbing select-none"
+                    >
+                        {singleRowCards.map((item, index) => (
+                            <a
+                                key={`social-${item.id}-${index}`}
+                                href={item.url}
+                                target={item.url.startsWith('http') ? '_blank' : undefined}
+                                rel={item.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                draggable={false}
+                                onDragStart={(e) => e.preventDefault()}
+                                onClick={(e) => {
+                                    if (isDraggingRef.current) {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                    }
                                 }}
-                            />
+                                className="social-scroll-card w-[250px] h-[140px] sm:w-[280px] sm:h-[155px] rounded-2xl flex-shrink-0 relative overflow-hidden bg-gradient-to-b from-[#1c1c1c]/90 via-[#141414]/90 to-[#0a0a0a]/90 border border-white/15 shadow-lg md:hover:border-white/40 md:hover:-translate-y-1 transition-all duration-200 group flex flex-col justify-between p-5 cursor-grab active:cursor-grabbing select-none backdrop-blur-sm"
+                            >
+                                {/* Subtle glass reflection sheen */}
+                                <div
+                                    className="social-scroll-sheen absolute inset-0 pointer-events-none opacity-40"
+                                    style={{
+                                        background:
+                                            'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 45%, rgba(255,255,255,0.03) 65%, transparent 100%)',
+                                    }}
+                                />
 
-                            {/* Top: Icon + Category */}
-                            <div className="social-scroll-card-top flex items-center justify-between relative z-10">
-                                <div className="social-scroll-icon p-2 rounded-xl bg-white/[0.05] border border-white/10 group-hover:scale-110 transition-transform">
-                                    {item.icon}
+                                {/* Top: Icon + Category */}
+                                <div className="social-scroll-card-top flex items-center justify-between relative z-10 pointer-events-none">
+                                    <div className="social-scroll-icon p-2 rounded-xl bg-white/[0.05] border border-white/10 group-hover:scale-110 transition-transform">
+                                        {item.icon}
+                                    </div>
+                                    <span className="social-scroll-category font-mono text-[9px] sm:text-[10px] uppercase tracking-widest text-white/50">
+                                        {item.category}
+                                    </span>
                                 </div>
-                                <span className="social-scroll-category font-mono text-[9px] sm:text-[10px] uppercase tracking-widest text-white/50">
-                                    {item.category}
-                                </span>
-                            </div>
 
-                            {/* Bottom: Title, Handle & Arrow Link */}
-                            <div className="social-scroll-card-bottom relative z-10 flex items-end justify-between pt-3 border-t border-white/10">
-                                <div>
-                                    <h3 className="social-scroll-title font-bold text-sm sm:text-base text-white group-hover:text-white transition-colors">
-                                        {item.name}
-                                    </h3>
-                                    <p className="social-scroll-handle font-mono text-[11px] sm:text-xs text-white/60 truncate max-w-[160px] sm:max-w-[190px]">
-                                        {item.handle}
-                                    </p>
+                                {/* Bottom: Title, Handle & Arrow Link */}
+                                <div className="social-scroll-card-bottom relative z-10 flex items-end justify-between pt-3 border-t border-white/10 pointer-events-none">
+                                    <div>
+                                        <h3 className="social-scroll-title font-bold text-sm sm:text-base text-white group-hover:text-white transition-colors">
+                                            {item.name}
+                                        </h3>
+                                        <p className="social-scroll-handle font-mono text-[11px] sm:text-xs text-white/60 truncate max-w-[160px] sm:max-w-[190px]">
+                                            {item.handle}
+                                        </p>
+                                    </div>
+                                    <div className="social-scroll-arrow text-white/60 group-hover:text-white transition-colors pb-0.5">
+                                        <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                    </div>
                                 </div>
-                                <div className="social-scroll-arrow text-white/60 group-hover:text-white transition-colors pb-0.5">
-                                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                                </div>
-                            </div>
-                        </a>
-                    ))}
+                            </a>
+                        ))}
+                    </motion.div>
                 </motion.div>
             </div>
         </div>
