@@ -660,6 +660,7 @@ ul, ol {
   object-fit: cover;
   object-position: center;
   display: block;
+  will-change: transform, opacity;
 }
 
 /* ==========================================================================

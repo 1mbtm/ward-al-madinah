@@ -18,6 +18,7 @@ import {
   CheckCircle,
   ArrowRight
 } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function ExactTemplatePage() {
   // Navigation & Drawer State
@@ -44,6 +45,16 @@ export default function ExactTemplatePage() {
 
   const parallaxRef = useRef<HTMLImageElement | null>(null);
   const retailSectionRef = useRef<HTMLElement | null>(null);
+  const missionRef = useRef<HTMLElement | null>(null);
+
+  const { scrollYProgress: missionScrollProgress } = useScroll({
+    target: missionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const missionImgX = useTransform(missionScrollProgress, [0, 0.5, 1], ["60%", "0%", "60%"]);
+  const missionImgScale = useTransform(missionScrollProgress, [0, 0.5, 1], [0.85, 1, 0.85]);
+  const missionImgOpacity = useTransform(missionScrollProgress, [0, 0.5, 1], [0.3, 1, 0.3]);
 
   // Parallax Scroll Listener
   useEffect(() => {
@@ -625,7 +636,7 @@ export default function ExactTemplatePage() {
           </section>
 
           {/* 4. OUR MISSION SECTION */}
-          <section className="mission">
+          <section className="mission" ref={missionRef}>
             <div className="container">
               <div className="mission__card">
                 <div className="mission__content" data-aos="fade-right">
@@ -639,11 +650,16 @@ export default function ExactTemplatePage() {
                 </div>
               </div>
             </div>
-            <div className="mission__frame-slot" data-aos="fade-left">
-              <img
+            <div className="mission__frame-slot">
+              <motion.img
                 src="/images/medina-rose-hand.png"
                 alt="Medina Rose Gelato"
                 className="mission__frame-img"
+                style={{
+                  x: missionImgX,
+                  scale: missionImgScale,
+                  opacity: missionImgOpacity,
+                }}
               />
             </div>
           </section>
