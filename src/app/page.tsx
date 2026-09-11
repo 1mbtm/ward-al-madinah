@@ -34,6 +34,16 @@ export default function ExactTemplatePage() {
   // Slider indices
   const [proudSlideIndex, setProudSlideIndex] = useState(0);
   const [menuSlideIndex, setMenuSlideIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Animated Counter Values for Retail Beans
   const [counters, setCounters] = useState<{ [key: string]: number }>({
@@ -57,9 +67,10 @@ export default function ExactTemplatePage() {
   const missionImgScale = useTransform(missionScrollProgress, [0, 0.5, 1], [0.85, 1, 0.85]);
   const missionImgOpacity = useTransform(missionScrollProgress, [0, 0.5, 1], [0.3, 1, 0.3]);
 
-  // Parallax Scroll Listener
+  // Parallax Scroll Listener (Skipped on mobile to keep 60-120 FPS native smooth scrolling)
   useEffect(() => {
     const handleScroll = () => {
+      if (window.innerWidth <= 768) return;
       if (parallaxRef.current) {
         const rect = parallaxRef.current.parentElement?.getBoundingClientRect();
         if (rect && rect.top < window.innerHeight && rect.bottom > 0) {
@@ -532,36 +543,64 @@ export default function ExactTemplatePage() {
           </div>
         )}
 
-        {/* Mobile Slide-in Drawer */}
-        {mobileMenuOpen && (
-          <div
-            style={{
-              position: 'fixed',
-              inset: 0,
-              zIndex: 999,
-              background: 'rgba(0,0,0,0.95)',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: '24px',
-              padding: '32px',
-            }}
-          >
+        {/* Luxury Burgundy Rose Mobile Slide-in Drawer */}
+        <div className={`header__mobile-drawer ${mobileMenuOpen ? 'active' : ''}`}>
+          <div className="header__mobile-drawer-header">
+            <span className="header__mobile-logo">MEDINA ROSE | ميد روز</span>
             <button
               onClick={() => setMobileMenuOpen(false)}
-              style={{ position: 'absolute', top: '24px', right: '24px', background: 'transparent', border: 'none', color: '#FFF' }}
+              className="header__mobile-close"
+              aria-label="Close navigation menu"
             >
-              <X size={32} />
+              <X size={22} />
             </button>
-            <a href="#hero" onClick={() => setMobileMenuOpen(false)} style={{ color: '#FFF', fontSize: '24px', fontWeight: 700 }}>Main</a>
-            <a href="#about-scene" onClick={() => setMobileMenuOpen(false)} style={{ color: '#FFF', fontSize: '24px', fontWeight: 700 }}>About Us</a>
-            <a href="#branches" onClick={() => setMobileMenuOpen(false)} style={{ color: '#FFF', fontSize: '24px', fontWeight: 700 }}>Branches</a>
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)} style={{ color: '#FFF', fontSize: '24px', fontWeight: 700 }}>Contacts</a>
-            <a href="#menu" onClick={() => setMobileMenuOpen(false)} style={{ color: '#FFF', fontSize: '24px', fontWeight: 700 }}>Menu</a>
-            <a href="#retail" onClick={() => setMobileMenuOpen(false)} style={{ color: '#FFF', fontSize: '24px', fontWeight: 700 }}>Retail Beans</a>
-            <a href="#sustainability" onClick={() => setMobileMenuOpen(false)} style={{ color: '#FFF', fontSize: '24px', fontWeight: 700 }}>Sustainability</a>
           </div>
+
+          <div className="header__mobile-nav">
+            <a href="#hero" onClick={() => setMobileMenuOpen(false)} className="header__mobile-link">Main</a>
+            <a href="#about-scene" onClick={() => setMobileMenuOpen(false)} className="header__mobile-link">About Us</a>
+            <a href="#branches" onClick={() => setMobileMenuOpen(false)} className="header__mobile-link">Branches</a>
+            <a href="#menu" onClick={() => setMobileMenuOpen(false)} className="header__mobile-link">Menu</a>
+            <a href="#retail" onClick={() => setMobileMenuOpen(false)} className="header__mobile-link">Artisanal Tubs</a>
+            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="header__mobile-link">Contacts</a>
+          </div>
+
+          <div className="header__mobile-branches">
+            <p className="header__mobile-subtitle">Our Medina Locations</p>
+            <div className="header__mobile-branch-list">
+              <a href="#branches" onClick={() => setMobileMenuOpen(false)} className="header__mobile-branch-item">
+                <span className="header__branches-dot" />
+                <span>Prophet's Mosque (Gate 333)</span>
+              </a>
+              <a href="#branches" onClick={() => setMobileMenuOpen(false)} className="header__mobile-branch-item">
+                <span className="header__branches-dot" />
+                <span>Quba Walkway</span>
+              </a>
+              <a href="#branches" onClick={() => setMobileMenuOpen(false)} className="header__mobile-branch-item header__mobile-branch-item--soon">
+                <span className="header__branches-dot" />
+                <span>Sultana Drive-Thru</span>
+                <span className="header__branches-soon-tag">Soon</span>
+              </a>
+            </div>
+          </div>
+
+          <div className="header__mobile-footer">
+            <div className="header__mobile-socials">
+              <a href="https://www.instagram.com/medinarose.sa" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <Instagram size={18} />
+              </a>
+              <a href="https://wa.me/966500000000" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                <MessageCircle size={18} />
+              </a>
+              <a href="tel:+966500000000" aria-label="Call Us">
+                <Phone size={18} />
+              </a>
+            </div>
+            <p className="header__mobile-copyright">© 2026 Medina Rose. All rights reserved.</p>
+          </div>
+        </div>
+        {mobileMenuOpen && (
+          <div className="header__mobile-backdrop" onClick={() => setMobileMenuOpen(false)} />
         )}
 
         <main>
@@ -628,6 +667,15 @@ export default function ExactTemplatePage() {
                   </p>
                 </div>
               </div>
+
+              {/* Mobile Mission Image Frame (Shown on mobile screens) */}
+              <div className="mission__mobile-frame" data-aos="fade-up">
+                <img
+                  src="/images/medina-rose-hand-mobile.png"
+                  alt="Medina Rose Signature Artisanal Gelato"
+                  className="mission__mobile-img"
+                />
+              </div>
             </div>
             <div className="mission__frame-slot">
               <motion.img
@@ -635,9 +683,9 @@ export default function ExactTemplatePage() {
                 alt="Medina Rose Gelato"
                 className="mission__frame-img"
                 style={{
-                  x: missionImgX,
-                  scale: missionImgScale,
-                  opacity: missionImgOpacity,
+                  x: isMobile ? '0%' : missionImgX,
+                  scale: isMobile ? 1 : missionImgScale,
+                  opacity: isMobile ? 1 : missionImgOpacity,
                 }}
               />
             </div>
@@ -731,14 +779,14 @@ export default function ExactTemplatePage() {
               <div className="menu-carousel" data-aos="fade-up" data-aos-delay="200">
                 <button
                   className="menu-slider-btn menu-slider-btn--prev"
-                  onClick={() => setMenuSlideIndex((prev) => (prev > 0 ? prev - 1 : menuSlides.length - 3))}
+                  onClick={() => setMenuSlideIndex((prev) => (prev > 0 ? prev - 1 : menuSlides.length - (isMobile ? 1 : 3)))}
                   aria-label="Previous menu items"
                 >
                   <ChevronLeft size={22} />
                 </button>
                 <button
                   className="menu-slider-btn menu-slider-btn--next"
-                  onClick={() => setMenuSlideIndex((prev) => (prev < menuSlides.length - 3 ? prev + 1 : 0))}
+                  onClick={() => setMenuSlideIndex((prev) => (prev < menuSlides.length - (isMobile ? 1 : 3) ? prev + 1 : 0))}
                   aria-label="Next menu items"
                 >
                   <ChevronRight size={22} />
@@ -746,7 +794,7 @@ export default function ExactTemplatePage() {
 
                 <div
                   className="menu-track"
-                  style={{ transform: `translateX(-${menuSlideIndex * 360}px)` }}
+                  style={{ transform: `translateX(-${menuSlideIndex * (isMobile ? 290 : 360)}px)` }}
                 >
                   {menuSlides.map((src, idx) => (
                     <div key={idx} className="menu-card">
@@ -766,6 +814,10 @@ export default function ExactTemplatePage() {
             <div className="branches-wrapper">
               <div className="container" data-aos="fade-up">
                 <h2>Branches</h2>
+                <div className="branches__scroll-hint">
+                  <MapPin size={16} />
+                  <span>Swipe map or select any branch card below</span>
+                </div>
               </div>
 
               <div className="branches__wrapper" data-aos="fade-up" data-aos-delay="200">
@@ -788,6 +840,52 @@ export default function ExactTemplatePage() {
                       aria-label={`Open details for ${branch.name}`}
                       title={branch.name}
                     />
+                  ))}
+                </div>
+              </div>
+
+              {/* Mobile Quick Branch Cards Carousel */}
+              <div className="branches__mobile-container">
+                <div className="branches__mobile-cards">
+                  {branchList.map((branch) => (
+                    <div
+                      key={branch.id}
+                      className="branches__mobile-card"
+                      onClick={() => setActivePopupId(branch.id)}
+                    >
+                      <div className="branches__mobile-card-img">
+                        <img src={branch.image} alt={branch.name} />
+                      </div>
+                      <div className="branches__mobile-card-body">
+                        <div className="branches__mobile-card-top">
+                          <h4>{branch.name}</h4>
+                          <span className="branches__mobile-rating">★ {branch.rating}</span>
+                        </div>
+                        <p className="branches__mobile-loc">
+                          <MapPin size={14} />
+                          <span>{branch.location}</span>
+                        </p>
+                        <p className="branches__mobile-hours">
+                          <Clock size={14} />
+                          <span>{branch.hours}</span>
+                        </p>
+                        <div className="branches__mobile-actions">
+                          <button className="branches__mobile-btn-details">
+                            View Details
+                          </button>
+                          <a
+                            href={branch.mapUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="branches__mobile-btn-map"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <ExternalLink size={13} />
+                            Maps
+                          </a>
+                        </div>
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>

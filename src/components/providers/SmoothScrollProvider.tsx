@@ -14,7 +14,9 @@ export default function SmoothScrollProvider({
       '(prefers-reduced-motion: reduce)'
     ).matches;
 
-    if (prefersReducedMotion) {
+    // On mobile screens (<= 768px) or small touch screens, use native momentum scroll for zero latency
+    const isMobileScreen = window.innerWidth <= 768 || ('ontouchstart' in window && window.innerWidth <= 1024);
+    if (isMobileScreen) {
       return;
     }
 
@@ -24,7 +26,7 @@ export default function SmoothScrollProvider({
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      touchMultiplier: 1.5,
+      touchMultiplier: 1.0,
     });
 
     function raf(time: number) {

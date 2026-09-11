@@ -54,6 +54,8 @@
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
@@ -65,6 +67,8 @@ body {
   font-style: normal;
   background-color: #FDFBFB;
   overflow-x: hidden;
+  max-width: 100vw;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button, a, input, select, textarea {
@@ -2089,7 +2093,210 @@ ul, ol {
 }
 
 /* ==========================================================================
-   RESPONSIVE MEDIA QUERIES
+   DESKTOP BASE STYLES FOR MOBILE ELEMENTS
+   ========================================================================== */
+.mission__mobile-frame {
+  display: none;
+}
+
+.branches__scroll-hint {
+  display: none;
+}
+
+.branches__mobile-container {
+  display: none;
+}
+
+/* ==========================================================================
+   LUXURY BURGUNDY ROSE MOBILE DRAWER
+   ========================================================================== */
+.header__mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 360px;
+  height: 100vh;
+  height: 100dvh;
+  background: linear-gradient(180deg, rgba(143, 65, 81, 0.98) 0%, rgba(98, 36, 50, 0.99) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 24px;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.4);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.header__mobile-drawer.active {
+  transform: translateX(0);
+}
+
+.header__mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 9999;
+  animation: fadeInBackdrop 0.3s ease;
+}
+
+@keyframes fadeInBackdrop {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.header__mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 20px;
+}
+
+.header__mobile-logo {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #FFF;
+}
+
+.header__mobile-close {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.header__mobile-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: rotate(90deg);
+}
+
+.header__mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.header__mobile-link {
+  font-size: 19px;
+  font-weight: 700;
+  color: #FFF;
+  text-decoration: none;
+  padding: 6px 0;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.header__mobile-link:hover {
+  color: #d08595;
+  transform: translateX(4px);
+}
+
+.header__mobile-branches {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.header__mobile-subtitle {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 12px;
+}
+
+.header__mobile-branch-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header__mobile-branch-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.header__mobile-branch-item:hover {
+  color: #FFF;
+}
+
+.header__mobile-branch-item--soon {
+  opacity: 0.75;
+}
+
+.header__mobile-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.header__mobile-socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header__mobile-socials a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.header__mobile-socials a[aria-label="Instagram"]:hover {
+  background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+  border-color: transparent;
+}
+
+.header__mobile-socials a[aria-label="WhatsApp"]:hover {
+  background: #25D366;
+  border-color: transparent;
+}
+
+.header__mobile-copyright {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES (FULL MOBILE ARCHITECTURE)
    ========================================================================== */
 @media (max-width: 1200px) {
   .header__nav {
@@ -2124,32 +2331,608 @@ ul, ol {
 }
 
 @media (max-width: 768px) {
+  /* 0. Global Overflow Lock */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  .page-holder,
+  .wrapper {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  /* 1. Header */
+  .header {
+    padding: 14px 0;
+  }
+
+  .header__content {
+    gap: 12px;
+  }
+
+  .header__logo a span {
+    font-size: 17px !important;
+    letter-spacing: 0.5px;
+  }
+
+  .header__branches-dropdown {
+    display: none !important;
+  }
+
+  /* 2. Hero Section */
+  .hero {
+    height: auto !important;
+    min-height: 100svh !important;
+    max-height: none !important;
+    padding: 120px 20px 60px !important;
+  }
+
   .hero .container {
     flex-direction: column;
     justify-content: center;
-    padding-top: 80px;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+    gap: 20px;
   }
 
-  .hero__list {
+  .hero__content {
     max-width: 100%;
+  }
+
+  .hero__content h1 {
+    font-size: clamp(34px, 8.5vw, 56px) !important;
+    line-height: 1.1 !important;
+  }
+
+  .hero__content h1 mark {
+    font-size: clamp(30px, 7.5vw, 48px) !important;
+    margin-top: 6px;
+  }
+
+  /* 3. About Section */
+  .about {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    padding: 80px 20px !important;
+  }
+
+  .about .container {
+    justify-content: center;
+  }
+
+  .about__parallax-bg {
+    transform: none !important;
+    top: 0 !important;
+    height: 100% !important;
+  }
+
+  .container__wrapper {
+    max-width: 100%;
+    text-align: left;
+    gap: 20px;
+  }
+
+  .container__wrapper h2 {
+    font-size: clamp(32px, 8vw, 48px) !important;
+  }
+
+  .about__description {
+    gap: 14px;
+  }
+
+  .about__description p {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* 4. Mission Section (Complete Stack Architecture with User Mobile Image) */
+  .mission {
+    padding: 80px 0 60px !important;
+    min-height: auto !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+  }
+
+  .mission .container {
+    padding: 0 20px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mission__card {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .mission__content {
+    max-width: 100% !important;
+    gap: 20px;
+  }
+
+  .mission__content h2 {
+    font-size: clamp(32px, 8vw, 48px) !important;
+  }
+
+  .mission__content p {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Hide desktop fixed frame on mobile */
+  .mission__frame-slot {
+    display: none !important;
+  }
+
+  /* Dedicated Mobile Image Frame */
+  .mission__mobile-frame {
+    display: block !important;
+    width: 100%;
+    max-width: 360px;
+    margin: 36px auto 0;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #FFF;
+    box-shadow: 0 16px 40px rgba(143, 65, 81, 0.16);
+    border: 1px solid rgba(143, 65, 81, 0.12);
+  }
+
+  .mission__mobile-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    background: #FFF;
+  }
+
+  /* 5. Proud / Sourcing Section */
+  .proud {
+    padding: 70px 20px !important;
+    min-height: auto !important;
+  }
+
+  .proud-wrapper {
+    gap: 28px;
+  }
+
+  .proud-content h2 {
+    font-size: clamp(32px, 8vw, 48px) !important;
+  }
+
+  .proud-content-description p {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
+
+  .proud-slider {
+    height: 290px !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .proud-slider-prev,
+  .proud-slider-next {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 10px !important;
+  }
+
+  /* 6. Menu Section */
+  .menu {
+    padding: 70px 0 !important;
+  }
+
+  .menu .container-wrapper {
+    gap: 36px;
+  }
+
+  .menu-content {
+    padding: 0 20px;
+    max-width: 100%;
+  }
+
+  .menu-content h2 {
+    font-size: clamp(32px, 8vw, 48px) !important;
+  }
+
+  .menu-content p {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 24px !important;
+  }
+
+  .menu-content-link {
+    font-size: 18px !important;
+    padding: 12px 24px !important;
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .menu-carousel {
+    padding: 10px 0;
+  }
+
+  .menu-track {
+    padding: 0 20px;
+    gap: 16px;
+  }
+
+  .menu-card {
+    flex: 0 0 270px !important;
+    height: 320px !important;
+  }
+
+  .menu-slider-btn {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .menu-slider-btn--prev {
+    left: 8px !important;
+  }
+
+  .menu-slider-btn--next {
+    right: 8px !important;
+  }
+
+  /* 7. Branches Section */
+  .branches {
+    padding: 70px 0 !important;
+  }
+
+  .branches-wrapper h2 {
+    padding: 0 20px !important;
+    margin-bottom: 10px !important;
+    font-size: clamp(32px, 8vw, 48px) !important;
+  }
+
+  .branches__scroll-hint {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    color: #8F4151;
+    font-weight: 600;
+  }
+
+  .branches__mobile-container {
+    display: block !important;
+    width: 100%;
+    margin-top: 24px;
+  }
+
+  .branches__mobile-cards {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 10px 20px 20px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .branches__mobile-card {
+    flex: 0 0 280px;
+    background: #FFF;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(35, 22, 28, 0.08);
+    overflow: hidden;
+    scroll-snap-align: center;
+    cursor: pointer;
+    border: 1px solid rgba(143, 65, 81, 0.12);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+  }
+
+  .branches__mobile-card-img {
+    height: 150px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .branches__mobile-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .branches__mobile-card-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+
+  .branches__mobile-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .branches__mobile-card-top h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #23161C;
+    margin: 0;
+    line-height: 1.25;
+  }
+
+  .branches__mobile-rating {
+    font-size: 12px;
+    font-weight: 700;
+    color: #E29D52;
+    background: #FAF5F7;
+    padding: 2px 7px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+
+  .branches__mobile-loc,
+  .branches__mobile-hours {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+  }
+
+  .branches__mobile-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 6px;
+  }
+
+  .branches__mobile-btn-details {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #8F4151;
+    color: #FFF;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(143, 65, 81, 0.25);
+  }
+
+  .branches__mobile-btn-map {
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #FAF5F7;
+    color: #8F4151;
+    border: 1px solid rgba(143, 65, 81, 0.2);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .branches__popup {
+    width: 92% !important;
+    max-width: 420px !important;
+    max-height: 85vh !important;
+    padding: 22px 18px !important;
+    border-radius: 16px !important;
+  }
+
+  .branch-image-box {
+    height: 180px;
+    margin-bottom: 16px;
+  }
+
+  .branches__info-top h3 {
+    font-size: 20px;
+  }
+
+  /* 8. Sustainability Section */
+  .sustainability {
+    padding: 70px 20px !important;
+  }
+
+  .sustainability .container {
+    gap: 36px;
   }
 
   .proud-wrapper-box {
     flex-direction: column;
+    padding: 24px 18px;
+    gap: 20px;
+  }
+
+  .proud-wrapper-box h3 {
+    font-size: 20px;
+    max-width: 100%;
   }
 
   .proud-wrapper-box-description {
     flex-direction: column;
+    gap: 14px;
+  }
+
+  .proud-wrapper-box-description p {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  /* 9. Contact Section */
+  .contact {
+    padding: 80px 20px !important;
+  }
+
+  .contact h2 {
+    font-size: clamp(32px, 8vw, 48px) !important;
+  }
+
+  .contact address {
+    gap: 18px;
+  }
+
+  .contact address p,
+  .contact address a {
+    font-size: 16px !important;
+    line-height: 1.4;
+  }
+
+  /* 10. Retail Gelato Section */
+  .retail {
+    padding: 70px 0 !important;
+  }
+
+  .retail .container {
+    padding: 0 20px;
+  }
+
+  .retail h2 {
+    font-size: clamp(32px, 8vw, 48px) !important;
+  }
+
+  .retail-track-container {
+    padding: 10px 20px;
   }
 
   .retail-swiper-box {
-    width: 320px;
-    height: 480px;
-    padding: 24px 20px;
+    width: 290px !important;
+    height: 460px !important;
+    padding: 24px 20px !important;
   }
 
-  .branches__popup {
-    width: 95%;
-    padding: 24px 16px;
+  .retail-swiper-counter {
+    font-size: 28px;
+  }
+
+  .retail-swiper-title h3 {
+    font-size: 17px;
+  }
+
+  .retail-swiper-title p {
+    font-size: 14px;
+  }
+
+  .retail-swiper-price {
+    font-size: 20px;
+  }
+
+  /* 11. News Section */
+  .news {
+    padding: 70px 20px !important;
+  }
+
+  .news h2 {
+    font-size: clamp(32px, 8vw, 48px) !important;
+  }
+
+  .news-list {
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+  }
+
+  .news-item {
+    height: auto !important;
+    min-height: 380px !important;
+  }
+
+  /* 12. Team Section */
+  .team {
+    padding: 70px 20px !important;
+  }
+
+  .team-content {
+    width: 100% !important;
+  }
+
+  .team-content h2 {
+    font-size: clamp(32px, 8vw, 48px) !important;
+  }
+
+  .team-content p {
+    font-size: 16px !important;
+  }
+
+  .team-track-container {
+    width: 100% !important;
+  }
+
+  .team-item {
+    width: 240px !important;
+    height: 320px !important;
+  }
+
+  /* 13. Footer Section */
+  .footer {
+    padding: 60px 20px 24px !important;
+  }
+
+  .footer__content {
+    flex-direction: column !important;
+    gap: 36px !important;
+    margin-bottom: 40px !important;
+  }
+
+  .footer__col {
+    min-width: 100% !important;
+  }
+
+  .footer__logo {
+    font-size: 19px !important;
+  }
+
+  .footer__text {
+    font-size: 15px;
+    max-width: 100%;
+  }
+
+  .footer__socials a {
+    width: 44px !important;
+    height: 44px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__content h1 {
+    font-size: 32px !important;
+  }
+
+  .container__wrapper h2,
+  .mission__content h2,
+  .proud-content h2,
+  .menu-content h2,
+  .branches-wrapper h2,
+  .contact h2,
+  .retail h2,
+  .news h2,
+  .team-content h2 {
+    font-size: 32px !important;
+  }
+
+  .proud-slider {
+    height: 240px !important;
+  }
+
+  .menu-card {
+    flex: 0 0 250px !important;
+    height: 290px !important;
+  }
+
+  .branches__mobile-card {
+    flex: 0 0 260px;
+  }
+
+  .retail-swiper-box {
+    width: 270px !important;
+    height: 440px !important;
   }
 }
