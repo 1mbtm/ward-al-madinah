@@ -643,7 +643,7 @@ ul, ol {
   bottom: 0;
   height: 100%;
   aspect-ratio: 1 / 1;
-  border: 2px solid #23161C;
+  border: none;
   border-radius: 0px !important;
   background: #f4ece5;
   z-index: 2;
