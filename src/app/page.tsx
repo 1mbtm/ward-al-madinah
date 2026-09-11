@@ -609,8 +609,8 @@ export default function ExactTemplatePage() {
               <img
                 ref={parallaxRef}
                 className="about__parallax-bg"
-                src="https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/about-parallax-bg.jpg"
-                alt="About Roasters Background"
+                src="/images/about-rose-petals-bg.jpg"
+                alt="About Medina Rose Petals Background"
               />
             </div>
             <div className="container">
