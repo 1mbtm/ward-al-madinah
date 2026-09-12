@@ -21,6 +21,7 @@ import {
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { RestaurantSocialScroll } from '@/components/RestaurantSocialScroll';
 import { RosePetalsRain } from '@/components/RosePetalsRain';
+import SprayBottleMist from '@/components/SprayBottleMist';
 
 export default function ExactTemplatePage() {
   // Navigation & Drawer State
@@ -821,28 +822,15 @@ export default function ExactTemplatePage() {
                 </div>
               </div>
 
-              {/* Mobile Menu Image Frame (Shown on mobile screens, exactly like mission) */}
+              {/* Mobile Menu Image Frame */}
               <div className="menu__mobile-frame" data-aos="fade-up">
-                <img
-                  src="/images/menu-placeholder.png"
-                  alt="Medina Rose Menu Specialty"
-                  className="menu__mobile-img"
-                />
+                <SprayBottleMist />
               </div>
             </div>
 
-            {/* Desktop Menu Photo Frame Slot (Exactly like Mission section) */}
+            {/* Desktop Menu Spray Bottle Slot (Static PNG with Interactive Mist) */}
             <div className="menu__frame-slot">
-              <motion.img
-                src="/images/menu-placeholder.png"
-                alt="Medina Rose Menu Specialty"
-                className="menu__frame-img"
-                style={{
-                  x: isMobile ? '0%' : menuImgX,
-                  scale: isMobile ? 1 : menuImgScale,
-                  opacity: isMobile ? 1 : menuImgOpacity,
-                }}
-              />
+              <SprayBottleMist />
             </div>
             <div className="menu-bg">
               <img src="https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/contact-bg.png" alt="Menu background" />

@@ -1157,7 +1157,7 @@ ul, ol {
   object-fit: cover;
 }
 
-/* Right-side Photo Frame Slot (Exactly matching .mission__frame-slot) */
+/* Right-side Spray Bottle Slot */
 .menu__frame-slot {
   position: absolute;
   right: 0;
@@ -1167,10 +1167,10 @@ ul, ol {
   aspect-ratio: 1 / 1;
   border: none;
   border-radius: 0px !important;
-  background: #f4ece5;
-  z-index: 2;
+  background: transparent;
+  z-index: 10;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1179,14 +1179,112 @@ ul, ol {
 .menu__frame-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  object-fit: contain;
+  object-position: center bottom;
   display: block;
-  will-change: transform, opacity;
 }
 
 .menu__mobile-frame {
   display: none;
+}
+
+/* Interactive Fragrance Spray Bottle & Canvas Mist */
+.menu-spray-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  outline: none;
+  transition: transform 0.2s ease;
+}
+
+.menu-spray-img {
+  width: 100%;
+  height: 100%;
+  max-height: 95vh;
+  object-fit: contain;
+  object-position: center bottom;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.menu-spray-canvas {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 220%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Subtle, Elegant Hint Badge */
+.menu-spray-hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(35, 22, 28, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #FFF;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(35, 22, 28, 0.22);
+  pointer-events: none;
+  animation: sprayHintFadeIn 0.6s ease;
+  transition: opacity 0.4s ease;
+  z-index: 12;
+  white-space: nowrap;
+}
+
+.menu-spray-hint-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #E8849E;
+  box-shadow: 0 0 0 0 rgba(232, 132, 158, 0.7);
+  animation: sprayHintPulse 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes sprayHintPulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(232, 132, 158, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(232, 132, 158, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(232, 132, 158, 0);
+  }
+}
+
+@keyframes sprayHintFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ==========================================================================
@@ -2945,17 +3043,23 @@ ul, ol {
   .menu__mobile-frame {
     display: block !important;
     width: 100% !important;
-    max-width: 480px !important;
-    margin: 32px auto 0 !important;
-    border-radius: 20px !important;
-    overflow: hidden !important;
-    box-shadow: 0 16px 40px rgba(35, 22, 28, 0.15) !important;
+    max-width: 440px !important;
+    height: 480px !important;
+    margin: 28px auto 0 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    position: relative !important;
   }
 
-  .menu__mobile-img {
-    width: 100% !important;
-    height: auto !important;
-    display: block !important;
+  .menu-spray-hint {
+    bottom: 16px !important;
+    right: auto !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    padding: 6px 14px !important;
+    font-size: 12px !important;
   }
 
   /* 7. Branches Section */
