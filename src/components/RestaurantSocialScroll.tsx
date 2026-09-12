@@ -12,39 +12,29 @@ export interface SocialCardItem {
     category: string;
     url: string;
     icon: ReactNode;
-    bg: string;
-    border: string;
-    shadow: string;
-    textColor: string;
-    categoryColor: string;
-    handleColor: string;
-    badgeBg: string;
-    badgeBorder: string;
-    arrowColor: string;
 }
 
 // 🎯 OFFICIAL HIGH-FIDELITY BRAND VECTOR LOGOS
 const InstagramOfficialLogo = () => (
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="#FFFFFF" strokeWidth="2" />
-        <circle cx="12" cy="12" r="4.2" stroke="#FFFFFF" strokeWidth="2" />
-        <circle cx="17.3" cy="6.7" r="1.3" fill="#FFFFFF" />
+        <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="#E1306C" strokeWidth="2" />
+        <circle cx="12" cy="12" r="4.2" stroke="#E1306C" strokeWidth="2" />
+        <circle cx="17.3" cy="6.7" r="1.3" fill="#E1306C" />
     </svg>
 );
 
 const FacebookOfficialLogo = () => (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg">
         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
     </svg>
 );
 
 const SnapchatOfficialLogo = () => (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="#FFFC00" xmlns="http://www.w3.org/2000/svg">
         <path
             d="M12 2.5c-3.1 0-5.3 2.3-5.3 5.4 0 .9.2 2.2.5 2.8-.4.1-.9.2-1.3.3-.5.1-.9.5-.9.9 0 .4.2.7.6.8.8.3 1.7.4 2.2.8.2.2.3.5.2.8-.2.8-1.1 1.5-2 1.8-.4.1-.6.5-.6.9 0 .4.2.7.6.9.9.3 2.4.5 3.1.9.4.2.5.6.5 1-.2 1-1 1.8-1.9 2-.3.1-.6.4-.6.7 0 .4.3.8.7.8.5 0 1.2-.1 2-.4.9-.3 1.9-.8 2.9-.8 1.1 0 2.1.5 2.9.8.8.3 1.5.4 2 .4.4 0 .7-.4.7-.8 0-.3-.3-.6-.6-.7-.9-.2-1.7-1-1.9-2 0-.4.1-.8.5-1 .7-.4 2.2-.6 3.1-.9.4-.2.6-.5.6-.9 0-.4-.2-.8-.6-.9-.9-.3-1.8-1-2-1.8-.1-.3 0-.6.2-.8.5-.4 1.4-.5 2.2-.8.4-.1.6-.4.6-.8 0-.4-.4-.8-.9-.9-.4-.1-.9-.2-1.3-.3.3-.6.5-1.9.5-2.8 0-3.1-2.2-5.4-5.3-5.4z"
-            fill="#FFFFFF"
             stroke="#000000"
-            strokeWidth="1.3"
+            strokeWidth="1.2"
             strokeLinejoin="round"
         />
     </svg>
@@ -61,18 +51,18 @@ const GoogleMapsOfficialLogo = () => (
 );
 
 const WhatsAppOfficialLogo = () => (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="#25D366" xmlns="http://www.w3.org/2000/svg">
         <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.275-.101-.476-.15-.677.15-.2.301-.776.978-.952 1.179-.175.2-.351.226-.652.075-.301-.151-1.27-.468-2.42-1.493-.895-.798-1.5-1.784-1.676-2.085-.175-.301-.019-.464.132-.614.136-.135.301-.351.452-.527.15-.175.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.151-.677-1.63-.927-2.232-.244-.587-.492-.507-.677-.516-.175-.008-.376-.01-.577-.01-.2 0-.526.075-.802.376-.275.301-1.052 1.028-1.052 2.508 0 1.48 1.077 2.909 1.228 3.109.15.2 2.119 3.235 5.132 4.538.717.31 1.276.495 1.713.634.721.229 1.377.197 1.895.12.578-.087 1.78-.727 2.03-1.43.251-.702.251-1.304.176-1.43-.076-.125-.276-.2-.577-.351zM12.04 2C6.51 2 2.02 6.49 2.02 12.02c0 1.76.46 3.48 1.34 5l-1.42 5.18 5.31-1.39c1.47.8 3.12 1.22 4.79 1.22 5.53 0 10.02-4.49 10.02-10.01C22.06 6.49 17.57 2 12.04 2zm0 18.34c-1.5 0-2.97-.4-4.26-1.16l-.31-.18-3.16.83.84-3.08-.2-.32c-.84-1.34-1.29-2.89-1.29-4.43 0-4.6 3.74-8.34 8.38-8.34 4.63 0 8.37 3.74 8.37 8.34 0 4.6-3.74 8.34-8.37 8.34z" />
     </svg>
 );
 
 const DirectCallOfficialLogo = () => (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg">
         <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.44-5.15-3.75-6.59-6.58l1.97-1.57c.28-.27.36-.66.25-1.01A11.36 11.36 0 018.57 4c0-.55-.45-1-1-1H4.14c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.62c0-.55-.45-1-1-1.01z" />
     </svg>
 );
 
-// 🍽️ 6 RESTAURANT SOCIAL & CONTACT CHANNELS WITH OFFICIAL APP BRAND COLORS & LOGOS
+// 🍽️ 6 RESTAURANT SOCIAL & CONTACT CHANNELS (ORIGINAL DARK LUXURY CARDS)
 export const RESTAURANT_CHANNELS: SocialCardItem[] = [
     {
         id: 'instagram',
@@ -81,15 +71,6 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
         category: 'Visuals & Menu',
         url: 'https://instagram.com/medinarose.icecream',
         icon: <InstagramOfficialLogo />,
-        bg: 'linear-gradient(135deg, #405DE6 0%, #833AB4 28%, #C13584 52%, #FD1D1D 74%, #F56040 88%, #FCAF45 100%)',
-        border: 'rgba(255, 255, 255, 0.35)',
-        shadow: '0 12px 32px rgba(193, 53, 132, 0.45)',
-        textColor: '#FFFFFF',
-        categoryColor: 'rgba(255, 255, 255, 0.85)',
-        handleColor: 'rgba(255, 255, 255, 0.92)',
-        badgeBg: 'rgba(255, 255, 255, 0.22)',
-        badgeBorder: 'rgba(255, 255, 255, 0.35)',
-        arrowColor: '#FFFFFF',
     },
     {
         id: 'facebook',
@@ -98,15 +79,6 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
         category: 'Community & Updates',
         url: 'https://facebook.com',
         icon: <FacebookOfficialLogo />,
-        bg: 'linear-gradient(145deg, #1877F2 0%, #1162cc 55%, #0a4696 100%)',
-        border: 'rgba(255, 255, 255, 0.3)',
-        shadow: '0 12px 32px rgba(24, 119, 242, 0.45)',
-        textColor: '#FFFFFF',
-        categoryColor: 'rgba(255, 255, 255, 0.85)',
-        handleColor: 'rgba(255, 255, 255, 0.92)',
-        badgeBg: 'rgba(255, 255, 255, 0.2)',
-        badgeBorder: 'rgba(255, 255, 255, 0.3)',
-        arrowColor: '#FFFFFF',
     },
     {
         id: 'snapchat',
@@ -115,15 +87,6 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
         category: 'Daily Stories',
         url: 'https://snapchat.com',
         icon: <SnapchatOfficialLogo />,
-        bg: 'linear-gradient(145deg, #FFFC00 0%, #FFE600 55%, #F0C400 100%)',
-        border: 'rgba(0, 0, 0, 0.18)',
-        shadow: '0 12px 32px rgba(230, 196, 0, 0.45)',
-        textColor: '#000000',
-        categoryColor: 'rgba(0, 0, 0, 0.72)',
-        handleColor: 'rgba(0, 0, 0, 0.88)',
-        badgeBg: 'rgba(0, 0, 0, 0.08)',
-        badgeBorder: 'rgba(0, 0, 0, 0.16)',
-        arrowColor: '#000000',
     },
     {
         id: 'googlemap',
@@ -132,15 +95,6 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
         category: 'Madinah, KSA',
         url: 'https://maps.google.com',
         icon: <GoogleMapsOfficialLogo />,
-        bg: 'linear-gradient(145deg, #1A73E8 0%, #1557b0 50%, #0d3b7a 100%)',
-        border: 'rgba(255, 255, 255, 0.3)',
-        shadow: '0 12px 32px rgba(26, 115, 232, 0.45)',
-        textColor: '#FFFFFF',
-        categoryColor: 'rgba(255, 255, 255, 0.85)',
-        handleColor: 'rgba(255, 255, 255, 0.92)',
-        badgeBg: 'rgba(255, 255, 255, 0.2)',
-        badgeBorder: 'rgba(255, 255, 255, 0.3)',
-        arrowColor: '#FFFFFF',
     },
     {
         id: 'whatsapp',
@@ -149,15 +103,6 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
         category: 'Instant Chat',
         url: 'https://wa.me/966500000000',
         icon: <WhatsAppOfficialLogo />,
-        bg: 'linear-gradient(145deg, #25D366 0%, #128C7E 55%, #075E54 100%)',
-        border: 'rgba(255, 255, 255, 0.3)',
-        shadow: '0 12px 32px rgba(37, 211, 102, 0.45)',
-        textColor: '#FFFFFF',
-        categoryColor: 'rgba(255, 255, 255, 0.85)',
-        handleColor: 'rgba(255, 255, 255, 0.92)',
-        badgeBg: 'rgba(255, 255, 255, 0.2)',
-        badgeBorder: 'rgba(255, 255, 255, 0.3)',
-        arrowColor: '#FFFFFF',
     },
     {
         id: 'call',
@@ -166,15 +111,6 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
         category: 'Phone Inquiries',
         url: 'tel:+966500000000',
         icon: <DirectCallOfficialLogo />,
-        bg: 'linear-gradient(145deg, #4CD964 0%, #2bb043 55%, #1877F2 100%)',
-        border: 'rgba(255, 255, 255, 0.3)',
-        shadow: '0 12px 32px rgba(76, 217, 100, 0.45)',
-        textColor: '#FFFFFF',
-        categoryColor: 'rgba(255, 255, 255, 0.85)',
-        handleColor: 'rgba(255, 255, 255, 0.92)',
-        badgeBg: 'rgba(255, 255, 255, 0.2)',
-        badgeBorder: 'rgba(255, 255, 255, 0.3)',
-        arrowColor: '#FFFFFF',
     },
 ];
 
@@ -227,12 +163,11 @@ export const RestaurantSocialScroll: FC = () => {
     return (
         <div
             ref={sectionRef}
-            className="social-scroll-section w-full py-8 md:py-12 overflow-hidden relative"
-            style={{ contain: 'paint layout' }}
+            className="social-scroll-section"
             onWheel={handleWheel}
         >
             {/* Single Scroll Row Container */}
-            <div className="social-scroll-row overflow-hidden w-full py-3" style={{ contain: 'content' }}>
+            <div className="social-scroll-row">
                 {/* 1. Outer Motion Layer: Driven by Vertical Page Scroll */}
                 <motion.div
                     style={{
@@ -271,7 +206,7 @@ export const RestaurantSocialScroll: FC = () => {
                                 isDraggingRef.current = false;
                             }, 80);
                         }}
-                        className="social-scroll-track flex gap-4 sm:gap-6 w-max py-2 cursor-grab active:cursor-grabbing select-none"
+                        className="social-scroll-track"
                     >
                         {singleRowCards.map((item, index) => (
                             <a
@@ -287,64 +222,32 @@ export const RestaurantSocialScroll: FC = () => {
                                         e.stopPropagation();
                                     }
                                 }}
-                                className="social-scroll-card w-[250px] h-[140px] sm:w-[280px] sm:h-[155px] rounded-2xl flex-shrink-0 relative overflow-hidden transition-all duration-200 group flex flex-col justify-between p-5 cursor-grab active:cursor-grabbing select-none backdrop-blur-md"
-                                style={{
-                                    background: item.bg,
-                                    border: `1px solid ${item.border}`,
-                                    boxShadow: item.shadow,
-                                }}
+                                className="social-scroll-card group"
                             >
                                 {/* Subtle glass reflection sheen */}
-                                <div
-                                    className="social-scroll-sheen absolute inset-0 pointer-events-none opacity-25"
-                                    style={{
-                                        background:
-                                            'linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 45%, rgba(255,255,255,0.05) 65%, transparent 100%)',
-                                    }}
-                                />
+                                <div className="social-scroll-sheen" />
 
                                 {/* Top: Icon + Category */}
-                                <div className="social-scroll-card-top flex items-center justify-between relative z-10 pointer-events-none">
-                                    <div
-                                        className="social-scroll-icon p-2 rounded-xl group-hover:scale-110 transition-transform"
-                                        style={{
-                                            backgroundColor: item.badgeBg,
-                                            border: `1px solid ${item.badgeBorder}`,
-                                        }}
-                                    >
+                                <div className="social-scroll-card-top">
+                                    <div className="social-scroll-icon">
                                         {item.icon}
                                     </div>
-                                    <span
-                                        className="social-scroll-category font-mono text-[9px] sm:text-[10px] uppercase tracking-widest font-bold"
-                                        style={{ color: item.categoryColor }}
-                                    >
+                                    <span className="social-scroll-category">
                                         {item.category}
                                     </span>
                                 </div>
 
                                 {/* Bottom: Title, Handle & Arrow Link */}
-                                <div
-                                    className="social-scroll-card-bottom relative z-10 flex items-end justify-between pt-3 border-t pointer-events-none"
-                                    style={{ borderColor: item.badgeBorder }}
-                                >
+                                <div className="social-scroll-card-bottom">
                                     <div>
-                                        <h3
-                                            className="social-scroll-title font-bold text-sm sm:text-base transition-colors"
-                                            style={{ color: item.textColor }}
-                                        >
+                                        <h3 className="social-scroll-title">
                                             {item.name}
                                         </h3>
-                                        <p
-                                            className="social-scroll-handle font-mono text-[11px] sm:text-xs truncate max-w-[160px] sm:max-w-[190px]"
-                                            style={{ color: item.handleColor }}
-                                        >
+                                        <p className="social-scroll-handle">
                                             {item.handle}
                                         </p>
                                     </div>
-                                    <div
-                                        className="social-scroll-arrow group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform pb-0.5"
-                                        style={{ color: item.arrowColor }}
-                                    >
+                                    <div className="social-scroll-arrow">
                                         <ArrowUpRight className="w-4 h-4" />
                                     </div>
                                 </div>
