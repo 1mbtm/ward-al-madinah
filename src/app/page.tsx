@@ -394,7 +394,7 @@ export default function ExactTemplatePage() {
                   <li><a href="#about-scene">About Us</a></li>
                   <li><a href="#branches">Branches</a></li>
                   <li><a href="#menu">Menu</a></li>
-                  <li><a href="#retail">Artisanal Tubs</a></li>
+                  <li><a href="#retail">Heritage Goods</a></li>
                   <li><a href="#contact">Contacts</a></li>
                 </ul>
               </nav>
@@ -487,7 +487,7 @@ export default function ExactTemplatePage() {
             <a href="#about-scene" onClick={() => setMobileMenuOpen(false)} className="header__mobile-link">About Us</a>
             <a href="#branches" onClick={() => setMobileMenuOpen(false)} className="header__mobile-link">Branches</a>
             <a href="#menu" onClick={() => setMobileMenuOpen(false)} className="header__mobile-link">Menu</a>
-            <a href="#retail" onClick={() => setMobileMenuOpen(false)} className="header__mobile-link">Artisanal Tubs</a>
+            <a href="#retail" onClick={() => setMobileMenuOpen(false)} className="header__mobile-link">Heritage Goods</a>
             <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="header__mobile-link">Contacts</a>
           </div>
 
@@ -987,7 +987,7 @@ export default function ExactTemplatePage() {
           <section id="retail" className="retail" ref={retailSectionRef}>
             <div className="container-wrapper">
               <div className="container" data-aos="fade-up">
-                <h2>Artisanal Gelato Tubs & Gifts</h2>
+                <h2>Madinah Heritage Goods & Rose Elixirs</h2>
               </div>
 
               <div className="retail-track-container" data-aos="fade-up" data-aos-delay="200">
@@ -1085,7 +1085,7 @@ export default function ExactTemplatePage() {
                   <li><a href="#about-scene">About Us</a></li>
                   <li><a href="#branches">Branches</a></li>
                   <li><a href="#menu">Menu</a></li>
-                  <li><a href="#retail">Artisanal Tubs</a></li>
+                  <li><a href="#retail">Heritage Goods</a></li>
                 </ul>
               </div>
 
