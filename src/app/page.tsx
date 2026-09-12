@@ -242,7 +242,7 @@ export default function ExactTemplatePage() {
       hours: 'Open 24 Hours Daily',
       tel: '+966 54 330 0570',
       mapUrl: 'https://share.google/Z45RI9GaWryDIT55J',
-      image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80',
+      image: '/images/grand-plaza.png',
       x: 50.8,
       y: 45.5
     },
@@ -255,9 +255,9 @@ export default function ExactTemplatePage() {
       hours: 'Open 24 Hours Daily',
       tel: '+966 54 330 0570',
       mapUrl: 'https://share.google/Z45RI9GaWryDIT55J',
-      image: 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=800&q=80',
-      x: 44.5,
-      y: 72.0
+      image: '/images/dar-al-hizra.png',
+      x: 23.5,
+      y: 28.0
     },
     {
       id: 3,
@@ -268,9 +268,9 @@ export default function ExactTemplatePage() {
       hours: 'Open 24 Hours Daily',
       tel: '+966 54 330 0570',
       mapUrl: 'https://share.google/Z45RI9GaWryDIT55J',
-      image: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=800&q=80',
-      x: 23.5,
-      y: 28.0
+      image: '/images/quba.png',
+      x: 44.5,
+      y: 72.0
     },
   ];
 
@@ -883,7 +883,7 @@ export default function ExactTemplatePage() {
                   onClick={() => setActivePopupId(null)}
                   aria-label="Close branch modal"
                 >
-                  <X size={24} />
+                  <X size={16} strokeWidth={2.2} />
                 </button>
                 <div className="branch-image-box">
                   <img src={currentBranch.image} alt={currentBranch.name} />
@@ -892,22 +892,22 @@ export default function ExactTemplatePage() {
                   <div className="branches__info-top">
                     <h3>{currentBranch.name}</h3>
                     <div className="branches__info-top--rating">
+                      <span style={{ color: '#E29D52', fontSize: '13px' }}>★</span>
                       <span>{currentBranch.rating}</span>
-                      <span style={{ color: '#E29D52' }}>★</span>
                     </div>
                   </div>
                   <div className="branches__info-bottom">
                     <ul>
                       <li>
-                        <MapPin size={16} />
+                        <MapPin size={15} color="#8F4151" style={{ flexShrink: 0, marginTop: '2px' }} />
                         <span>{currentBranch.location}</span>
                       </li>
                       <li>
-                        <Clock size={16} />
+                        <Clock size={15} color="#8F4151" style={{ flexShrink: 0, marginTop: '2px' }} />
                         <span>{currentBranch.hours}</span>
                       </li>
                       <li>
-                        <Phone size={16} />
+                        <Phone size={15} color="#8F4151" style={{ flexShrink: 0, marginTop: '2px' }} />
                         <a href={`tel:${currentBranch.tel.replace(/\s+/g, '')}`}>{currentBranch.tel}</a>
                       </li>
                     </ul>
@@ -917,7 +917,8 @@ export default function ExactTemplatePage() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      GOOGLE MAPS
+                      <ExternalLink size={14} strokeWidth={2} />
+                      <span>Google Maps</span>
                     </a>
                   </div>
                 </div>
