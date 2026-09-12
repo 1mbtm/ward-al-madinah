@@ -1533,14 +1533,22 @@ ul, ol {
 .social-scroll-card {
   width: 280px;
   height: 155px;
-  border-radius: 18px;
+  border-radius: 20px;
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(145deg, #7C2030 0%, #581421 52%, #380A13 100%);
-  border: 1px solid rgba(255, 215, 225, 0.26);
-  box-shadow: 0 12px 34px rgba(70, 14, 26, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  background:
+    radial-gradient(100% 70% at 30% 0%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 65%),
+    linear-gradient(145deg, #8C2235 0%, #5E1423 48%, #360712 100%);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.65);
+  box-shadow:
+    0 16px 40px rgba(58, 10, 20, 0.42),
+    0 4px 12px rgba(0, 0, 0, 0.28),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.55),
+    inset 0 -1.5px 3px rgba(0, 0, 0, 0.35),
+    inset 0 0 20px rgba(255, 255, 255, 0.08);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1549,9 +1557,25 @@ ul, ol {
   user-select: none;
   -webkit-user-select: none;
   -webkit-user-drag: none;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   text-decoration: none;
+}
+
+/* Polished convex glass dome reflection (top half gloss curvature) */
+.social-scroll-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.34) 0%, rgba(255, 255, 255, 0.12) 65%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 19px 19px 65% 65% / 19px 19px 24px 24px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.9;
+  transition: all 0.3s ease;
 }
 
 .social-scroll-card:active {
@@ -1559,17 +1583,41 @@ ul, ol {
 }
 
 .social-scroll-card:hover {
-  border-color: rgba(255, 215, 225, 0.7);
-  transform: translateY(-4px);
-  box-shadow: 0 18px 44px rgba(124, 32, 48, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.55);
+  border-top-color: rgba(255, 255, 255, 0.88);
+  transform: translateY(-5px);
+  box-shadow:
+    0 22px 54px rgba(140, 34, 53, 0.55),
+    0 6px 18px rgba(0, 0, 0, 0.35),
+    inset 0 2px 3px rgba(255, 255, 255, 0.78),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.45),
+    inset 0 0 24px rgba(255, 255, 255, 0.15);
+}
+
+.social-scroll-card:hover::after {
+  opacity: 1;
+  height: 56%;
 }
 
 .social-scroll-sheen {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.35;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, transparent 45%, rgba(230, 168, 182, 0.08) 65%, transparent 100%);
+  opacity: 0.65;
+  background: linear-gradient(125deg,
+    rgba(255, 255, 255, 0.42) 0%,
+    rgba(255, 255, 255, 0.16) 18%,
+    transparent 36%,
+    rgba(255, 255, 255, 0.08) 55%,
+    transparent 78%
+  );
+  z-index: 3;
+  transition: all 0.35s ease;
+}
+
+.social-scroll-card:hover .social-scroll-sheen {
+  opacity: 0.9;
+  transform: scale(1.04);
 }
 
 .social-scroll-card-top {
