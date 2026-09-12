@@ -53,14 +53,14 @@ export default function SprayBottleMist({ className = '' }: { className?: string
     const imgRect = img.getBoundingClientRect();
     const canvasRect = canvas.getBoundingClientRect();
 
-    // In the intrinsic 768 x 1024 asset:
-    // Gold nozzle orifice leftmost tip: X = 320px (41.67%), Y = 445px (43.46%)
-    const nozzleClientX = imgRect.left + imgRect.width * 0.4167;
-    const nozzleClientY = imgRect.top + imgRect.height * 0.4346;
+    // In the cropped 508 x 594 asset (transparent margins trimmed):
+    // Gold nozzle orifice leftmost tip: X = 60px (11.81%), Y = 34px (5.72%)
+    const nozzleClientX = imgRect.left + imgRect.width * 0.1181;
+    const nozzleClientY = imgRect.top + imgRect.height * 0.0572;
 
     const nozzleX = nozzleClientX - canvasRect.left;
     const nozzleY = nozzleClientY - canvasRect.top;
-    const scale = imgRect.width / 420; // Reference display scale factor
+    const scale = imgRect.width / 500; // Reference display scale factor
 
     return { nozzleX, nozzleY, scale, canvasRect };
   }, []);
