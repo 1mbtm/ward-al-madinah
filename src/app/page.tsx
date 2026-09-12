@@ -618,9 +618,10 @@ export default function ExactTemplatePage() {
             </div>
             <div className="hero__bg--image">
               <img
-                src="https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/hero-bg.png"
-                alt="Roasters Coffee Atmosphere"
+                src="/images/hero-rose-hand-bg.png"
+                alt="Medina Rose Atmosphere - Hand holding fresh rose petals"
               />
+              <div className="hero__bg-overlay" />
             </div>
           </section>
 
