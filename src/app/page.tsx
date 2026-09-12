@@ -627,25 +627,26 @@ export default function ExactTemplatePage() {
                         <div
                           style={{
                             position: 'absolute',
-                            bottom: '24px',
-                            left: '24px',
-                            background: 'rgba(26, 8, 14, 0.78)',
-                            backdropFilter: 'blur(8px)',
-                            padding: '8px 18px',
-                            borderRadius: '24px',
-                            border: '1px solid rgba(255, 255, 255, 0.22)',
-                            color: '#FFF',
-                            fontSize: '13px',
-                            fontWeight: 600,
-                            letterSpacing: '0.4px',
+                            bottom: '16px',
+                            left: '16px',
+                            background: 'rgba(26, 8, 14, 0.42)',
+                            backdropFilter: 'blur(10px)',
+                            WebkitBackdropFilter: 'blur(10px)',
+                            padding: '5px 13px',
+                            borderRadius: '16px',
+                            border: '1px solid rgba(255, 255, 255, 0.18)',
+                            color: 'rgba(255, 255, 255, 0.95)',
+                            fontSize: '11px',
+                            fontWeight: 500,
+                            letterSpacing: '0.3px',
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '8px',
-                            boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+                            gap: '6px',
+                            boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
                             pointerEvents: 'none',
                           }}
                         >
-                          <span style={{ color: '#E29D52', fontSize: '11px' }}>✦</span>
+                          <span style={{ color: '#E29D52', fontSize: '9px' }}>✦</span>
                           <span>{slide.caption}</span>
                         </div>
                       </div>
@@ -658,14 +659,14 @@ export default function ExactTemplatePage() {
                     onClick={() => setProudSlideIndex((prev) => (prev > 0 ? prev - 1 : proudSlides.length - 1))}
                     aria-label="Previous slide"
                   >
-                    <ChevronLeft size={22} color="#000" />
+                    <ChevronLeft size={17} strokeWidth={2.2} color="#23161C" />
                   </button>
                   <button
                     className="proud-slider-next swiper-button-next"
                     onClick={() => setProudSlideIndex((prev) => (prev < proudSlides.length - 1 ? prev + 1 : 0))}
                     aria-label="Next slide"
                   >
-                    <ChevronRight size={22} color="#000" />
+                    <ChevronRight size={17} strokeWidth={2.2} color="#23161C" />
                   </button>
 
                   {/* Pagination Bullets */}

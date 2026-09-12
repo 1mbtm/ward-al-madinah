@@ -922,77 +922,75 @@ ul, ol {
   object-fit: cover;
 }
 
-.proud-slider-prev {
-  position: absolute;
-  top: 50%;
-  left: 20px;
-  transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: #FFF;
-  backdrop-filter: blur(10px);
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  transition: transform 0.2s, background 0.2s;
-}
-
-.proud-slider-prev:hover {
-  transform: translateY(-50%) scale(1.08);
-}
-
+.proud-slider-prev,
 .proud-slider-next {
   position: absolute;
   top: 50%;
-  right: 20px;
   transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: #FFF;
-  backdrop-filter: blur(10px);
-  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.52);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 10;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  transition: transform 0.2s, background 0.2s;
+  color: #23161C;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.proud-slider-prev {
+  left: 16px;
+}
+
+.proud-slider-next {
+  right: 16px;
+}
+
+.proud-slider-prev:hover,
 .proud-slider-next:hover {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: #FFFFFF;
   transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.proud-slider-prev:active,
+.proud-slider-next:active {
+  transform: translateY(-50%) scale(0.94);
 }
 
 .proud-slider-pagination {
   position: absolute;
-  bottom: 20px;
+  bottom: 18px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 7px;
   z-index: 10;
 }
 
 .swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 255, 0.55);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   display: inline-block;
 }
 
 .swiper-pagination-bullet-active {
-  background: #000 !important;
-  transform: scale(1.2);
+  width: 16px;
+  border-radius: 10px;
+  background: #FFFFFF !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* ==========================================================================
