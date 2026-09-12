@@ -795,14 +795,14 @@ export default function ExactTemplatePage() {
                   <div className="menu-carousel" data-aos="fade-up" data-aos-delay="150">
                     <button
                       className="menu-slider-btn menu-slider-btn--prev"
-                      onClick={() => setMenuSlideIndex((prev) => (prev > 0 ? prev - 1 : menuSlides.length - (isMobile ? 1 : 2)))}
+                      onClick={() => setMenuSlideIndex((prev) => (prev > 0 ? prev - 1 : menuSlides.length - (isMobile ? 1 : 3)))}
                       aria-label="Previous menu items"
                     >
                       <ChevronLeft size={20} />
                     </button>
                     <button
                       className="menu-slider-btn menu-slider-btn--next"
-                      onClick={() => setMenuSlideIndex((prev) => (prev < menuSlides.length - (isMobile ? 1 : 2) ? prev + 1 : 0))}
+                      onClick={() => setMenuSlideIndex((prev) => (prev < menuSlides.length - (isMobile ? 1 : 3) ? prev + 1 : 0))}
                       aria-label="Next menu items"
                     >
                       <ChevronRight size={20} />
@@ -810,7 +810,7 @@ export default function ExactTemplatePage() {
 
                     <div
                       className="menu-track"
-                      style={{ transform: `translateX(-${menuSlideIndex * (isMobile ? 260 : 280)}px)` }}
+                      style={{ transform: `translateX(-${menuSlideIndex * (isMobile ? 254 : 288)}px)` }}
                     >
                       {menuSlides.map((src, idx) => (
                         <div key={idx} className="menu-card">

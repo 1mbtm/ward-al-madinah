@@ -30,6 +30,66 @@ export default function SprayBottleMist({ className = '' }: { className?: string
   const particlesRef = useRef<MistParticle[]>([]);
   const [hintVisible, setHintVisible] = useState<boolean>(true);
 
+  // Offscreen canvas for alpha hit-testing (ensures only non-transparent bottle/hand pixels are clickable)
+  const offscreenCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const offscreenCtxRef = useRef<CanvasRenderingContext2D | null>(null);
+
+  const initHitCanvas = useCallback(() => {
+    if (!imgRef.current) return;
+    const img = imgRef.current;
+    if (!img.naturalWidth || !img.naturalHeight) return;
+
+    if (offscreenCanvasRef.current && offscreenCtxRef.current) return;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    if (ctx) {
+      ctx.drawImage(img, 0, 0);
+      offscreenCanvasRef.current = canvas;
+      offscreenCtxRef.current = ctx;
+    }
+  }, []);
+
+  // Check whether a screen coordinate falls on a visible (non-transparent) pixel of the bottle/hand
+  const isPointOnVisiblePixel = useCallback((clientX: number, clientY: number): boolean => {
+    const img = imgRef.current;
+    if (!img) return false;
+
+    const rect = img.getBoundingClientRect();
+    if (
+      clientX < rect.left ||
+      clientX > rect.right ||
+      clientY < rect.top ||
+      clientY > rect.bottom
+    ) {
+      return false;
+    }
+
+    if (!offscreenCtxRef.current || !offscreenCanvasRef.current) {
+      initHitCanvas();
+      if (!offscreenCtxRef.current || !offscreenCanvasRef.current) return true;
+    }
+
+    const currentCtx = offscreenCtxRef.current;
+    const currentCanvas = offscreenCanvasRef.current;
+
+    const normX = (clientX - rect.left) / rect.width;
+    const normY = (clientY - rect.top) / rect.height;
+
+    const px = Math.min(Math.max(0, Math.floor(normX * currentCanvas.width)), currentCanvas.width - 1);
+    const py = Math.min(Math.max(0, Math.floor(normY * currentCanvas.height)), currentCanvas.height - 1);
+
+    try {
+      const pixel = currentCtx.getImageData(px, py, 1, 1).data;
+      // Alpha > 25 means a visible part of the bottle, gold trigger/nozzle, or gloved hand
+      return pixel[3] > 25;
+    } catch {
+      return true;
+    }
+  }, [initHitCanvas]);
+
   // Sync canvas buffer with its rendered CSS dimensions (handling DPR cleanly)
   const updateCanvasDimensions = useCallback(() => {
     if (!canvasRef.current) return;
@@ -44,11 +104,14 @@ export default function SprayBottleMist({ className = '' }: { className?: string
   useEffect(() => {
     updateCanvasDimensions();
     window.addEventListener('resize', updateCanvasDimensions);
+    if (imgRef.current && imgRef.current.complete && imgRef.current.naturalWidth) {
+      initHitCanvas();
+    }
     return () => {
       window.removeEventListener('resize', updateCanvasDimensions);
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
     };
-  }, [updateCanvasDimensions]);
+  }, [updateCanvasDimensions, initHitCanvas]);
 
   // Compute exact nozzle tip coordinate relative to the canvas
   const getNozzleOrigin = useCallback(() => {
@@ -332,16 +395,6 @@ export default function SprayBottleMist({ className = '' }: { className?: string
     <div
       ref={containerRef}
       className={`menu-spray-container ${className}`}
-      onClick={triggerSpray}
-      role="button"
-      tabIndex={0}
-      aria-label="Click to spray Medina Rose fragrance mist"
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          triggerSpray();
-        }
-      }}
     >
       {/* 1. Completely Static Transparent PNG of Spray Bottle + Glove */}
       <img
@@ -349,7 +402,31 @@ export default function SprayBottleMist({ className = '' }: { className?: string
         src="/images/rose-fragrance-spray.png"
         alt="Medina Rose Fragrance Spray Bottle with Black-Gloved Hand"
         className="menu-spray-img"
-        onLoad={updateCanvasDimensions}
+        onLoad={() => {
+          updateCanvasDimensions();
+          initHitCanvas();
+        }}
+        onClick={(e) => {
+          if (isPointOnVisiblePixel(e.clientX, e.clientY)) {
+            triggerSpray();
+          }
+        }}
+        onPointerMove={(e) => {
+          if (isPointOnVisiblePixel(e.clientX, e.clientY)) {
+            e.currentTarget.style.cursor = 'pointer';
+          } else {
+            e.currentTarget.style.cursor = 'default';
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        aria-label="Click to spray Medina Rose fragrance mist"
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            triggerSpray();
+          }
+        }}
         draggable={false}
       />
 
