@@ -80,22 +80,40 @@ export default function ExactTemplatePage() {
   const menuImgScale = useTransform(menuScrollProgress, [0, 0.5, 1], [0.85, 1, 0.85]);
   const menuImgOpacity = useTransform(menuScrollProgress, [0, 0.5, 1], [0.3, 1, 0.3]);
 
-  // Parallax Scroll Listener (Skipped on mobile to keep 60-120 FPS native smooth scrolling)
+  // Parallax Scroll Listener (Clamped to safe image buffer to prevent image running out)
   useEffect(() => {
     const handleScroll = () => {
       if (window.innerWidth <= 768) return;
       if (parallaxRef.current) {
-        const rect = parallaxRef.current.parentElement?.getBoundingClientRect();
+        const parent = parallaxRef.current.parentElement;
+        if (!parent) return;
+        const rect = parent.getBoundingClientRect();
         if (rect && rect.top < window.innerHeight && rect.bottom > 0) {
-          const speed = 0.4;
+          const imgHeight = parallaxRef.current.offsetHeight;
+          const parentHeight = rect.height;
+          // Calculate max safe travel distance based on image buffer
+          const maxTravel = Math.max(0, (imgHeight - parentHeight) / 2);
+
+          // Calculate displacement with smooth speed
+          const speed = 0.2;
           const yPos = (rect.top - window.innerHeight * 0.5) * speed;
-          parallaxRef.current.style.transform = `translateY(${yPos}px)`;
+
+          // Strictly clamp within safe margin to guarantee zero gaps
+          const safeLimit = Math.max(0, maxTravel - 16);
+          const clampedY = Math.max(-safeLimit, Math.min(safeLimit, yPos));
+
+          parallaxRef.current.style.transform = `translate3d(0, ${clampedY}px, 0)`;
         }
       }
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   // AOS Intersection Observer Engine (Scroll Animations)

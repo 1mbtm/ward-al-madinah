@@ -648,6 +648,7 @@ ul, ol {
   padding: 0 32px;
   overflow: hidden;
   position: relative;
+  background-color: #1a080e;
 }
 
 .about .container {
@@ -656,7 +657,7 @@ ul, ol {
   justify-content: flex-end;
   align-items: center;
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .about-bg {
@@ -665,19 +666,21 @@ ul, ol {
   height: 100%;
   inset: 0;
   overflow: hidden;
-  z-index: -1;
+  z-index: 1;
   pointer-events: none;
+  background-color: #1a080e;
 }
 
 .about__parallax-bg {
   position: absolute;
-  top: -25%;
+  top: -35%;
   left: 0;
   width: 100%;
-  height: 150%;
+  height: 170%;
+  min-height: 100%;
   object-fit: cover;
   z-index: 1;
-  transition: transform 0.1s ease-out;
+  transition: transform 0.08s ease-out;
   will-change: transform;
 }
 
