@@ -1218,10 +1218,10 @@ ul, ol {
 
 .menu-spray-canvas {
   position: absolute;
-  top: 0;
+  top: -10%;
   right: 0;
-  width: 220%;
-  height: 100%;
+  width: 280%;
+  height: 125%;
   pointer-events: none;
   z-index: 10;
 }

@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 
-interface Particle {
+interface MistParticle {
   x: number;
   y: number;
   vx: number;
@@ -14,7 +14,12 @@ interface Particle {
   life: number;
   maxLife: number;
   drag: number;
-  colorType: 'vapor' | 'droplet_white' | 'droplet_rose' | 'core';
+  gravity: number;
+  turbulenceFreq: number;
+  turbulenceAmp: number;
+  turbulencePhase: number;
+  type: 'droplet_fine' | 'droplet_luminous' | 'aerosol_veil' | 'orifice_flash';
+  hue: 'white' | 'pearl' | 'whisper_rose';
 }
 
 export default function SprayBottleMist({ className = '' }: { className?: string }) {
@@ -22,7 +27,7 @@ export default function SprayBottleMist({ className = '' }: { className?: string
   const imgRef = useRef<HTMLImageElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animFrameRef = useRef<number | null>(null);
-  const particlesRef = useRef<Particle[]>([]);
+  const particlesRef = useRef<MistParticle[]>([]);
   const [hintVisible, setHintVisible] = useState<boolean>(true);
 
   // Sync canvas buffer with its rendered CSS dimensions (handling DPR cleanly)
@@ -72,7 +77,7 @@ export default function SprayBottleMist({ className = '' }: { className?: string
 
     setHintVisible(false);
 
-    // Clean reset: cancel previous RAF if in-flight so sprays don't clunkily stack
+    // Clean reset: cancel previous RAF if in-flight so sprays retrigger cleanly
     if (animFrameRef.current) {
       cancelAnimationFrame(animFrameRef.current);
       animFrameRef.current = null;
@@ -82,82 +87,133 @@ export default function SprayBottleMist({ className = '' }: { className?: string
       typeof window !== 'undefined' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const particles: Particle[] = [];
+    const particles: MistParticle[] = [];
     const scale = origin.scale;
 
-    // Nozzle orientation: ~169 degrees (angled outwards to the left, slightly tilted up by 11 deg)
-    const baseAngle = (169 * Math.PI) / 180;
+    // Nozzle orientation: ~170 degrees (angled outward to the left, ~10 deg upward tilt)
+    const baseAngle = (170 * Math.PI) / 180;
 
-    // 1. Soft Expanding Rose Vapor Plumes (aerosol body - realistic billow)
-    const vaporCount = prefersReducedMotion ? 4 : 20;
-    for (let i = 0; i < vaporCount; i++) {
-      const angleSpread = (Math.random() - 0.5) * 0.36; // ~20 degree spray cone
-      const angle = baseAngle + angleSpread;
-      const speed = (prefersReducedMotion ? 1.6 : 4.8 + Math.random() * 5.8) * scale;
-      const maxLife = 52 + Math.random() * 24; // ~0.9 - 1.25s
-
-      particles.push({
-        x: origin.nozzleX,
-        y: origin.nozzleY,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
-        size: (4 + Math.random() * 5) * scale,
-        maxSize: (36 + Math.random() * 48) * scale,
-        alpha: 0.38 + Math.random() * 0.16,
-        initialAlpha: 0.38 + Math.random() * 0.16,
-        life: 0,
-        maxLife,
-        drag: 0.925,
-        colorType: 'vapor',
-      });
-    }
-
-    // 2. Atomized Fine Droplets (120 ultrafine glistening micro-droplets)
-    const dropletCount = prefersReducedMotion ? 12 : 120;
+    // 1. Fine Atomized Micro-Droplets (The body of the fragrance spray)
+    // Dense spray cone with fine particle sizing (0.8 - 2.2px), carrying 1.5 - 2x farther (~260px - 440px)
+    const dropletCount = prefersReducedMotion ? 40 : 260;
     for (let i = 0; i < dropletCount; i++) {
-      const angleSpread = (Math.random() - 0.5) * 0.32;
+      // Natural cone spread: tight near nozzle, expanding softly
+      const angleSpread = (Math.random() - 0.5) * (0.22 + Math.random() * 0.16);
       const angle = baseAngle + angleSpread;
-      const speed = (6.5 + Math.random() * 12.0) * scale;
-      const maxLife = 40 + Math.random() * 30;
-      const isRoseTint = Math.random() > 0.4;
+
+      // High initial velocity to carry 1.5 - 2x farther (~280px - 460px)
+      const speed = (prefersReducedMotion ? 5.0 : 13.0 + Math.random() * 18.0) * scale;
+      const maxLife = Math.round((prefersReducedMotion ? 55 : 90 + Math.random() * 35)); // ~1.5 - 2.1s
+
+      const rand = Math.random();
+      const hue: 'white' | 'pearl' | 'whisper_rose' =
+        rand > 0.55 ? 'whisper_rose' : rand > 0.25 ? 'pearl' : 'white';
 
       particles.push({
         x: origin.nozzleX + (Math.random() - 0.5) * 3 * scale,
         y: origin.nozzleY + (Math.random() - 0.5) * 3 * scale,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
-        size: (0.6 + Math.random() * 1.2) * scale,
-        maxSize: (1.2 + Math.random() * 1.8) * scale,
+        size: (0.75 + Math.random() * 0.95) * scale,
+        maxSize: (1.2 + Math.random() * 1.5) * scale,
+        alpha: 0.65 + Math.random() * 0.32,
+        initialAlpha: 0.65 + Math.random() * 0.32,
+        life: 0,
+        maxLife,
+        drag: 0.965, // Gentle initial drag allows strong forward reach
+        gravity: (0.016 + Math.random() * 0.024) * scale,
+        turbulenceFreq: 0.04 + Math.random() * 0.05,
+        turbulenceAmp: (0.35 + Math.random() * 0.55) * scale,
+        turbulencePhase: Math.random() * Math.PI * 2,
+        type: 'droplet_fine',
+        hue,
+      });
+    }
+
+    // 2. High-Speed Luminous Leading Droplets (Fine spray vanguard reaching furthest distance)
+    const leadCount = prefersReducedMotion ? 12 : 55;
+    for (let i = 0; i < leadCount; i++) {
+      const angleSpread = (Math.random() - 0.5) * 0.16;
+      const angle = baseAngle + angleSpread;
+      const speed = (20.0 + Math.random() * 15.0) * scale;
+      const maxLife = Math.round(75 + Math.random() * 35);
+
+      particles.push({
+        x: origin.nozzleX,
+        y: origin.nozzleY,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        size: (0.8 + Math.random() * 0.7) * scale,
+        maxSize: (1.1 + Math.random() * 0.8) * scale,
         alpha: 0.75 + Math.random() * 0.25,
         initialAlpha: 0.75 + Math.random() * 0.25,
         life: 0,
         maxLife,
-        drag: 0.912,
-        colorType: isRoseTint ? 'droplet_rose' : 'droplet_white',
+        drag: 0.960,
+        gravity: (0.012 + Math.random() * 0.018) * scale,
+        turbulenceFreq: 0.035 + Math.random() * 0.05,
+        turbulenceAmp: (0.25 + Math.random() * 0.4) * scale,
+        turbulencePhase: Math.random() * Math.PI * 2,
+        type: 'droplet_luminous',
+        hue: Math.random() > 0.4 ? 'whisper_rose' : 'white',
       });
     }
 
-    // 3. Orifice Exit Aerosol Puff (Micro flash at nozzle tip for first 100ms)
+    // 3. Ultra-Sheer Aerosol Vapor Veil (Translucent ambient plume, visible against cream bg)
+    const veilCount = prefersReducedMotion ? 8 : 34;
+    for (let i = 0; i < veilCount; i++) {
+      const angleSpread = (Math.random() - 0.5) * 0.32;
+      const angle = baseAngle + angleSpread;
+      const speed = (9.0 + Math.random() * 12.0) * scale;
+      const maxLife = Math.round(95 + Math.random() * 30); // Lingers gently up to ~2.1s
+
+      particles.push({
+        x: origin.nozzleX,
+        y: origin.nozzleY,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        size: (3.0 + Math.random() * 3.5) * scale,
+        maxSize: (18.0 + Math.random() * 20.0) * scale,
+        alpha: 0.22 + Math.random() * 0.14,
+        initialAlpha: 0.22 + Math.random() * 0.14,
+        life: 0,
+        maxLife,
+        drag: 0.954,
+        gravity: (0.008 + Math.random() * 0.014) * scale,
+        turbulenceFreq: 0.03 + Math.random() * 0.04,
+        turbulenceAmp: (0.5 + Math.random() * 0.7) * scale,
+        turbulencePhase: Math.random() * Math.PI * 2,
+        type: 'aerosol_veil',
+        hue: 'whisper_rose',
+      });
+    }
+
+    // 4. Orifice Venting Flash (Micro flash at nozzle tip for first 120ms)
     for (let i = 0; i < 6; i++) {
       particles.push({
         x: origin.nozzleX,
         y: origin.nozzleY,
         vx: (Math.random() - 0.5) * 1.8 * scale,
         vy: (Math.random() - 0.5) * 1.8 * scale,
-        size: (3 + Math.random() * 4) * scale,
-        maxSize: (14 + Math.random() * 10) * scale,
-        alpha: 0.5,
-        initialAlpha: 0.5,
+        size: (2.0 + Math.random() * 2.5) * scale,
+        maxSize: (8.0 + Math.random() * 6.0) * scale,
+        alpha: 0.45,
+        initialAlpha: 0.45,
         life: 0,
-        maxLife: 18 + Math.random() * 8,
-        drag: 0.85,
-        colorType: 'core',
+        maxLife: 16 + Math.random() * 8,
+        drag: 0.88,
+        gravity: 0,
+        turbulenceFreq: 0,
+        turbulenceAmp: 0,
+        turbulencePhase: 0,
+        type: 'orifice_flash',
+        hue: 'white',
       });
     }
 
     particlesRef.current = particles;
 
-    // Render loop
+    // Canvas Render loop
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -179,54 +235,73 @@ export default function SprayBottleMist({ className = '' }: { className?: string
         if (p.life < p.maxLife) {
           activeCount++;
 
-          // Kinematics with gentle aerodynamic drag and micro-drift
+          // 1. Aerodynamic Forward Kinematics with Progressive Air Drag
           p.x += p.vx;
           p.y += p.vy;
-          p.vx *= p.drag;
-          p.vy *= p.drag;
-          p.vy += 0.015 * scale; // Subtle realistic gravity
 
+          // Drag starts gentle for distance, then decelerates smoothly
+          const currentDrag = p.life < 22 ? p.drag : p.drag * 0.984;
+          p.vx *= currentDrag;
+          p.vy *= currentDrag;
+
+          // 2. Subtle Natural Air Turbulence (Prevents mechanical straight-line motion)
+          if (p.turbulenceAmp > 0) {
+            const speed = Math.hypot(p.vx, p.vy) || 1;
+            const perpX = -p.vy / speed;
+            const perpY = p.vx / speed;
+            const turb = Math.sin(p.life * p.turbulenceFreq + p.turbulencePhase) * p.turbulenceAmp;
+            p.x += perpX * turb;
+            p.y += perpY * turb;
+          }
+
+          // 3. Downward Gravity Drift (Increases as particle decelerates and settles)
           const progress = p.life / p.maxLife;
-          const fadeProgress = Math.max(0, 1 - progress);
-          const currentAlpha = p.initialAlpha * Math.pow(fadeProgress, 1.4);
+          const settleFactor = Math.min(1, Math.max(0, (p.life - 16) / (p.maxLife - 16)));
+          p.vy += p.gravity * settleFactor;
+
+          // 4. Smooth, Natural Opacity Fade (Fast rise at orifice, elegant cubic ease-out)
+          const fadeIn = Math.min(1, p.life / 3.0);
+          const fadeOut = Math.pow(1 - progress, 1.55);
+          const currentAlpha = p.initialAlpha * fadeIn * fadeOut;
+
+          // 5. Progressive Diffusion (Gently expanding size as mist spreads)
           const currentSize = p.size + (p.maxSize - p.size) * Math.sin((progress * Math.PI) / 2);
 
           if (currentAlpha > 0.005) {
             ctx.save();
 
-            if (p.colorType === 'vapor') {
-              // Soft billowing rose vapor plume
+            if (p.type === 'aerosol_veil') {
+              // Soft translucent mist veil (natural contrast against warm cream background)
               const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, currentSize);
-              grad.addColorStop(0, `rgba(255, 255, 255, ${currentAlpha * 0.9})`);
-              grad.addColorStop(0.35, `rgba(242, 182, 198, ${currentAlpha * 0.6})`);
-              grad.addColorStop(0.7, `rgba(228, 148, 170, ${currentAlpha * 0.22})`);
+              grad.addColorStop(0, `rgba(255, 255, 255, ${currentAlpha * 0.95})`);
+              grad.addColorStop(0.35, `rgba(235, 168, 190, ${currentAlpha * 0.65})`);
+              grad.addColorStop(0.7, `rgba(215, 125, 150, ${currentAlpha * 0.3})`);
               grad.addColorStop(1, 'rgba(244, 236, 229, 0)');
 
               ctx.fillStyle = grad;
               ctx.beginPath();
               ctx.arc(p.x, p.y, currentSize, 0, Math.PI * 2);
               ctx.fill();
-            } else if (p.colorType === 'droplet_white') {
-              // Glistening fine droplet
-              ctx.fillStyle = `rgba(255, 255, 255, ${currentAlpha * 0.95})`;
-              ctx.shadowColor = 'rgba(195, 95, 125, 0.35)';
-              ctx.shadowBlur = 2 * scale;
-              ctx.beginPath();
-              ctx.arc(p.x, p.y, currentSize, 0, Math.PI * 2);
-              ctx.fill();
-            } else if (p.colorType === 'droplet_rose') {
-              // Atomized rose essence droplet
-              ctx.fillStyle = `rgba(215, 110, 138, ${currentAlpha * 0.85})`;
-              ctx.shadowColor = 'rgba(255, 255, 255, 0.5)';
-              ctx.shadowBlur = 1.8 * scale;
+            } else if (p.type === 'droplet_fine' || p.type === 'droplet_luminous') {
+              // Fine atomized fragrance droplet with realistic contrast against cream
+              if (p.hue === 'whisper_rose') {
+                ctx.fillStyle = `rgba(195, 65, 98, ${currentAlpha * 0.78})`;
+              } else if (p.hue === 'pearl') {
+                ctx.fillStyle = `rgba(218, 120, 145, ${currentAlpha * 0.82})`;
+              } else {
+                ctx.fillStyle = `rgba(255, 255, 255, ${currentAlpha * 0.95})`;
+                ctx.shadowColor = 'rgba(180, 50, 85, 0.4)';
+                ctx.shadowBlur = 1.5 * scale;
+              }
+
               ctx.beginPath();
               ctx.arc(p.x, p.y, currentSize, 0, Math.PI * 2);
               ctx.fill();
             } else {
-              // Orifice micro flash
+              // Orifice venting flash
               const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, currentSize);
-              grad.addColorStop(0, `rgba(255, 255, 255, ${currentAlpha * 1.1})`);
-              grad.addColorStop(0.4, `rgba(245, 195, 210, ${currentAlpha * 0.7})`);
+              grad.addColorStop(0, `rgba(255, 255, 255, ${currentAlpha * 1.0})`);
+              grad.addColorStop(0.4, `rgba(240, 180, 200, ${currentAlpha * 0.55})`);
               grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
               ctx.fillStyle = grad;
