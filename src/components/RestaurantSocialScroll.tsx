@@ -37,22 +37,39 @@ const InstagramRealLogo = () => (
     </div>
 );
 
-const FacebookRealLogo = () => (
+const TikTokRealLogo = () => (
     <div
         style={{
             width: '40px',
             height: '40px',
             borderRadius: '11px',
-            background: '#1877F2',
+            background: '#010101',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 4px 14px rgba(24, 119, 242, 0.45)',
+            boxShadow: '0 4px 14px rgba(254, 44, 85, 0.4), 0 2px 8px rgba(37, 244, 238, 0.35)',
+            border: '1px solid rgba(255, 255, 255, 0.15)',
             flexShrink: 0,
         }}
     >
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
-            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Cyan Accent */}
+            <path
+                d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.86 4.43c.04-.04.08-.09.11-.13.33-.36.59-.79.76-1.25.18-.46.27-.96.27-1.46V8.67a8.21 8.21 0 0 0 4.59 1.48V6.69z"
+                fill="#25F4EE"
+                transform="translate(-0.7, 0.7)"
+            />
+            {/* Red Accent */}
+            <path
+                d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.86 4.43c.04-.04.08-.09.11-.13.33-.36.59-.79.76-1.25.18-.46.27-.96.27-1.46V8.67a8.21 8.21 0 0 0 4.59 1.48V6.69z"
+                fill="#FE2C55"
+                transform="translate(0.7, -0.7)"
+            />
+            {/* White Core */}
+            <path
+                d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.86 4.43c.04-.04.08-.09.11-.13.33-.36.59-.79.76-1.25.18-.46.27-.96.27-1.46V8.67a8.21 8.21 0 0 0 4.59 1.48V6.69z"
+                fill="#FFFFFF"
+            />
         </svg>
     </div>
 );
@@ -159,12 +176,12 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
         icon: <InstagramRealLogo />,
     },
     {
-        id: 'facebook',
-        name: 'Facebook',
-        handle: 'Medina Rose Gelateria',
-        category: 'Community & Updates',
-        url: 'https://facebook.com',
-        icon: <FacebookRealLogo />,
+        id: 'tiktok',
+        name: 'TikTok',
+        handle: '@medinarose.sa',
+        category: 'Shorts & Trending',
+        url: 'https://www.tiktok.com/@medinarose.sa',
+        icon: <TikTokRealLogo />,
     },
     {
         id: 'snapchat',

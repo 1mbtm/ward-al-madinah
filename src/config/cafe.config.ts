@@ -43,6 +43,7 @@ export const cafeConfig: CafeConfig = {
     headOfficeAddress: 'Madinah International Food Street, Gate 333, Al-Masjid an-Nabawi, Madinah, Saudi Arabia',
     socials: {
       instagram: 'https://www.instagram.com/medinarose.sa',
+      tiktok: 'https://www.tiktok.com/@medinarose.sa',
       facebook: 'https://www.facebook.com/medinarose.sa',
       linkedin: 'https://linkedin.com',
     },

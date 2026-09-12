@@ -142,6 +142,7 @@ export interface CafeConfig {
     headOfficeAddress?: string;
     socials?: {
       instagram?: string;
+      tiktok?: string;
       facebook?: string;
       linkedin?: string;
       youtube?: string;
