@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { RestaurantSocialScroll } from '@/components/RestaurantSocialScroll';
+import { RosePetalsRain } from '@/components/RosePetalsRain';
 
 export default function ExactTemplatePage() {
   // Navigation & Drawer State
@@ -605,8 +606,9 @@ export default function ExactTemplatePage() {
         )}
 
         <main>
-          {/* 2. HERO SECTION WITH FADE-UP ANIMATION */}
+          {/* 2. HERO SECTION WITH FADE-UP ANIMATION & ROSE PETALS RAIN */}
           <section id="hero" className="hero">
+            <RosePetalsRain petalCount={32} />
             <div className="container">
               <div className="hero__content" data-aos="fade-up">
                 <h1>
