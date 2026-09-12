@@ -744,11 +744,12 @@ export default function ExactTemplatePage() {
 
               <div className="branches__wrapper" data-aos="fade-up" data-aos-delay="200">
                 <div className="branches__map">
-                  {/* Clean Minimal Medina Map Image (Soft Pink / Off-White Monochromatic Palette) */}
+                  {/* Enhanced Ultra High-Res Minimal Medina Map Image */}
                   <img
                     className="branches__map-img"
-                    src="/images/medina-branches-map.png"
+                    src="/images/medina_map.png"
                     alt="Medina Rose Branches Map — Al-Madinah Al-Munawwarah"
+                    loading="eager"
                   />
 
                   {/* 3 Interactive Branch Markers */}

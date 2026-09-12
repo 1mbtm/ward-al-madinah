@@ -1350,7 +1350,7 @@ ul, ol {
 .branches__map {
   position: relative;
   width: 100%;
-  aspect-ratio: 1024 / 572;
+  aspect-ratio: 7028 / 3952;
   overflow: hidden;
   border-radius: 20px;
 }
@@ -1363,6 +1363,10 @@ ul, ol {
   object-position: center;
   user-select: none;
   -webkit-user-drag: none;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: high-quality;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Interactive Medina Rose Branch Pins */
@@ -3222,7 +3226,7 @@ ul, ol {
 
   .branches__map {
     min-width: 0 !important;
-    aspect-ratio: 1024 / 572 !important;
+    aspect-ratio: 7028 / 3952 !important;
     border-radius: 16px !important;
   }
 
