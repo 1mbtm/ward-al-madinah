@@ -186,12 +186,33 @@ export default function ExactTemplatePage() {
     return () => observer.disconnect();
   }, []);
 
-  // Proud / Sourcing slides
+  // Ward Al Madinah Artisanal Sourcing & Craft slides (1.png to 5.png)
   const proudSlides = [
-    'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/swiper-slide1.jpg',
-    'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/IMG_4541.JPG',
-    'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/IMG_4544.JPG',
-    'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/IMG_4545.JPG',
+    {
+      src: '/images/1.png',
+      caption: 'Organic Madinah Rose Harvest',
+      alt: 'Fresh pink Madinah rose petals in handwoven baskets'
+    },
+    {
+      src: '/images/2.png',
+      caption: 'Traditional Alembic Distillation',
+      alt: 'Pure copper alembic stills distilling Medina rose water'
+    },
+    {
+      src: '/images/3.png',
+      caption: 'Sacred Madinah Ajwa Dates',
+      alt: 'Hand-selected authentic Madinah Ajwa dates'
+    },
+    {
+      src: '/images/4.png',
+      caption: 'Velvety Artisan Rose Gelato',
+      alt: 'Freshly churned smooth artisanal rose ice cream'
+    },
+    {
+      src: '/images/5.png',
+      caption: 'Signature Rose Water Mist Elixir',
+      alt: 'Signature Medina rose water mist bottle with dewy roses'
+    },
   ];
 
   // Menu slides
@@ -610,9 +631,33 @@ export default function ExactTemplatePage() {
                     className="proud-slider-track"
                     style={{ transform: `translateX(-${proudSlideIndex * 100}%)` }}
                   >
-                    {proudSlides.map((src, idx) => (
-                      <div key={idx} className="proud-slide">
-                        <img src={src} alt={`Sourcing Slide ${idx + 1}`} />
+                    {proudSlides.map((slide, idx) => (
+                      <div key={idx} className="proud-slide" style={{ position: 'relative' }}>
+                        <img src={slide.src} alt={slide.alt} />
+                        <div
+                          style={{
+                            position: 'absolute',
+                            bottom: '24px',
+                            left: '24px',
+                            background: 'rgba(26, 8, 14, 0.78)',
+                            backdropFilter: 'blur(8px)',
+                            padding: '8px 18px',
+                            borderRadius: '24px',
+                            border: '1px solid rgba(255, 255, 255, 0.22)',
+                            color: '#FFF',
+                            fontSize: '13px',
+                            fontWeight: 600,
+                            letterSpacing: '0.4px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+                            pointerEvents: 'none',
+                          }}
+                        >
+                          <span style={{ color: '#E29D52', fontSize: '11px' }}>✦</span>
+                          <span>{slide.caption}</span>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -660,7 +705,7 @@ export default function ExactTemplatePage() {
               </div>
             </div>
             <div className="proud-bg">
-              <img src="https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/swiper-slide22.png" alt="Sourcing Background" />
+              <img src="/images/about-rose-petals-bg.jpg" alt="Artisanal Sourcing Background" style={{ opacity: 0.2 }} />
             </div>
           </section>
 
@@ -882,8 +927,8 @@ export default function ExactTemplatePage() {
                 <div className="proud-slider" data-aos="fade-right">
                   <div className="proud-slide">
                     <img
-                      src="https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/swiper-slide22.png"
-                      alt="Sustainability Practices"
+                      src="/images/1.png"
+                      alt="Organic Rose Harvest & Eco Practices"
                     />
                   </div>
                 </div>
