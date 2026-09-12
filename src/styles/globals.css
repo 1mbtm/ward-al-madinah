@@ -1183,6 +1183,73 @@ ul, ol {
   object-fit: cover;
 }
 
+/* Heritage Goods Card Unit & Minimal Add to Cart Button */
+.heritage-card-unit {
+  flex: 0 0 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.heritage-card-unit .menu-card {
+  width: 100%;
+  flex: none;
+  margin: 0;
+}
+
+.heritage-cart-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: rgba(143, 65, 81, 0.05);
+  border: 1px solid rgba(143, 65, 81, 0.32);
+  border-radius: 20px;
+  color: #8F4151;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 6px rgba(143, 65, 81, 0.04);
+  outline: none;
+  user-select: none;
+}
+
+.heritage-cart-btn:hover {
+  background: #8F4151;
+  color: #FFFFFF;
+  border-color: #8F4151;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(143, 65, 81, 0.26);
+}
+
+.heritage-cart-btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+#retail .menu-nav-arrow {
+  top: 141px;
+}
+
+@media (max-width: 900px) {
+  .heritage-card-unit {
+    flex: 0 0 236px;
+    gap: 10px;
+  }
+  
+  .heritage-card-unit .menu-card {
+    height: 236px;
+  }
+
+  #retail .menu-nav-arrow {
+    top: 124px;
+  }
+}
+
 /* Right-side Spray Bottle Slot (Anchored firmly to right and right-bottom) */
 .menu__frame-slot {
   position: absolute;

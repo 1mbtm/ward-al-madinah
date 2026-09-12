@@ -16,7 +16,8 @@ import {
   Linkedin,
   Facebook,
   CheckCircle,
-  ArrowRight
+  ArrowRight,
+  Plus
 } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { RestaurantSocialScroll } from '@/components/RestaurantSocialScroll';
@@ -352,8 +353,11 @@ export default function ExactTemplatePage() {
     }
   ];
 
-  const handleAddToCart = () => {
+  const [toastMessage, setToastMessage] = useState('Added to cart');
+
+  const handleAddToCart = (itemName?: string) => {
     setCartCount((prev) => prev + 1);
+    setToastMessage(itemName ? `${itemName} added to cart` : 'Added to cart');
     setCartToast(true);
     setTimeout(() => setCartToast(false), 2000);
   };
@@ -451,7 +455,7 @@ export default function ExactTemplatePage() {
             }}
           >
             <CheckCircle size={18} color="#C0A062" />
-            <span>Specialty Bag Added To Cart</span>
+            <span>{toastMessage}</span>
           </div>
         )}
 
@@ -913,8 +917,8 @@ export default function ExactTemplatePage() {
                 <div className="proud-slider" data-aos="fade-right">
                   <div className="proud-slide">
                     <img
-                      src="https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/swiper-slide22.png"
-                      alt="Sustainability Practices"
+                      src="/images/sacred-heritage.png"
+                      alt="Sacred Heritage & Sustainability"
                     />
                   </div>
                 </div>
@@ -973,22 +977,14 @@ export default function ExactTemplatePage() {
           <section id="retail" className="menu" ref={retailSectionRef}>
             <div className="container">
               <div className="menu__card">
-                <div className="menu-content" data-aos="fade-right">
+                <div className="menu-content">
                   <h2>Heritage Goods</h2>
                   <p>
-                    Handcrafted botanical rose water mists, fresh Madinah shouraik bakery, authentic dried rose buds, and sacred Sidr honey sourced from the holy city.
+                    Handcrafted botanical rose water mists, fresh Madinah shouraik bakery, authentic dried rose buds, and sacred Sidr honey.
                   </p>
-                  <a
-                    className="menu-content-link"
-                    href="https://linktr.ee/madin2h_rose0"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    show me
-                  </a>
 
                   {/* Left-Side Contained Heritage Goods Highlights Carousel */}
-                  <div className="menu-carousel" data-aos="fade-up" data-aos-delay="150">
+                  <div className="menu-carousel">
                     <button
                       className="menu-nav-arrow menu-nav-arrow--prev"
                       onClick={() => setHeritageSlideIndex((prev) => (prev > 0 ? prev - 1 : heritageSlides.length - (isMobile ? 1 : 3)))}
@@ -1010,23 +1006,19 @@ export default function ExactTemplatePage() {
                         style={{ transform: `translateX(-${heritageSlideIndex * (isMobile ? 254 : 288)}px)` }}
                       >
                         {heritageSlides.map((item, idx) => (
-                          <div key={idx} className="menu-card" style={{ position: 'relative' }}>
-                            <img src={item.src} alt={item.title} />
-                            <div
-                              style={{
-                                position: 'absolute',
-                                bottom: 0,
-                                left: 0,
-                                right: 0,
-                                padding: '14px 16px',
-                                background: 'linear-gradient(to top, rgba(26, 8, 14, 0.9) 0%, rgba(26, 8, 14, 0.45) 65%, transparent 100%)',
-                                color: '#FFF',
-                                pointerEvents: 'none',
-                              }}
-                            >
-                              <h4 style={{ fontSize: '15px', fontWeight: 700, margin: 0, color: '#FFF' }}>{item.title}</h4>
-                              <p style={{ fontSize: '12px', margin: '3px 0 0 0', color: '#E29D52', fontWeight: 500 }}>{item.subtitle}</p>
+                          <div key={idx} className="heritage-card-unit">
+                            <div className="menu-card">
+                              <img src={item.src} alt={item.title} />
                             </div>
+                            <button
+                              type="button"
+                              className="heritage-cart-btn"
+                              onClick={() => handleAddToCart(item.title)}
+                              aria-label={`Add ${item.title} to cart`}
+                            >
+                              <Plus size={13} strokeWidth={2.4} />
+                              <span>Add to cart</span>
+                            </button>
                           </div>
                         ))}
                       </div>
