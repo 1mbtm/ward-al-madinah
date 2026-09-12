@@ -606,6 +606,7 @@ export default function ExactTemplatePage() {
                   x: isMobile ? '0%' : missionImgX,
                   scale: isMobile ? 1 : missionImgScale,
                   opacity: isMobile ? 1 : missionImgOpacity,
+                  transformOrigin: 'right bottom',
                 }}
               />
             </div>
@@ -641,12 +642,10 @@ export default function ExactTemplatePage() {
                             letterSpacing: '0.3px',
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '6px',
                             boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
                             pointerEvents: 'none',
                           }}
                         >
-                          <span style={{ color: '#E29D52', fontSize: '9px' }}>✦</span>
                           <span>{slide.caption}</span>
                         </div>
                       </div>
@@ -764,10 +763,16 @@ export default function ExactTemplatePage() {
 
             {/* Desktop Menu Hand with Ice Cream Slot */}
             <div className="menu__frame-slot">
-              <img
+              <motion.img
                 src="/images/menu-hand.png"
                 alt="Medina Rose Ice Cream Hand"
                 className="menu__frame-img"
+                style={{
+                  x: isMobile ? '0%' : menuImgX,
+                  scale: isMobile ? 1 : menuImgScale,
+                  opacity: isMobile ? 1 : menuImgOpacity,
+                  transformOrigin: 'right bottom',
+                }}
               />
             </div>
           </section>
