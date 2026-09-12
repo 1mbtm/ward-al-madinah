@@ -305,51 +305,6 @@ export default function ExactTemplatePage() {
     }
   ];
 
-  // News Items
-  const newsList = [
-    {
-      id: 'news-1',
-      title: 'Collagen Shots at Roasters: A New Wellness Ritual',
-      text: 'Roasters continues to expand its menu beyond coffee, introducing collagen wellness rituals.',
-      image: 'https://roasterscoffee.ae/wp-content/uploads/2026/03/img_3861-683x1024.png',
-      link: '#news'
-    },
-    {
-      id: 'news-2',
-      title: 'The Most Trending -86°C Coffee Has Arrived at Roasters Nad Al Sheba Mall',
-      text: 'A new sub-zero coffee extraction ritual is taking over Dubai — bold, crisp, and refreshing.',
-      image: 'https://roasterscoffee.ae/wp-content/uploads/2026/03/img_4193-683x1024.png',
-      link: '#news'
-    },
-    {
-      id: 'news-3',
-      title: 'Interview with Elza Shirokova',
-      text: 'Co-founder & Managing Director sharing the vision and philosophy behind Roasters Specialty Coffee.',
-      image: 'https://roasterscoffee.ae/wp-content/uploads/2026/01/article-image-1024x280.webp',
-      link: '#news'
-    },
-    {
-      id: 'news-4',
-      title: 'Roasters Expands with Flagship Hub at Dubai Science Park',
-      text: 'Dubai’s specialty coffee scene welcomes our new architectural state-of-the-art hub.',
-      image: 'https://roasterscoffee.ae/wp-content/uploads/2026/01/img_2319-1024x756.jpg',
-      link: '#news'
-    },
-    {
-      id: 'news-5',
-      title: 'Aroma Display at Roasters',
-      text: 'Discover the World of Coffee Through Scent! An interactive sensory experience for coffee lovers.',
-      image: 'https://roasterscoffee.ae/wp-content/uploads/2026/01/img_6801-683x1024.jpg',
-      link: '#news'
-    },
-    {
-      id: 'news-6',
-      title: 'Roasters Drip Coffee Box',
-      text: 'Discover the perfect balance between convenience and craftsmanship with our single-serve drip boxes.',
-      image: 'https://roasterscoffee.ae/wp-content/uploads/2026/01/img_2317-1024x683.jpg',
-      link: '#news'
-    }
-  ];
 
   // Team Members
   const teamMembers = [
@@ -1003,36 +958,6 @@ export default function ExactTemplatePage() {
             </div>
           </section>
 
-          {/* 11. NEWS SECTION */}
-          <section className="news">
-            <div className="container">
-              <div data-aos="fade-up">
-                <h2>News</h2>
-              </div>
-              <div className="news-list" data-aos="fade-up" data-aos-delay="200">
-                {newsList.map((item) => (
-                  <article key={item.id} className="news-item">
-                    <a className="news-item-link" href={item.link}>
-                      <div className="news-item-image">
-                        <img src={item.image} alt={item.title} />
-                      </div>
-                      <h3 className="news-item-title">{item.title}</h3>
-                      <p className="news-item-text">{item.text}</p>
-                      <span className="news-item-links">
-                        read more <ArrowRight size={14} />
-                      </span>
-                    </a>
-                  </article>
-                ))}
-              </div>
-              <div data-aos="fade-up" data-aos-delay="300" style={{ marginTop: '24px' }}>
-                <a className="news-view" href="#news">View More</a>
-              </div>
-            </div>
-            <div className="news-bg">
-              <img src="https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/news-bg.png" alt="News Background" />
-            </div>
-          </section>
 
           {/* 13. TEAM SECTION */}
           <section className="team">
