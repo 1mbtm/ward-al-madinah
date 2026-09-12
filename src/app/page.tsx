@@ -753,13 +753,22 @@ export default function ExactTemplatePage() {
 
               {/* Mobile Menu Image Frame */}
               <div className="menu__mobile-frame" data-aos="fade-up">
-                <SprayBottleMist />
+                <img
+                  src="/images/menu-hand.png"
+                  alt="Medina Rose Ice Cream Hand"
+                  className="menu__mobile-img"
+                  style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }}
+                />
               </div>
             </div>
 
-            {/* Desktop Menu Spray Bottle Slot (Static PNG with Interactive Mist) */}
+            {/* Desktop Menu Hand with Ice Cream Slot */}
             <div className="menu__frame-slot">
-              <SprayBottleMist />
+              <img
+                src="/images/menu-hand.png"
+                alt="Medina Rose Ice Cream Hand"
+                className="menu__frame-img"
+              />
             </div>
           </section>
 
