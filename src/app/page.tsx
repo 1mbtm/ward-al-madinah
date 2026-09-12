@@ -617,10 +617,13 @@ export default function ExactTemplatePage() {
               </div>
             </div>
             <div className="hero__bg--image">
-              <img
-                src="/images/hero-rose-hand-bg.png"
-                alt="Medina Rose Atmosphere - Hand holding fresh rose petals"
-              />
+              <picture>
+                <source media="(max-width: 768px)" srcSet="/images/hero-rose-hand-mobile-bg.png" />
+                <img
+                  src="/images/hero-rose-hand-bg.png"
+                  alt="Medina Rose Atmosphere - Hand holding fresh rose petals"
+                />
+              </picture>
               <div className="hero__bg-overlay" />
             </div>
           </section>
