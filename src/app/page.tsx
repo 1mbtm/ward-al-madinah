@@ -794,18 +794,18 @@ export default function ExactTemplatePage() {
                   {/* Left-Side Contained Menu Highlights Carousel */}
                   <div className="menu-carousel" data-aos="fade-up" data-aos-delay="150">
                     <button
-                      className="menu-slider-btn menu-slider-btn--prev"
+                      className="menu-nav-arrow menu-nav-arrow--prev"
                       onClick={() => setMenuSlideIndex((prev) => (prev > 0 ? prev - 1 : menuSlides.length - (isMobile ? 1 : 3)))}
                       aria-label="Previous menu items"
                     >
-                      <ChevronLeft size={22} />
+                      <ChevronLeft size={32} strokeWidth={1.75} />
                     </button>
                     <button
-                      className="menu-slider-btn menu-slider-btn--next"
+                      className="menu-nav-arrow menu-nav-arrow--next"
                       onClick={() => setMenuSlideIndex((prev) => (prev < menuSlides.length - (isMobile ? 1 : 3) ? prev + 1 : 0))}
                       aria-label="Next menu items"
                     >
-                      <ChevronRight size={22} />
+                      <ChevronRight size={32} strokeWidth={1.75} />
                     </button>
 
                     <div className="menu-carousel-viewport">
@@ -833,9 +833,6 @@ export default function ExactTemplatePage() {
             {/* Desktop Menu Spray Bottle Slot (Static PNG with Interactive Mist) */}
             <div className="menu__frame-slot">
               <SprayBottleMist />
-            </div>
-            <div className="menu-bg">
-              <img src="https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/contact-bg.png" alt="Menu background" />
             </div>
           </section>
 
