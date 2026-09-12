@@ -13,7 +13,7 @@ export default function ContactPage() {
           <SectionHeading
             eyebrow="Connect With Us"
             title="Hospitality & Concierge"
-            subtitle="Have a question about our beans, catering options, or private masterclasses? We are here to assist."
+            subtitle="Have an inquiry about our artisanal rose ice cream, catering for special gatherings, or bulk orders? We are here to assist 24/7."
           />
         </div>
       </section>

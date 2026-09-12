@@ -60,9 +60,9 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
     {
         id: 'instagram',
         name: 'Instagram',
-        handle: '@medinarose.icecream',
-        category: 'Visuals & Menu',
-        url: 'https://instagram.com/medinarose.icecream',
+        handle: '@medinarose.sa',
+        category: 'Official Feed & News',
+        url: 'https://www.instagram.com/medinarose.sa',
         icon: (
             <CircularAppIcon
                 src="/images/icons/instagram.jpg"
@@ -74,9 +74,9 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
     {
         id: 'tiktok',
         name: 'TikTok',
-        handle: '@medinarose.sa',
-        category: 'Shorts & Trending',
-        url: 'https://www.tiktok.com/@medinarose.sa',
+        handle: '@madin2h_rose0',
+        category: 'Viral Moments & Reels',
+        url: 'https://www.tiktok.com/@madin2h_rose0',
         icon: (
             <CircularAppIcon
                 src="/images/icons/tiktok.jpg"
@@ -90,8 +90,8 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
         id: 'snapchat',
         name: 'Snapchat',
         handle: 'medinarose',
-        category: 'Daily Stories',
-        url: 'https://snapchat.com',
+        category: 'Daily Stories & Behind the Scenes',
+        url: 'https://linktr.ee/madin2h_rose0',
         icon: (
             <CircularAppIcon
                 src="/images/icons/snapchat.png"
@@ -104,9 +104,9 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
     {
         id: 'googlemap',
         name: 'Google Maps',
-        handle: 'Find Location',
-        category: 'Madinah, KSA',
-        url: 'https://maps.google.com',
+        handle: '4.3 ★ (701+ Reviews)',
+        category: 'Gate 339, Madinah',
+        url: 'https://share.google/Z45RI9GaWryDIT55J',
         icon: (
             <CircularAppIcon
                 src="/images/icons/map.avif"
@@ -119,9 +119,9 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
     {
         id: 'whatsapp',
         name: 'WhatsApp',
-        handle: 'Orders & Booking',
-        category: 'Instant Chat',
-        url: 'https://wa.me/966500000000',
+        handle: '+966 54 330 0570',
+        category: 'Instant Chat & Orders',
+        url: 'https://wa.me/966543300570',
         icon: (
             <CircularAppIcon
                 src="/images/icons/whatsapp.avif"
@@ -134,9 +134,9 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
     {
         id: 'call',
         name: 'Direct Call',
-        handle: '+966 50 000 0000',
-        category: 'Phone Inquiries',
-        url: 'tel:+966500000000',
+        handle: '+966 54 330 0570',
+        category: 'Madinah Hotline 24/7',
+        url: 'tel:+966543300570',
         icon: (
             <CircularAppIcon
                 src="/images/icons/call.avif"

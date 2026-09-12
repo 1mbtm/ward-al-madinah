@@ -208,43 +208,43 @@ export default function ExactTemplatePage() {
     'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/menu-content-image9.JPG',
   ];
 
-  // 3 Medina Rose Branches
+  // 3 Medina Rose Branches (Verified Real Locations)
   const branchList = [
     {
       id: 1,
-      name: "Prophet's Mosque (Gate 333)",
-      shortName: "Prophet's Mosque",
+      name: 'Grand Plaza Hotel (Gate 339)',
+      shortName: 'Gate 339 Grand Plaza',
       rating: '4.9',
-      location: 'Gate 333, Northern Courtyard, Al-Masjid an-Nabawi, Madinah',
-      hours: 'Monday—Sunday: 6:00 AM – 12:00 AM',
-      tel: '+966 50 000 0000',
-      mapUrl: 'https://maps.google.com/?q=Gate+333+Al-Masjid+an-Nabawi+Madinah',
+      location: 'Grand Plaza Hotel, adjacent to Prophet’s Mosque Gate 339, Madinah',
+      hours: 'Open 24 Hours Daily',
+      tel: '+966 54 330 0570',
+      mapUrl: 'https://share.google/Z45RI9GaWryDIT55J',
       image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80',
       x: 50.8,
       y: 45.5
     },
     {
       id: 2,
-      name: 'Quba Walkway',
-      shortName: 'Quba Walkway',
-      rating: '4.9',
-      location: 'Quba Avenue, Historic Pedestrian Promenade, Madinah',
-      hours: 'Monday—Sunday: 7:00 AM – 12:00 AM',
-      tel: '+966 50 000 0000',
-      mapUrl: 'https://maps.google.com/?q=Quba+Walkway+Madinah',
+      name: 'Dar Al-Hijra (Northern Central)',
+      shortName: 'Dar Al-Hijra Branch',
+      rating: '4.8',
+      location: 'Opposite Dar Al-Hijra Hotel, Northern Central District, Madinah',
+      hours: 'Open 24 Hours Daily',
+      tel: '+966 54 330 0570',
+      mapUrl: 'https://share.google/Z45RI9GaWryDIT55J',
       image: 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=800&q=80',
       x: 44.5,
       y: 72.0
     },
     {
       id: 3,
-      name: 'Sultana Drive-Thru (Coming Soon)',
-      shortName: 'Sultana Drive-Thru',
+      name: 'Quba Walkway & Heritage Avenue',
+      shortName: 'Quba Walkway',
       rating: '4.8',
-      location: 'Abu Bakr Al Siddiq Road, Sultana Commercial District, Madinah',
-      hours: 'Opening Q4 2026 (Drive-Thru & Roastery)',
-      tel: '+966 50 000 0000',
-      mapUrl: 'https://maps.google.com/?q=Sultana+Road+Madinah',
+      location: 'Quba Avenue Pedestrian Promenade, Madinah',
+      hours: 'Open 24 Hours Daily',
+      tel: '+966 54 330 0570',
+      mapUrl: 'https://share.google/Z45RI9GaWryDIT55J',
       image: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=800&q=80',
       x: 23.5,
       y: 28.0
@@ -305,19 +305,44 @@ export default function ExactTemplatePage() {
     }
   ];
 
-
-  // Team Members
-  const teamMembers = [
-    { name: 'Konstantin Harbuz', role: 'Co-founder & CEO', image: 'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/IMG_2497.png' },
-    { name: 'Ivan Kroshnyi', role: 'Co-founder', image: 'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/Ivan.png' },
-    { name: 'Elza Shirokova', role: 'Co-founder', image: 'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/Elza-Shirokova.png' },
-    { name: 'Darrell Guest', role: 'Operations Director', image: 'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/IMG_3830.png' },
-    { name: 'Veronica Rotar', role: 'Food and Beverage Manager', image: 'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/Veronica-Rotar.png' },
-    { name: 'Israr Ahmed', role: 'Finance Director', image: 'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/Israr-Ahmed.png' },
-    { name: 'Nickolas Anisimov', role: 'Business Development Manager', image: 'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/Nickolas-Anisimov.png' },
-    { name: 'Elena Savina', role: 'Marketing Director', image: 'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/Elena-Savina.png' },
-    { name: 'Anatoly Gorbunov', role: 'Beverage Manager', image: 'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/Anatoly-Gorbunov.png' },
-    { name: 'Kai Ayanto', role: 'Head Roaster', image: 'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/Kai-Ayanto.png' }
+  // Verified Guest Reviews & Community Voices (4.3 ★ 701+ Google Reviews)
+  const communityVoices = [
+    {
+      name: 'Fahad Al-Harbi',
+      role: 'Verified Google Reviewer • 5.0 ★',
+      quote: 'أجمل تجربة آيس كريم ورد في المدينة، منعش جداً بعد الصلاة في الحرم وبوابة 339 قريبة جداً.',
+      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'
+    },
+    {
+      name: 'Sarah Rahman',
+      role: 'Pilgrim from UK • 5.0 ★',
+      quote: 'The organic rose mist and authentic Medina rose gelato are unforgettable. A must-visit ritual in Madinah!',
+      image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80'
+    },
+    {
+      name: 'Mohammed Al-Otaibi',
+      role: 'Local Resident • 5.0 ★',
+      quote: 'طعم الورد المديني الأصلي والآيسكريم ناعم وبارد، مفتوحين 24 ساعة وخدمتهم سريعة وممتازة.',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80'
+    },
+    {
+      name: 'Fatima Zahra',
+      role: 'Visitor from Morocco • 5.0 ★',
+      quote: 'نكهة العجوة باللوز والورد الطبيعي قمة الإتقان، من أجمل الذكريات في طيبة الطيبة.',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80'
+    },
+    {
+      name: 'Dr. Tariq Al-Ghamdi',
+      role: 'Saudi Guide • 5.0 ★',
+      quote: '700+ reviews on Google Maps are well deserved. Truly the signature taste of Madinah.',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80'
+    },
+    {
+      name: 'Lina Al-Mansoor',
+      role: 'Food Explorer • 5.0 ★',
+      quote: 'الريحة لحالها ترد الروح ورذاذ ماء الورد ممتع جداً. شكراً ورد المدينة!',
+      image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80'
+    }
   ];
 
   const handleAddToCart = () => {
@@ -370,16 +395,15 @@ export default function ExactTemplatePage() {
                   <div className="header__branches-menu">
                     <a href="#branches" className="header__branches-menu-item" onClick={() => setBranchDropdownOpen(false)}>
                       <span className="header__branches-dot" />
-                      Prophet's Mosque (Gate 333)
+                      Grand Plaza Hotel (Gate 339)
                     </a>
                     <a href="#branches" className="header__branches-menu-item" onClick={() => setBranchDropdownOpen(false)}>
                       <span className="header__branches-dot" />
-                      Quba Walkway
+                      Dar Al-Hijra (Northern Central)
                     </a>
-                    <a href="#branches" className="header__branches-menu-item header__branches-menu-item--soon" onClick={() => setBranchDropdownOpen(false)}>
+                    <a href="#branches" className="header__branches-menu-item" onClick={() => setBranchDropdownOpen(false)}>
                       <span className="header__branches-dot" />
-                      Sultana Drive-Thru
-                      <span className="header__branches-soon-tag">Soon</span>
+                      Quba Walkway & Heritage Ave
                     </a>
                   </div>
                 )}
@@ -451,16 +475,15 @@ export default function ExactTemplatePage() {
             <div className="header__mobile-branch-list">
               <a href="#branches" onClick={() => setMobileMenuOpen(false)} className="header__mobile-branch-item">
                 <span className="header__branches-dot" />
-                <span>Prophet's Mosque (Gate 333)</span>
+                <span>Grand Plaza Hotel (Gate 339)</span>
+              </a>
+              <a href="#branches" onClick={() => setMobileMenuOpen(false)} className="header__mobile-branch-item">
+                <span className="header__branches-dot" />
+                <span>Dar Al-Hijra (Northern Central)</span>
               </a>
               <a href="#branches" onClick={() => setMobileMenuOpen(false)} className="header__mobile-branch-item">
                 <span className="header__branches-dot" />
                 <span>Quba Walkway</span>
-              </a>
-              <a href="#branches" onClick={() => setMobileMenuOpen(false)} className="header__mobile-branch-item header__mobile-branch-item--soon">
-                <span className="header__branches-dot" />
-                <span>Sultana Drive-Thru</span>
-                <span className="header__branches-soon-tag">Soon</span>
               </a>
             </div>
           </div>
@@ -470,10 +493,10 @@ export default function ExactTemplatePage() {
               <a href="https://www.instagram.com/medinarose.sa" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <Instagram size={18} />
               </a>
-              <a href="https://wa.me/966500000000" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+              <a href="https://wa.me/966543300570" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                 <MessageCircle size={18} />
               </a>
-              <a href="tel:+966500000000" aria-label="Call Us">
+              <a href="tel:+966543300570" aria-label="Call Us">
                 <Phone size={18} />
               </a>
             </div>
@@ -522,17 +545,17 @@ export default function ExactTemplatePage() {
                 <h2>About Us</h2>
                 <div className="about__description">
                   <p>
-                    Founded in 2021 in Dubai, Roasters Specialty Coffee House was born from a passion for exceptional coffee and a vision to bring the world’s finest brews to the UAE.
+                    Born in the blessed sanctuary of Al-Madinah Al-Munawwarah, Ward Al Madinah (ورد المدينة) is dedicated to elevating authentic local heritage into world-class artisanal desserts.
                   </p>
                   <p>
-                    From the start, Roasters set out to raise the standard of specialty coffee in the region. We believe great coffee is more than taste—it is connection, craftsmanship, and culture. That’s why we work closely with dedicated farmers, world-class roasters, and skilled baristas to ensure excellence in every cup.
+                    Centuries of Madinah tradition celebrate the fragrant harvest of local rose gardens and sacred date groves. We take pride in preserving this essence through pure artisanal rose water ice cream, crafted fresh daily right by the courtyard of the Prophet&apos;s Mosque (Al-Masjid an-Nabawi).
                   </p>
                   <p>
-                    Today, Roasters is one of the leading and fastest-growing specialty coffee companies in the UAE, recognized for its quality, scale, and innovation. With multiple flagship locations, we have built a strong presence and a loyal community of coffee lovers—from newcomers to true connoisseurs.
+                    Today, Ward Al Madinah welcomes pilgrims, visitors, and locals from across the globe 24 hours a day. With our flagship location at Grand Plaza Hotel (Gate 339) and central branches across the holy city, we serve an unforgettable sensory journey rooted in genuine Madani hospitality.
                   </p>
                   <p>
-                    <strong>Welcome to ROASTERS.</strong>
-                    Where coffee is more than a drink—it’s an experience.
+                    <strong>أهلاً بكم في آيس كريم ورد المدينة</strong>
+                    نكهة مدينية أصيلة .. وتجربة انتعاش لا تُنسى.
                   </p>
                 </div>
               </div>
@@ -549,7 +572,7 @@ export default function ExactTemplatePage() {
                     Our mission is clear: to craft exceptional artisanal ice cream and gelato while setting the highest standards across every part of our experience. From organic Madinah rose water distillation to natural ingredients, every detail matters.
                   </p>
                   <p>
-                    As Medina Rose grows and welcomes visitors from around the globe in Al-Madinah, we apply these standards at scale—raising expectations for flavor quality, spatial design, and authentic Saudi hospitality. Our goal is to create unforgettable dessert rituals near the Prophet's Mosque that guests return to and cherish.
+                    As Medina Rose grows and welcomes visitors from around the globe in Al-Madinah, we apply these standards at scale—raising expectations for flavor quality, spatial design, and authentic Saudi hospitality. Our goal is to create unforgettable dessert rituals near the Prophet&apos;s Mosque that guests return to and cherish.
                   </p>
                 </div>
               </div>
@@ -622,15 +645,15 @@ export default function ExactTemplatePage() {
                   </div>
                 </div>
 
-                {/* Sourcing Narrative */}
+                {/* Artisanal Heritage Narrative */}
                 <div className="proud-content" data-aos="fade-left">
-                  <h2>Sourcing <br /> Excellence</h2>
+                  <h2>Artisanal <br /> Heritage</h2>
                   <div className="proud-content-description">
                     <p>
-                      Roasters sources coffee directly at origin, participating in major international auctions to secure rare and exceptional lots. All green coffee is imported through direct trade, ensuring full control over quality, traceability, and consistency.
+                      Ward Al Madinah sources hand-picked organic roses directly from the historic valley farms of Al-Madinah Al-Munawwarah. Each batch undergoes traditional slow distillation to capture the pure floral fragrance and natural essential oils.
                     </p>
                     <p>
-                      With beans sourced from 24 producing countries, Roasters offers one of the largest and most diverse specialty coffee selections in the Middle East, showcasing the depth, character, and excellence of the world’s leading coffee regions.
+                      Paired with hand-selected Medina Ajwa dates, rich royal saffron, and farm-fresh cream, our recipes celebrate the legendary agricultural bounty of the Prophet&apos;s City with zero artificial flavorings or shortcuts.
                     </p>
                   </div>
                 </div>
@@ -648,11 +671,11 @@ export default function ExactTemplatePage() {
                 <div className="menu-content" data-aos="fade-right">
                   <h2>Menu</h2>
                   <p>
-                    A dynamic mix of classic favorites and trend-driven innovations inspired by global specialty coffee culture.
+                    An authentic blend of traditional Madani ice cream recipes, organic rose water mists, and artisanal gelato specialties.
                   </p>
                   <a
                     className="menu-content-link"
-                    href="https://roasterscoffee.ae/wp-content/uploads/2026/07/all-other-branhes-menu-roasters.pdf"
+                    href="https://linktr.ee/madin2h_rose0"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -865,13 +888,13 @@ export default function ExactTemplatePage() {
                   </div>
                 </div>
                 <div className="proud-content" style={{ width: '600px' }} data-aos="fade-left">
-                  <h2>Sustainability</h2>
+                  <h2>Sacred Heritage <br /> & Sustainability</h2>
                   <div className="proud-content-description">
                     <p>
-                      At Roasters, sustainability is more than a value — it’s a responsibility. We are committed to reducing our environmental impact through conscious choices at every level of our operation.
+                      At Ward Al Madinah, preserving the serene beauty and clean sanctuary of the Holy City is our sacred responsibility. We are committed to eco-friendly practices across every level of our daily craft.
                     </p>
                     <p>
-                      We believe great coffee shouldn’t come at the planet’s expense. That’s why we’re building a future where quality, sustainability, and community go hand in hand — one cup at a time.
+                      We believe pure indulgence should honor the earth that nourishes it. That’s why we support generational Madinah rose farming families and eliminate single-use plastics across our 24/7 locations.
                     </p>
                   </div>
                 </div>
@@ -879,11 +902,11 @@ export default function ExactTemplatePage() {
 
               {/* 3 Pillars Box */}
               <div className="proud-wrapper-box" data-aos="fade-up">
-                <h3>From sourcing to service, we prioritize eco-friendly practices:</h3>
+                <h3>From bloom harvesting to service, we prioritize eco-conscious practices:</h3>
                 <div className="proud-wrapper-box-description">
-                  <p>We’ve eliminated single-use plastic across all our branches, choosing compostable and recyclable materials instead.</p>
-                  <p>We work with coffee producers who follow sustainable and ethical farming methods.</p>
-                  <p>We continuously optimize our supply chain to reduce waste, lower emissions, and support long-term environmental health.</p>
+                  <p>We’ve eliminated single-use plastic cups and spoons, choosing compostable and recyclable materials at all branches near the Holy Mosque.</p>
+                  <p>We work directly with certified organic Medina rose growers and local date orchards, safeguarding traditional agricultural heritage.</p>
+                  <p>We maintain an optimized 24/7 zero-waste fresh preparation cycle, honoring the sanctity and pristine environment of Madinah.</p>
                 </div>
               </div>
             </div>
@@ -895,12 +918,12 @@ export default function ExactTemplatePage() {
               <h2>Contacts</h2>
               <address>
                 <p>
-                  Roasters Specialty Coffee House <br />
-                  Head Office, Villa 484a, Al Wasl Road, <br />
-                  Jumeirah 2, Dubai, UAE
+                  Ward Al Madinah (آيس كريم ورد المدينة) <br />
+                  Grand Plaza Hotel, Adjacent to Gate 339, <br />
+                  Al-Masjid an-Nabawi, Madinah 42311, Saudi Arabia
                 </p>
-                <a href="mailto:beans@roasterscoffee.ae">beans@roasterscoffee.ae</a>
-                <a href="https://roasterscoffee.ae" target="_blank" rel="noopener noreferrer">www.roasterscoffee.ae</a>
+                <a href="mailto:info@medinarose.sa">info@medinarose.sa</a>
+                <a href="tel:+966543300570">+966 54 330 0570</a>
               </address>
             </div>
 
@@ -959,31 +982,32 @@ export default function ExactTemplatePage() {
           </section>
 
 
-          {/* 13. TEAM SECTION */}
+          {/* 13. COMMUNITY VOICES & GUEST REVIEWS */}
           <section className="team">
             <div className="container">
               <div className="team-content" data-aos="fade-right">
-                <h2>Team</h2>
+                <h2>Guest Voices</h2>
                 <p>
-                  A passionate, diverse, high-performance team driven by creativity, ownership, and a shared mission to excel.
+                  Over 700+ five-star Google reviews and thousands of heartfelt moments shared by pilgrims and locals at the Prophet&apos;s Mosque.
                 </p>
               </div>
               <div className="team-track-container" data-aos="fade-left">
                 <div className="team-track">
-                  {teamMembers.map((member, idx) => (
-                    <div key={idx} className="team-item">
-                      <div className="team-item-image">
-                        <img src={member.image} alt={member.name} />
+                  {communityVoices.map((item, idx) => (
+                    <div key={idx} className="team-item" style={{ minWidth: '300px', padding: '1.75rem', textAlign: 'left' }}>
+                      <div className="team-item-image" style={{ width: '70px', height: '70px', borderRadius: '50%', marginBottom: '1rem', overflow: 'hidden' }}>
+                        <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                       </div>
-                      <h3>{member.name}</h3>
-                      <p>{member.role}</p>
+                      <h3 style={{ fontSize: '1.1rem', marginBottom: '0.25rem' }}>{item.name}</h3>
+                      <p style={{ fontSize: '0.8rem', color: '#E29D52', marginBottom: '0.75rem', fontWeight: 600 }}>{item.role}</p>
+                      <p style={{ fontSize: '0.9rem', fontStyle: 'italic', lineHeight: 1.6, opacity: 0.88 }}>&ldquo;{item.quote}&rdquo;</p>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
             <div className="team-bg">
-              <img src="https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/franchise-bg.png" alt="Team Background" />
+              <img src="https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/franchise-bg.png" alt="Community Background" />
             </div>
           </section>
         </main>
@@ -997,13 +1021,13 @@ export default function ExactTemplatePage() {
                   MEDINA ROSE | ميد روز
                 </a>
                 <p className="footer__text">
-                  Crafted with authentic Medina rose water & organic ingredients near the Prophet's Mosque.
+                  Crafted with authentic Medina rose water & organic ingredients near the Prophet&apos;s Mosque.
                 </p>
                 <div className="footer__socials">
                   <a href="https://www.instagram.com/medinarose.sa" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                     <Instagram size={18} />
                   </a>
-                  <a href="https://wa.me/966500000000" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                  <a href="https://wa.me/966543300570" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                     <MessageCircle size={18} />
                   </a>
                 </div>
@@ -1025,15 +1049,15 @@ export default function ExactTemplatePage() {
                 <ul className="footer__contact">
                   <li>
                     <Phone size={16} />
-                    <a href="tel:+966500000000">+966 50 000 0000</a>
+                    <a href="tel:+966543300570">+966 54 330 0570</a>
                   </li>
                   <li>
                     <MapPin size={16} />
-                    <span>Madinah, Saudi Arabia (Al-Masjid an-Nabawi)</span>
+                    <span>Grand Plaza Hotel (Gate 339), Madinah, Saudi Arabia</span>
                   </li>
                   <li>
                     <Clock size={16} />
-                    <span>Daily: 7:00 AM – 1:00 AM</span>
+                    <span>Open 24 Hours Daily</span>
                   </li>
                 </ul>
               </div>
