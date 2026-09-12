@@ -37,6 +37,7 @@ export default function ExactTemplatePage() {
   // Slider indices
   const [proudSlideIndex, setProudSlideIndex] = useState(0);
   const [menuSlideIndex, setMenuSlideIndex] = useState(0);
+  const [heritageSlideIndex, setHeritageSlideIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -272,58 +273,43 @@ export default function ExactTemplatePage() {
     },
   ];
 
-  // Medina Rose Artisanal Tubs & Gift Products
-  const retailProducts = [
+  // Madinah Heritage Goods & Rose Elixirs Slides
+  const heritageSlides = [
     {
-      id: 'retail-1',
-      score: '100% Organic',
-      targetScore: 100,
-      flag: '🌹',
-      title: 'SIGNATURE MEDINA ROSE GELATO TUB (500ML)',
-      notes: 'Authentic Madinah Rose Water Mist & Organic Petals',
-      price: 'SAR 45',
-      image: 'https://images.unsplash.com/photo-1560008511-11c63416e52d?auto=format&fit=crop&w=800&q=80'
+      src: '/images/goods/rose-mist-bottle.png',
+      title: 'Musk & Rose Water Mist',
+      subtitle: 'بالمسك والورد المديني 250ml',
     },
     {
-      id: 'retail-2',
-      score: 'Local Favorite',
-      targetScore: 98,
-      flag: '🌴',
-      title: 'MADINAH AJWA DATE & ALMOND TUB (500ML)',
-      notes: 'Hand-harvested Ajwa dates & slow-roasted almonds',
-      price: 'SAR 50',
-      image: 'https://images.unsplash.com/photo-1570197788417-0e82375c9371?auto=format&fit=crop&w=800&q=80'
+      src: '/images/goods/shouraik-bread.png',
+      title: 'Traditional Shouraik Bread',
+      subtitle: 'شريك مديني طازج بالسمسم',
     },
     {
-      id: 'retail-3',
-      score: 'Premium Import',
-      targetScore: 96,
-      flag: '🇮🇹',
-      title: 'SICILIAN PISTACHIO CREAM TUB (500ML)',
-      notes: '100% Pure Bronte Pistachio Paste & Velvet Cream',
-      price: 'SAR 55',
-      image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=800&q=80'
+      src: '/images/goods/dried-roses.png',
+      title: 'Dried Medina Rose Buds',
+      subtitle: 'ورد مديني مجفف للضيافة',
     },
     {
-      id: 'retail-4',
-      score: 'Floral Essence',
-      targetScore: 100,
-      flag: '✨',
-      title: 'MEDINA ROSE WATER ELIXIR MIST BOTTLE (250ML)',
-      notes: 'Distilled Rose Water from Medina Garden Blooms',
-      price: 'SAR 35',
-      image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80'
+      src: '/images/goods/botanical-sprays.png',
+      title: 'Botanical Rose Elixirs',
+      subtitle: 'مجموعة رذاذ الورد الطبيعي',
     },
     {
-      id: 'retail-5',
-      score: 'Saffron Reserve',
-      targetScore: 95,
-      flag: '👑',
-      title: 'ROYAL SAFFRON VANILLA BEAN TUB (500ML)',
-      notes: 'Infused with Royal Persian Saffron & Bourbon Vanilla',
-      price: 'SAR 60',
-      image: 'https://images.unsplash.com/photo-1501443762994-82bd5dace89a?auto=format&fit=crop&w=800&q=80'
-    }
+      src: '/images/goods/madinah-tea-shelves.png',
+      title: 'Madinah Tea & Rose Syrups',
+      subtitle: 'شاي مديني مخلوط وخيرات المدينة',
+    },
+    {
+      src: '/images/3.png',
+      title: 'Authentic Ajwa Dates',
+      subtitle: 'عجوة المدينة المنورة الفاخرة',
+    },
+    {
+      src: '/images/5.png',
+      title: 'Signature Rose Mist Elixir',
+      subtitle: 'رذاذ الورد الطبيعي الفاخر',
+    },
   ];
 
   // Verified Guest Reviews & Community Voices (4.3 ★ 701+ Google Reviews)
@@ -983,46 +969,81 @@ export default function ExactTemplatePage() {
             </div>
           </section>
 
-          {/* 10. RETAIL BEANS SECTION (WITH REQUESTANIMATIONFRAME CUPPING COUNTER) */}
-          <section id="retail" className="retail" ref={retailSectionRef}>
-            <div className="container-wrapper">
-              <div className="container" data-aos="fade-up">
-                <h2>Madinah Heritage Goods & Rose Elixirs</h2>
-              </div>
+          {/* 10. HERITAGE GOODS & ELIXIRS SECTION (EXACT STRUCTURAL COPY OF MENU SECTION) */}
+          <section id="retail" className="menu" ref={retailSectionRef}>
+            <div className="container">
+              <div className="menu__card">
+                <div className="menu-content" data-aos="fade-right">
+                  <h2>Heritage Goods</h2>
+                  <p>
+                    Handcrafted botanical rose water mists, fresh Madinah shouraik bakery, authentic dried rose buds, and sacred Sidr honey sourced from the holy city.
+                  </p>
+                  <a
+                    className="menu-content-link"
+                    href="https://linktr.ee/madin2h_rose0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    show me
+                  </a>
 
-              <div className="retail-track-container" data-aos="fade-up" data-aos-delay="200">
-                <div className="retail-track">
-                  {retailProducts.map((product) => (
-                    <div key={product.id} className="retail-swiper-box">
-                      <div className="retail-swiper-image">
-                        <p className="retail-swiper-counter">
-                          <span className="counter">{counters[product.id]} +</span>
-                        </p>
-                        <div className="retail-swiper-image-product">
-                          <img src={product.image} alt={product.title} />
-                        </div>
-                        <div style={{ width: '40px' }} />
-                      </div>
-                      <div className="retail-swiper-content">
-                        <div className="retail-swiper-title">
-                          <h3>
-                            <span style={{ fontSize: '28px' }}>{product.flag}</span> <br />
-                            {product.title}
-                          </h3>
-                          <p>{product.notes}</p>
-                        </div>
-                        <p className="retail-swiper-price">{product.price}</p>
-                        <button className="retail-swiper-btn" onClick={handleAddToCart}>
-                          Add To Cart
-                        </button>
+                  {/* Left-Side Contained Heritage Goods Highlights Carousel */}
+                  <div className="menu-carousel" data-aos="fade-up" data-aos-delay="150">
+                    <button
+                      className="menu-nav-arrow menu-nav-arrow--prev"
+                      onClick={() => setHeritageSlideIndex((prev) => (prev > 0 ? prev - 1 : heritageSlides.length - (isMobile ? 1 : 3)))}
+                      aria-label="Previous heritage goods items"
+                    >
+                      <ChevronLeft size={32} strokeWidth={1.75} />
+                    </button>
+                    <button
+                      className="menu-nav-arrow menu-nav-arrow--next"
+                      onClick={() => setHeritageSlideIndex((prev) => (prev < heritageSlides.length - (isMobile ? 1 : 3) ? prev + 1 : 0))}
+                      aria-label="Next heritage goods items"
+                    >
+                      <ChevronRight size={32} strokeWidth={1.75} />
+                    </button>
+
+                    <div className="menu-carousel-viewport">
+                      <div
+                        className="menu-track"
+                        style={{ transform: `translateX(-${heritageSlideIndex * (isMobile ? 254 : 288)}px)` }}
+                      >
+                        {heritageSlides.map((item, idx) => (
+                          <div key={idx} className="menu-card" style={{ position: 'relative' }}>
+                            <img src={item.src} alt={item.title} />
+                            <div
+                              style={{
+                                position: 'absolute',
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                padding: '14px 16px',
+                                background: 'linear-gradient(to top, rgba(26, 8, 14, 0.9) 0%, rgba(26, 8, 14, 0.45) 65%, transparent 100%)',
+                                color: '#FFF',
+                                pointerEvents: 'none',
+                              }}
+                            >
+                              <h4 style={{ fontSize: '15px', fontWeight: 700, margin: 0, color: '#FFF' }}>{item.title}</h4>
+                              <p style={{ fontSize: '12px', margin: '3px 0 0 0', color: '#E29D52', fontWeight: 500 }}>{item.subtitle}</p>
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     </div>
-                  ))}
+                  </div>
                 </div>
               </div>
+
+              {/* Mobile Heritage Goods Image Frame */}
+              <div className="menu__mobile-frame" data-aos="fade-up">
+                <SprayBottleMist />
+              </div>
             </div>
-            <div className="retail-bg">
-              <img src="https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/retail-bg.png" alt="Retail Beans Background" />
+
+            {/* Desktop Heritage Goods Spray Bottle Slot (Static PNG with Interactive Mist) */}
+            <div className="menu__frame-slot">
+              <SprayBottleMist />
             </div>
           </section>
 
