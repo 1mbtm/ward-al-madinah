@@ -927,8 +927,8 @@ export default function ExactTemplatePage() {
                 <div className="proud-slider" data-aos="fade-right">
                   <div className="proud-slide">
                     <img
-                      src="/images/1.png"
-                      alt="Organic Rose Harvest & Eco Practices"
+                      src="https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/swiper-slide22.png"
+                      alt="Sustainability Practices"
                     />
                   </div>
                 </div>
