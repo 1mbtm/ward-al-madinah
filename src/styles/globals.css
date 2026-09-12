@@ -1341,43 +1341,130 @@ ul, ol {
 .branches__wrapper {
   position: relative;
   width: 100%;
-  overflow-x: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(35, 22, 28, 0.07);
+  background: #fdf8f4;
 }
 
 .branches__map {
   position: relative;
   width: 100%;
-  min-width: 1200px;
-  height: auto;
+  aspect-ratio: 1024 / 572;
+  overflow: hidden;
+  border-radius: 20px;
 }
 
 .branches__map-img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   user-select: none;
+  -webkit-user-drag: none;
 }
 
-/* 12 Interactive Map Pins */
+/* Interactive Medina Rose Branch Pins */
 .branches__pin {
   position: absolute;
-  width: 44px;
-  height: 44px;
-  cursor: pointer;
   transform: translate(-50%, -50%);
-  z-index: 10;
+  background: transparent;
   border: none;
-  background: radial-gradient(circle, #C0A062 0%, #3A4A3E 70%);
-  border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(255,255,255,0.8), 0 4px 12px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: pinPulse 2.5s infinite;
+  cursor: pointer;
+  z-index: 20;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .branches__pin:hover,
 .branches__pin.active {
-  transform: translate(-50%, -50%) scale(1.25);
-  box-shadow: 0 0 0 6px #FFF, 0 6px 18px rgba(192, 160, 98, 0.8);
+  transform: translate(-50%, -50%) scale(1.18);
+  z-index: 30;
+}
+
+.branches__pin-beacon {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.branches__pin-pulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: rgba(143, 65, 81, 0.24);
+  animation: branchPinPulse 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  pointer-events: none;
+}
+
+.branches__pin-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #8F4151; /* signature Burgundy Rose */
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 3px 10px rgba(143, 65, 81, 0.45);
+  position: relative;
+  z-index: 2;
+  transition: all 0.2s ease;
+}
+
+.branches__pin:hover .branches__pin-dot,
+.branches__pin.active .branches__pin-dot {
+  background: #23161C;
+  transform: scale(1.15);
+  box-shadow: 0 4px 14px rgba(35, 22, 28, 0.5);
+}
+
+.branches__pin-label {
+  margin-top: 5px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(143, 65, 81, 0.18);
+  color: #23161C;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  padding: 4px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(35, 22, 28, 0.08);
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.branches__pin:hover .branches__pin-label,
+.branches__pin.active .branches__pin-label {
+  background: #23161C;
+  color: #FFFFFF;
+  border-color: #23161C;
+  box-shadow: 0 6px 20px rgba(35, 22, 28, 0.2);
+}
+
+@keyframes branchPinPulse {
+  0% {
+    transform: scale(0.65);
+    opacity: 0.85;
+  }
+  70% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
 }
 
 /* Branch Popup Modal & Overlay */
@@ -3125,6 +3212,36 @@ ul, ol {
     font-size: 13px;
     color: #8F4151;
     font-weight: 600;
+  }
+
+  .branches__wrapper {
+    border-radius: 16px !important;
+    margin: 0 16px !important;
+    width: auto !important;
+  }
+
+  .branches__map {
+    min-width: 0 !important;
+    aspect-ratio: 1024 / 572 !important;
+    border-radius: 16px !important;
+  }
+
+  .branches__pin-beacon {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .branches__pin-dot {
+    width: 12px !important;
+    height: 12px !important;
+    border-width: 2px !important;
+  }
+
+  .branches__pin-label {
+    font-size: 10px !important;
+    padding: 2px 7px !important;
+    margin-top: 2px !important;
+    border-radius: 12px !important;
   }
 
   .branches__mobile-container {

@@ -190,151 +190,46 @@ export default function ExactTemplatePage() {
     'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/menu-content-image9.JPG',
   ];
 
-  // 12 Exact Branches Data
+  // 3 Medina Rose Branches
   const branchList = [
     {
       id: 1,
-      name: 'ROASTERS Palm Jumeirah Mall',
+      name: "Prophet's Mosque (Gate 333)",
+      shortName: "Prophet's Mosque",
       rating: '4.9',
-      location: 'Vista Tower 1 — Emaar Beachfront — The Palm Jumeirah',
-      hours: 'Monday—Sunday: 7am–11pm',
-      tel: '+971 58 558 5523',
-      mapUrl: 'https://maps.google.com',
+      location: 'Gate 333, Northern Courtyard, Al-Masjid an-Nabawi, Madinah',
+      hours: 'Monday—Sunday: 6:00 AM – 12:00 AM',
+      tel: '+966 50 000 0000',
+      mapUrl: 'https://maps.google.com/?q=Gate+333+Al-Masjid+an-Nabawi+Madinah',
       image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80',
-      x: 18,
-      y: 65
+      x: 50.8,
+      y: 45.5
     },
     {
       id: 2,
-      name: 'Roasters Emaar Beachfront',
-      rating: '4.8',
-      location: 'Vista Tower 1 — Emaar Beachfront — The Palm Jumeirah',
-      hours: 'Monday—Sunday: 7am–11pm',
-      tel: '+971 58 558 5523',
-      mapUrl: 'https://maps.google.com',
-      image: 'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/IMG_2734.PNG',
-      x: 24,
-      y: 60
+      name: 'Quba Walkway',
+      shortName: 'Quba Walkway',
+      rating: '4.9',
+      location: 'Quba Avenue, Historic Pedestrian Promenade, Madinah',
+      hours: 'Monday—Sunday: 7:00 AM – 12:00 AM',
+      tel: '+966 50 000 0000',
+      mapUrl: 'https://maps.google.com/?q=Quba+Walkway+Madinah',
+      image: 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=800&q=80',
+      x: 44.5,
+      y: 72.0
     },
     {
       id: 3,
-      name: 'ROASTERS JBR',
-      rating: '4.9',
-      location: 'Amwaj 5 — Jumeirah Beach Residence 2',
-      hours: 'Monday to Sunday: 7am–12am',
-      tel: '+971 58 572 5444',
-      mapUrl: 'https://maps.google.com',
-      image: 'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/coffe2.JPG',
-      x: 30,
-      y: 70
-    },
-    {
-      id: 4,
-      name: 'ROASTERS Science Park (Coming Soon)',
-      rating: '4.6',
-      location: 'Dubai Science Park Central Complex',
-      hours: 'Opening Q3 2026',
-      tel: '+971 58 558 5523',
-      mapUrl: 'https://maps.google.com',
-      image: 'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/IMG_3005.JPG',
-      x: 38,
-      y: 55
-    },
-    {
-      id: 5,
-      name: 'ROASTERS Dubai Hills',
-      rating: '4.7',
-      location: 'Nakheel Mall, 2nd Floor — Dubai Hills',
-      hours: 'Monday to Sunday: 8am–11pm',
-      tel: '+971 58 595 8110',
-      mapUrl: 'https://maps.google.com',
-      image: 'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/IMG_2767.JPEG',
-      x: 45,
-      y: 45
-    },
-    {
-      id: 6,
-      name: 'Roasters Al Wasl',
+      name: 'Sultana Drive-Thru (Coming Soon)',
+      shortName: 'Sultana Drive-Thru',
       rating: '4.8',
-      location: 'Villa 484a, Al Wasl Road, Jumeirah 2',
-      hours: 'Monday to Sunday: 7am–12am',
-      tel: '+971 58 511 4777',
-      mapUrl: 'https://maps.google.com',
-      image: 'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/IMG_2772.PNG',
-      x: 52,
-      y: 35
-    },
-    {
-      id: 7,
-      name: 'Roasters Downtown Boulevard',
-      rating: '4.8',
-      location: 'Yansoon 1 — Sheikh Mohammed bin Rashid Boulevard',
-      hours: 'Sunday–Thursday: 7am–12am | Friday–Saturday: 7am–1am',
-      tel: '+971 58 544 0400',
-      mapUrl: 'https://maps.google.com',
-      image: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80',
-      x: 60,
-      y: 40
-    },
-    {
-      id: 8,
-      name: 'Roasters Dubai Mall',
-      rating: '4.9',
-      location: 'Dubai Mall 1st Floor, next to the Aquarium',
-      hours: 'Sunday–Thursday: 10am–12am | Friday–Saturday: 10am–1am',
-      tel: '+971 58 598 6577',
-      mapUrl: 'https://maps.google.com',
-      image: 'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/IMG_2765.JPEG',
-      x: 68,
-      y: 32
-    },
-    {
-      id: 9,
-      name: 'ROASTERS Sobha Hartland',
-      rating: '4.7',
-      location: 'Sobha Hartland, The Terrace Residence Shop no 01',
-      hours: 'Monday–Sunday: 7am–12am',
-      tel: '+971 58 559 2459',
-      mapUrl: 'https://maps.google.com',
+      location: 'Abu Bakr Al Siddiq Road, Sultana Commercial District, Madinah',
+      hours: 'Opening Q4 2026 (Drive-Thru & Roastery)',
+      tel: '+966 50 000 0000',
+      mapUrl: 'https://maps.google.com/?q=Sultana+Road+Madinah',
       image: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=800&q=80',
-      x: 75,
-      y: 50
-    },
-    {
-      id: 10,
-      name: 'Roasters Creek Harbour',
-      rating: '4.9',
-      location: 'North Promenade, The Grand — Dubai Creek Harbour',
-      hours: 'Monday–Sunday: 7am–12am',
-      tel: '+971 58 561 6135',
-      mapUrl: 'https://maps.google.com',
-      image: 'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/coffe5.webp',
-      x: 82,
-      y: 28
-    },
-    {
-      id: 11,
-      name: 'Roasters Nad Al Sheba Mall',
-      rating: '4.9',
-      location: 'Shop no 01 — Nad Al Sheba 1 — Dubai',
-      hours: 'Monday–Sunday: 7am–12am',
-      tel: '+971 58 559 2459',
-      mapUrl: 'https://maps.google.com',
-      image: 'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/IMG_2757.PNG',
-      x: 88,
-      y: 62
-    },
-    {
-      id: 12,
-      name: 'Port Rashid (Coming Soon)',
-      rating: '4.9',
-      location: 'Marina Promenade — Port Rashid',
-      hours: 'Opening Late 2026',
-      tel: '+971 58 511 4777',
-      mapUrl: 'https://maps.google.com',
-      image: 'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/IMG_3003.JPG',
-      x: 92,
-      y: 20
+      x: 23.5,
+      y: 28.0
     },
   ];
 
@@ -849,24 +744,29 @@ export default function ExactTemplatePage() {
 
               <div className="branches__wrapper" data-aos="fade-up" data-aos-delay="200">
                 <div className="branches__map">
-                  {/* High-res World / Dubai Coordinate Canvas Background */}
+                  {/* Clean Minimal Medina Map Image (Soft Pink / Off-White Monochromatic Palette) */}
                   <img
                     className="branches__map-img"
-                    src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1600&q=80"
-                    alt="Branches Map Canvas"
-                    style={{ minHeight: '600px', filter: 'grayscale(1) contrast(1.2) brightness(0.95)' }}
+                    src="/images/medina-branches-map.png"
+                    alt="Medina Rose Branches Map — Al-Madinah Al-Munawwarah"
                   />
 
-                  {/* 12 Coordinate Pins with Pulsing Keyframe Animation */}
+                  {/* 3 Interactive Branch Markers */}
                   {branchList.map((branch) => (
                     <button
                       key={branch.id}
-                      className={`branches__pin map-pin ${activePopupId === branch.id ? 'active' : ''}`}
+                      className={`branches__pin ${activePopupId === branch.id ? 'active' : ''}`}
                       style={{ left: `${branch.x}%`, top: `${branch.y}%` }}
                       onClick={() => setActivePopupId(branch.id)}
                       aria-label={`Open details for ${branch.name}`}
                       title={branch.name}
-                    />
+                    >
+                      <span className="branches__pin-beacon">
+                        <span className="branches__pin-pulse" />
+                        <span className="branches__pin-dot" />
+                      </span>
+                      <span className="branches__pin-label">{branch.shortName}</span>
+                    </button>
                   ))}
                 </div>
               </div>
