@@ -877,7 +877,7 @@ export default function ExactTemplatePage() {
             const currentBranch = branchList.find((b) => b.id === activePopupId);
             if (!currentBranch) return null;
             return (
-              <div className="branches__popup active">
+              <div className="branches__popup active" style={{ maxWidth: '410px' }}>
                 <button
                   className="branches__close"
                   onClick={() => setActivePopupId(null)}
@@ -885,8 +885,28 @@ export default function ExactTemplatePage() {
                 >
                   <X size={16} strokeWidth={2.2} />
                 </button>
-                <div className="branch-image-box">
-                  <img src={currentBranch.image} alt={currentBranch.name} />
+                <div
+                  className="branch-image-box"
+                  style={{
+                    width: '100%',
+                    aspectRatio: '1 / 1',
+                    height: 'auto',
+                    borderRadius: '14px',
+                    overflow: 'hidden',
+                    position: 'relative',
+                    marginBottom: '16px'
+                  }}
+                >
+                  <img
+                    src={currentBranch.image}
+                    alt={currentBranch.name}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block'
+                    }}
+                  />
                 </div>
                 <div className="branches__info">
                   <div className="branches__info-top">
