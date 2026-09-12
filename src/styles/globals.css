@@ -993,36 +993,50 @@ ul, ol {
 }
 
 /* ==========================================================================
-   MENU SECTION
+   MENU SECTION (MATCHING MISSION SECTION PHOTO FRAME LAYOUT)
    ========================================================================== */
 .menu {
   position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f4ece5;
+  display: flex;
+  align-items: center;
   overflow: hidden;
-  padding-top: 128px;
-  padding-bottom: 80px;
-  background: #f4ece5;
+  padding: 120px 0;
 }
 
-.menu .container-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 64px;
+.menu .container {
+  width: 100%;
+  max-width: 1596px;
+  margin: 0 auto;
+  padding: 0 48px;
   position: relative;
-  z-index: 2;
+  z-index: 3;
+}
+
+.menu__card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: static;
 }
 
 .menu-content {
-  max-width: 540px;
+  max-width: 600px;
   width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 24px;
+  position: relative;
+  z-index: 3;
 }
 
 .menu-content h2 {
-  color: #000;
+  color: #23161C;
   font-size: clamp(52px, 7vw, 111px);
   font-weight: 700;
-  margin-bottom: 18px;
   line-height: 1;
 }
 
@@ -1042,24 +1056,22 @@ ul, ol {
 }
 
 .menu-content p {
-  color: #000;
-  font-size: 22px;
+  color: #574B52;
+  font-size: 20px;
   font-weight: 400;
-  letter-spacing: -0.22px;
-  margin-bottom: 32px;
-  line-height: 1.35;
+  line-height: 1.45;
 }
 
 .menu-content-link {
   display: inline-flex;
-  max-width: 304px;
+  max-width: 260px;
   width: 100%;
   padding: 12px 22px;
   justify-content: center;
   align-items: center;
   color: #FFF !important;
   text-align: center;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
   line-height: 120%;
   text-decoration: none;
@@ -1075,22 +1087,25 @@ ul, ol {
 }
 
 .menu-carousel {
+  max-width: 560px;
   width: 100%;
   overflow: hidden;
   position: relative;
+  margin-top: 10px;
+  padding: 6px 0;
 }
 
 .menu-slider-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(35, 22, 28, 0.1);
-  box-shadow: 0 8px 24px rgba(35, 22, 28, 0.12);
+  box-shadow: 0 6px 20px rgba(35, 22, 28, 0.14);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1105,30 +1120,30 @@ ul, ol {
   color: #FFF;
   border-color: #23161C;
   transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 12px 28px rgba(35, 22, 28, 0.25);
+  box-shadow: 0 10px 24px rgba(35, 22, 28, 0.25);
 }
 
 .menu-slider-btn--prev {
-  left: 12px;
+  left: 6px;
 }
 
 .menu-slider-btn--next {
-  right: 12px;
+  right: 6px;
 }
 
 .menu-track {
   display: flex;
-  gap: 20px;
+  gap: 16px;
   transition: transform 0.6s cubic-bezier(0.77, 0.2, 0.05, 1);
-  padding: 0 32px;
+  padding: 0 4px;
 }
 
 .menu-card {
-  flex: 0 0 340px;
-  height: 380px;
-  border-radius: 12px;
+  flex: 0 0 255px;
+  height: 255px;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
   transition: transform 0.3s ease;
 }
 
@@ -1140,6 +1155,38 @@ ul, ol {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Right-side Photo Frame Slot (Exactly matching .mission__frame-slot) */
+.menu__frame-slot {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  border: none;
+  border-radius: 0px !important;
+  background: #f4ece5;
+  z-index: 2;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu__frame-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  will-change: transform, opacity;
+}
+
+.menu__mobile-frame {
+  display: none;
 }
 
 /* ==========================================================================
@@ -2826,16 +2873,24 @@ ul, ol {
 
   /* 6. Menu Section */
   .menu {
-    padding: 70px 0 !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    padding: 80px 20px !important;
   }
 
-  .menu .container-wrapper {
-    gap: 36px;
+  .menu .container {
+    padding: 0 !important;
+  }
+
+  .menu__card {
+    flex-direction: column !important;
   }
 
   .menu-content {
-    padding: 0 20px;
-    max-width: 100%;
+    padding: 0 !important;
+    max-width: 100% !important;
+    gap: 18px !important;
   }
 
   .menu-content h2 {
@@ -2845,41 +2900,62 @@ ul, ol {
   .menu-content p {
     font-size: 16px !important;
     line-height: 1.6 !important;
-    margin-bottom: 24px !important;
+    margin-bottom: 20px !important;
   }
 
   .menu-content-link {
     font-size: 18px !important;
     padding: 12px 24px !important;
-    width: 100%;
-    max-width: 260px;
+    width: 100% !important;
+    max-width: 260px !important;
   }
 
   .menu-carousel {
-    padding: 10px 0;
+    max-width: 100% !important;
+    padding: 10px 0 !important;
   }
 
   .menu-track {
-    padding: 0 20px;
-    gap: 16px;
+    padding: 0 4px !important;
+    gap: 14px !important;
   }
 
   .menu-card {
-    flex: 0 0 270px !important;
-    height: 320px !important;
+    flex: 0 0 240px !important;
+    height: 240px !important;
   }
 
   .menu-slider-btn {
-    width: 40px !important;
-    height: 40px !important;
+    width: 36px !important;
+    height: 36px !important;
   }
 
   .menu-slider-btn--prev {
-    left: 8px !important;
+    left: 4px !important;
   }
 
   .menu-slider-btn--next {
-    right: 8px !important;
+    right: 4px !important;
+  }
+
+  .menu__frame-slot {
+    display: none !important;
+  }
+
+  .menu__mobile-frame {
+    display: block !important;
+    width: 100% !important;
+    max-width: 480px !important;
+    margin: 32px auto 0 !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 16px 40px rgba(35, 22, 28, 0.15) !important;
+  }
+
+  .menu__mobile-img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
   }
 
   /* 7. Branches Section */

@@ -59,6 +59,7 @@ export default function ExactTemplatePage() {
   const parallaxRef = useRef<HTMLImageElement | null>(null);
   const retailSectionRef = useRef<HTMLElement | null>(null);
   const missionRef = useRef<HTMLElement | null>(null);
+  const menuRef = useRef<HTMLElement | null>(null);
 
   const { scrollYProgress: missionScrollProgress } = useScroll({
     target: missionRef,
@@ -68,6 +69,15 @@ export default function ExactTemplatePage() {
   const missionImgX = useTransform(missionScrollProgress, [0, 0.5, 1], ["60%", "0%", "60%"]);
   const missionImgScale = useTransform(missionScrollProgress, [0, 0.5, 1], [0.85, 1, 0.85]);
   const missionImgOpacity = useTransform(missionScrollProgress, [0, 0.5, 1], [0.3, 1, 0.3]);
+
+  const { scrollYProgress: menuScrollProgress } = useScroll({
+    target: menuRef,
+    offset: ["start end", "end start"]
+  });
+
+  const menuImgX = useTransform(menuScrollProgress, [0, 0.5, 1], ["60%", "0%", "60%"]);
+  const menuImgScale = useTransform(menuScrollProgress, [0, 0.5, 1], [0.85, 1, 0.85]);
+  const menuImgOpacity = useTransform(menuScrollProgress, [0, 0.5, 1], [0.3, 1, 0.3]);
 
   // Parallax Scroll Listener (Skipped on mobile to keep 60-120 FPS native smooth scrolling)
   useEffect(() => {
@@ -763,10 +773,10 @@ export default function ExactTemplatePage() {
           </section>
 
           {/* 6. MENU SECTION */}
-          <section id="menu" className="menu">
-            <div className="container-wrapper">
-              <div className="container">
-                <div className="menu-content" data-aos="fade-up">
+          <section id="menu" className="menu" ref={menuRef}>
+            <div className="container">
+              <div className="menu__card">
+                <div className="menu-content" data-aos="fade-right">
                   <h2>Menu</h2>
                   <p>
                     A dynamic mix of classic favorites and trend-driven innovations inspired by global specialty coffee culture.
@@ -779,37 +789,60 @@ export default function ExactTemplatePage() {
                   >
                     show me
                   </a>
-                </div>
-              </div>
 
-              {/* Menu Image Carousel */}
-              <div className="menu-carousel" data-aos="fade-up" data-aos-delay="200">
-                <button
-                  className="menu-slider-btn menu-slider-btn--prev"
-                  onClick={() => setMenuSlideIndex((prev) => (prev > 0 ? prev - 1 : menuSlides.length - (isMobile ? 1 : 3)))}
-                  aria-label="Previous menu items"
-                >
-                  <ChevronLeft size={22} />
-                </button>
-                <button
-                  className="menu-slider-btn menu-slider-btn--next"
-                  onClick={() => setMenuSlideIndex((prev) => (prev < menuSlides.length - (isMobile ? 1 : 3) ? prev + 1 : 0))}
-                  aria-label="Next menu items"
-                >
-                  <ChevronRight size={22} />
-                </button>
+                  {/* Left-Side Contained Menu Highlights Carousel */}
+                  <div className="menu-carousel" data-aos="fade-up" data-aos-delay="150">
+                    <button
+                      className="menu-slider-btn menu-slider-btn--prev"
+                      onClick={() => setMenuSlideIndex((prev) => (prev > 0 ? prev - 1 : menuSlides.length - (isMobile ? 1 : 2)))}
+                      aria-label="Previous menu items"
+                    >
+                      <ChevronLeft size={20} />
+                    </button>
+                    <button
+                      className="menu-slider-btn menu-slider-btn--next"
+                      onClick={() => setMenuSlideIndex((prev) => (prev < menuSlides.length - (isMobile ? 1 : 2) ? prev + 1 : 0))}
+                      aria-label="Next menu items"
+                    >
+                      <ChevronRight size={20} />
+                    </button>
 
-                <div
-                  className="menu-track"
-                  style={{ transform: `translateX(-${menuSlideIndex * (isMobile ? 290 : 360)}px)` }}
-                >
-                  {menuSlides.map((src, idx) => (
-                    <div key={idx} className="menu-card">
-                      <img src={src} alt={`Menu highlight ${idx + 1}`} />
+                    <div
+                      className="menu-track"
+                      style={{ transform: `translateX(-${menuSlideIndex * (isMobile ? 260 : 280)}px)` }}
+                    >
+                      {menuSlides.map((src, idx) => (
+                        <div key={idx} className="menu-card">
+                          <img src={src} alt={`Menu highlight ${idx + 1}`} />
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
                 </div>
               </div>
+
+              {/* Mobile Menu Image Frame (Shown on mobile screens, exactly like mission) */}
+              <div className="menu__mobile-frame" data-aos="fade-up">
+                <img
+                  src="/images/menu-placeholder.png"
+                  alt="Medina Rose Menu Specialty"
+                  className="menu__mobile-img"
+                />
+              </div>
+            </div>
+
+            {/* Desktop Menu Photo Frame Slot (Exactly like Mission section) */}
+            <div className="menu__frame-slot">
+              <motion.img
+                src="/images/menu-placeholder.png"
+                alt="Medina Rose Menu Specialty"
+                className="menu__frame-img"
+                style={{
+                  x: isMobile ? '0%' : menuImgX,
+                  scale: isMobile ? 1 : menuImgScale,
+                  opacity: isMobile ? 1 : menuImgOpacity,
+                }}
+              />
             </div>
             <div className="menu-bg">
               <img src="https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/contact-bg.png" alt="Menu background" />
