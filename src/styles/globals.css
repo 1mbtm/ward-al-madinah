@@ -3003,79 +3003,111 @@ ul, ol {
     line-height: 1.6 !important;
   }
 
-  /* 4. Mission Section — Mobile Layout Fix */
+  /* 4. Mission Section — Mobile Editorial Poster Composition */
   .mission {
     position: relative !important;
     min-height: auto !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important;
-    /* Top padding clears the fixed navbar (~64px) with comfortable breathing room */
-    padding: 96px 0 56px !important;
+    /* Switch off flex so the section height is purely text-driven */
+    display: block !important;
+    /* 100px top: clears fixed navbar (~64px) + generous breathing room */
+    padding: 100px 0 72px !important;
+    /* Clips right-bleed of the crown image without creating a scrollbar */
     overflow: hidden !important;
     background: #FFFFFF !important;
   }
 
   .mission .container {
     padding: 0 24px !important;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    display: block !important;
     position: relative;
-    z-index: 2;
+    z-index: 3;
   }
 
   .mission__card {
     width: 100%;
     display: block !important;
     position: relative;
-    z-index: 2;
+    z-index: 3;
   }
 
-  /* Use flex column + order to push crown image below the text
-     without modifying the HTML (float-img is first child in DOM) */
+  /* Flex column so we can easily order children */
   .mission__content {
     max-width: 100% !important;
     width: 100% !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 20px !important;
+    gap: 18px !important;
     position: relative;
-    z-index: 2;
+    /* Above the crown layer so text is never obscured by opaque pixels */
+    z-index: 4;
   }
 
-  /* Crown image: no float, placed below text via order, right-balanced */
+  /* Hide the float image — crown is delivered via mission__frame-slot */
   .mission__float-img {
-    display: block !important;
+    display: none !important;
     float: none !important;
-    order: 10 !important;
-    align-self: flex-end !important;
-    width: 68% !important;
-    max-width: 260px !important;
-    height: auto !important;
-    margin: 16px 0 0 0 !important;
   }
 
-  /* Heading appears first */
+  /* Heading — left-aligned, font constrained so it doesn't run under the crown */
   .mission__content h2 {
-    order: 1 !important;
-    font-size: clamp(34px, 8.5vw, 50px) !important;
+    order: unset !important;
+    font-size: clamp(30px, 8vw, 48px) !important;
     color: #23161C !important;
+    line-height: 1.1 !important;
     margin-bottom: 0;
+    /* Allow heading to span most of the width */
+    max-width: 65%;
   }
 
-  /* Both paragraphs appear after the heading, before the image */
+  /* Paragraphs stay in the left column; max-width keeps text clear of crown */
   .mission__content p {
-    order: 2 !important;
+    order: unset !important;
+    max-width: 62% !important;
     width: 100% !important;
-    font-size: 15.5px !important;
+    font-size: 15px !important;
     line-height: 1.65 !important;
     color: #4A3E45 !important;
   }
 
-  /* Hide desktop fixed frame on mobile */
+  /* ─── EDITORIAL CROWN POSITIONING ──────────────────────────────────────
+     mission__frame-slot is a direct child of <section.mission> (outside
+     the container), so position:absolute here is relative to the section.
+     top/bottom anchors keep the crown prominent without the arm touching
+     the section's lower edge. right:-6vw lets it bleed slightly past the
+     viewport edge; overflow:hidden on .mission clips it without scroll.
+  ─────────────────────────────────────────────────────────────────────── */
   .mission__frame-slot {
-    display: none !important;
+    display: flex !important;
+    position: absolute !important;
+    /* Slight right bleed for editorial feel — clipped by overflow:hidden */
+    right: -6vw !important;
+    /* Top anchor: crown appears at heading level within the section */
+    top: 32px !important;
+    /* Bottom anchor: ensures arm/sleeve never grazes the section edge */
+    bottom: 44px !important;
+    height: auto !important;
+    width: 62vw !important;
+    max-width: none !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+    /* Align image from top-right so crown is prominent */
+    align-items: flex-start !important;
+    justify-content: flex-end !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Image fills the slot; object-position keeps crown anchored top-right */
+  .mission__frame-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: top right !important;
+    transform-origin: top right !important;
+    display: block !important;
   }
 
   /* Hide old mobile bg/frame approaches */
