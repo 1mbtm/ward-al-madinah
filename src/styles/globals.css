@@ -2652,6 +2652,7 @@ ul, ol {
    ========================================================================== */
 .mission__mobile-frame,
 .mission__mobile-bg,
+.mission__float-img,
 .proud-mobile-header {
   display: none;
 }
