@@ -381,7 +381,11 @@ export default function ExactTemplatePage() {
               {/* Brand Logo */}
               <div className="header__logo" style={{ width: 'auto' }}>
                 <a href="#hero" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#FFF' }}>
-                  <img src="/images/logo.png" alt="Medina Rose Logo" style={{ height: '32px', width: 'auto', borderRadius: '4px' }} />
+                  <picture>
+  <source srcSet="/images/logo.avif" type="image/avif" />
+  <source srcSet="/images/logo.webp" type="image/webp" />
+  <img src="/images/logo.png" alt="Medina Rose Logo" style={{ height: '32px', width: 'auto', borderRadius: '4px' }} />
+</picture>
                   <span style={{ fontSize: '22px', fontWeight: 700, letterSpacing: '1px' }}>MEDINA ROSE | ميد روز</span>
                 </a>
               </div>
@@ -472,7 +476,11 @@ export default function ExactTemplatePage() {
         <div className={`header__mobile-drawer ${mobileMenuOpen ? 'active' : ''}`}>
           <div className="header__mobile-drawer-header">
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <img src="/images/logo.png" alt="Medina Rose Logo" style={{ height: '28px', width: 'auto', borderRadius: '4px' }} />
+              <picture>
+  <source srcSet="/images/logo.avif" type="image/avif" />
+  <source srcSet="/images/logo.webp" type="image/webp" />
+  <img src="/images/logo.png" alt="Medina Rose Logo" style={{ height: '28px', width: 'auto', borderRadius: '4px' }} />
+</picture>
               <span className="header__mobile-logo">MEDINA ROSE | ميد روز</span>
             </div>
             <button
@@ -544,10 +552,13 @@ export default function ExactTemplatePage() {
             <div className="hero__bg--image">
               <picture>
                 <source media="(max-width: 768px)" srcSet="/images/hero-rose-hand-mobile-bg.png" />
-                <img
-                  src="/images/hero-rose-hand-bg.png"
+                <picture>
+  <source srcSet="/images/hero-rose-hand-bg.avif" type="image/avif" />
+  <source srcSet="/images/hero-rose-hand-bg.webp" type="image/webp" />
+  <img src="/images/hero-rose-hand-bg.png"
                   alt="Medina Rose Atmosphere - Hand holding fresh rose petals"
                 />
+</picture>
               </picture>
               <div className="hero__bg-overlay" />
             </div>
@@ -591,13 +602,16 @@ export default function ExactTemplatePage() {
               <div className="mission__card">
                 <div className="mission__content">
                   {/* Float image — mobile only, no frame */}
-                  <motion.img
-                    src="/images/medina-rose-hand-mobile.png"
+                  <picture>
+  <source srcSet="/images/medina-rose-hand-mobile.avif" type="image/avif" />
+  <source srcSet="/images/medina-rose-hand-mobile.webp" type="image/webp" />
+  <motion.img src="/images/medina-rose-hand-mobile.png"
                     alt="Medina Rose"
                     className="mission__float-img"
                     aria-hidden="true"
                     style={{ x: missionImgX }}
                   />
+</picture>
                   <h2 data-aos="fade-right">Our Mission</h2>
                   <p data-aos="fade-right" data-aos-delay="100">
                     Our mission is clear: to craft exceptional artisanal ice cream and gelato while setting the highest standards across every part of our experience. From organic Madinah rose water distillation to natural ingredients, every detail matters.
@@ -609,8 +623,10 @@ export default function ExactTemplatePage() {
               </div>
             </div>
             <div className="mission__frame-slot">
-              <motion.img
-                src="/images/medina-rose-hand.png"
+              <picture>
+  <source srcSet="/images/medina-rose-hand.avif" type="image/avif" />
+  <source srcSet="/images/medina-rose-hand.webp" type="image/webp" />
+  <motion.img src="/images/medina-rose-hand.png"
                 alt="Medina Rose Gelato"
                 className="mission__frame-img"
                 style={{
@@ -618,6 +634,7 @@ export default function ExactTemplatePage() {
                   transformOrigin: 'right bottom',
                 }}
               />
+</picture>
             </div>
           </section>
 
@@ -689,7 +706,11 @@ export default function ExactTemplatePage() {
               </div>
             </div>
             <div className="proud-bg">
-              <img src="/images/about-rose-petals-bg.jpg" alt="Artisanal Sourcing Background" style={{ opacity: 0.2 }} />
+              <picture>
+  <source srcSet="/images/about-rose-petals-bg.avif" type="image/avif" />
+  <source srcSet="/images/about-rose-petals-bg.webp" type="image/webp" />
+  <img src="/images/about-rose-petals-bg.jpg" alt="Artisanal Sourcing Background" style={{ opacity: 0.2 }} />
+</picture>
             </div>
           </section>
 
@@ -735,7 +756,11 @@ export default function ExactTemplatePage() {
                       >
                         {menuSlides.map((src, idx) => (
                           <div key={idx} className="menu-card">
-                            <img src={src} alt={`Menu highlight ${idx + 1}`} />
+                            <picture>
+  <source srcSet={src.replace('.png', '.avif').replace('.jpg', '.avif')} type="image/avif" />
+  <source srcSet={src.replace('.png', '.webp').replace('.jpg', '.webp')} type="image/webp" />
+  <img src={src} alt={`Menu highlight ${idx + 1}`} loading="lazy" />
+</picture>
                           </div>
                         ))}
                       </div>
@@ -746,19 +771,24 @@ export default function ExactTemplatePage() {
 
               {/* Mobile Menu Image Frame */}
               <motion.div className="menu__mobile-frame" data-aos="fade-up" style={{ x: menuImgX }}>
-                <img
-                  src="/images/menu-hand.png"
+                <picture>
+  <source srcSet="/images/menu-hand.avif" type="image/avif" />
+  <source srcSet="/images/menu-hand.webp" type="image/webp" />
+  <img src="/images/menu-hand.png"
                   alt="Medina Rose Ice Cream Hand"
                   className="menu__mobile-img"
                   style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }}
                 />
+</picture>
               </motion.div>
             </div>
 
             {/* Desktop Menu Hand with Ice Cream Slot */}
             <div className="menu__frame-slot">
-              <motion.img
-                src="/images/menu-hand.png"
+              <picture>
+  <source srcSet="/images/menu-hand.avif" type="image/avif" />
+  <source srcSet="/images/menu-hand.webp" type="image/webp" />
+  <motion.img src="/images/menu-hand.png"
                 alt="Medina Rose Ice Cream Hand"
                 className="menu__frame-img"
                 style={{
@@ -766,6 +796,7 @@ export default function ExactTemplatePage() {
                   transformOrigin: 'right bottom',
                 }}
               />
+</picture>
             </div>
           </section>
 
@@ -820,7 +851,11 @@ export default function ExactTemplatePage() {
                       onClick={() => setActivePopupId(branch.id)}
                     >
                       <div className="branches__mobile-card-img">
-                        <img src={branch.image} alt={branch.name} />
+                        <picture>
+  <source srcSet={branch.image.replace('.png', '.avif').replace('.jpg', '.avif')} type="image/avif" />
+  <source srcSet={branch.image.replace('.png', '.webp').replace('.jpg', '.webp')} type="image/webp" />
+  <img src={branch.image} alt={branch.name} loading="lazy" />
+</picture>
                       </div>
                       <div className="branches__mobile-card-body">
                         <div className="branches__mobile-card-top">
@@ -944,10 +979,13 @@ export default function ExactTemplatePage() {
               <div className="proud-wrapper">
                 <div className="proud-slider" data-aos="fade-right">
                   <div className="proud-slide">
-                    <img
-                      src="/images/sacred-heritage.png"
+                    <picture>
+  <source srcSet="/images/sacred-heritage.avif" type="image/avif" />
+  <source srcSet="/images/sacred-heritage.webp" type="image/webp" />
+  <img src="/images/sacred-heritage.png"
                       alt="Sacred Heritage & Sustainability"
                     />
+</picture>
                   </div>
                 </div>
                 <div className="proud-content" style={{ width: '600px' }} data-aos="fade-left">
@@ -1036,7 +1074,11 @@ export default function ExactTemplatePage() {
                         {heritageSlides.map((item, idx) => (
                           <div key={idx} className="heritage-card-unit">
                             <div className="menu-card">
-                              <img src={item.src} alt={item.title} />
+                              <picture>
+  <source srcSet={item.src.replace('.png', '.avif').replace('.jpg', '.avif')} type="image/avif" />
+  <source srcSet={item.src.replace('.png', '.webp').replace('.jpg', '.webp')} type="image/webp" />
+  <img src={item.src} alt={item.title} loading="lazy" />
+</picture>
                             </div>
                             <button
                               type="button"

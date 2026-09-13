@@ -397,22 +397,25 @@ export default function SprayBottleMist({ className = '' }: { className?: string
       className={`menu-spray-container ${className}`}
     >
       {/* 1. Completely Static Transparent PNG of Spray Bottle + Glove */}
-      <img
-        ref={imgRef}
-        src="/images/rose-fragrance-spray.png"
-        alt="Medina Rose Fragrance Spray Bottle with Black-Gloved Hand"
-        className="menu-spray-img"
-        onLoad={() => {
-          updateCanvasDimensions();
-          initHitCanvas();
-        }}
-        onClick={(e) => {
-          if (isPointOnVisiblePixel(e.clientX, e.clientY)) {
-            triggerSpray();
-          }
-        }}
-        onPointerMove={(e) => {
-          if (isPointOnVisiblePixel(e.clientX, e.clientY)) {
+      <picture>
+        <source srcSet="/images/rose-fragrance-spray.avif" type="image/avif" />
+        <source srcSet="/images/rose-fragrance-spray.webp" type="image/webp" />
+        <img
+          ref={imgRef}
+          src="/images/rose-fragrance-spray.png"
+          alt="Medina Rose Fragrance Spray Bottle with Black-Gloved Hand"
+          className="menu-spray-img"
+          onLoad={() => {
+            updateCanvasDimensions();
+            initHitCanvas();
+          }}
+          onClick={(e) => {
+            if (isPointOnVisiblePixel(e.clientX, e.clientY)) {
+              triggerSpray();
+            }
+          }}
+          onPointerMove={(e) => {
+            if (isPointOnVisiblePixel(e.clientX, e.clientY)) {
             e.currentTarget.style.cursor = 'pointer';
           } else {
             e.currentTarget.style.cursor = 'default';
@@ -429,6 +432,7 @@ export default function SprayBottleMist({ className = '' }: { className?: string
         }}
         draggable={false}
       />
+      </picture>
 
       {/* 2. Wide Overlay Canvas (Extends leftward across menu space without clipping) */}
       <canvas ref={canvasRef} className="menu-spray-canvas" />

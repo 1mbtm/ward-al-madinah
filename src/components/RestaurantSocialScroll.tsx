@@ -42,16 +42,16 @@ const CircularAppIcon = ({
             position: 'relative',
         }}
     >
-        <img
-            src={src}
-            alt={alt}
-            style={{
+        <picture>
+  <source srcSet={src.replace('.png', '.avif').replace('.jpg', '.avif')} type="image/avif" />
+  <source srcSet={src.replace('.png', '.webp').replace('.jpg', '.webp')} type="image/webp" />
+  <img src={src} alt={alt} style={{
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
                 display: 'block',
-            }}
-        />
+            }} />
+</picture>
     </div>
 );
 
