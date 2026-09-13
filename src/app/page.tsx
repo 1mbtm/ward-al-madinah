@@ -76,10 +76,10 @@ export default function ExactTemplatePage() {
     ["180px", "40px", "0px", "0px"]
   );
 
-  // Mobile Hand animation completes exactly at 90% to match Menu
+  // Mobile Hand animation completes at 50% scroll progress (section fully visible)
   const missionImgXMobile = useTransform(
     missionScrollProgress,
-    [0, 0.45, 0.9, 1],
+    [0, 0.25, 0.5, 1],
     ["180px", "40px", "0px", "0px"]
   );
 
