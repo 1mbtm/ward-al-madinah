@@ -3257,7 +3257,7 @@ ul, ol {
     height: auto !important;
     min-height: auto !important;
     max-height: none !important;
-    padding: 90px 0 64px !important;
+    padding: 90px 0 24px !important;
     position: relative !important;
     overflow: hidden !important;
   }
@@ -3339,19 +3339,29 @@ ul, ol {
   }
 
   .menu-nav-arrow {
-    padding: 4px !important;
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
     color: #23161C !important;
-    filter: drop-shadow(0 1px 3px rgba(255, 255, 255, 0.85)) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    z-index: 20 !important;
   }
 
   .menu-nav-arrow--prev {
     right: auto !important;
-    left: 4px !important;
+    left: 8px !important;
   }
 
   .menu-nav-arrow--next {
     left: auto !important;
-    right: 4px !important;
+    right: 8px !important;
   }
 
   /* ─── CONE: absolutely positioned in upper-right of intro area ──────
@@ -3396,7 +3406,7 @@ ul, ol {
 
   /* 7. Branches Section */
   .branches {
-    padding: 70px 0 !important;
+    padding: 40px 0 !important;
   }
 
   .branches-wrapper h2 {
