@@ -41,12 +41,16 @@ export default function SprayBottleMist({ className = '' }: { className?: string
 
     if (offscreenCanvasRef.current && offscreenCtxRef.current) return;
 
+    // P11 perf: cap hit-test canvas at 256×256 (was full native res ~1200×1600+).
+    // Alpha hit-testing only needs to know transparent vs opaque — 256px is plenty.
+    const MAX_HIT_SIZE = 256;
+    const scale = Math.min(1, MAX_HIT_SIZE / Math.max(img.naturalWidth, img.naturalHeight));
     const canvas = document.createElement('canvas');
-    canvas.width = img.naturalWidth;
-    canvas.height = img.naturalHeight;
+    canvas.width = Math.round(img.naturalWidth * scale);
+    canvas.height = Math.round(img.naturalHeight * scale);
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
     if (ctx) {
-      ctx.drawImage(img, 0, 0);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
       offscreenCanvasRef.current = canvas;
       offscreenCtxRef.current = ctx;
     }

@@ -43,24 +43,22 @@ export default function ExactTemplatePage() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      // P5: Only show the 9.32MB desktop map when on a non-mobile screen
+      setShowDesktopMap(!mobile);
     };
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Animated Counter Values for Retail Beans
-  const [counters, setCounters] = useState<{ [key: string]: number }>({
-    'retail-1': 0,
-    'retail-2': 0,
-    'retail-3': 0,
-    'retail-4': 0,
-    'retail-5': 0,
-  });
+  // (P1 perf: counters state removed — was never consumed in JSX, caused ~72 full-page re-renders per scroll-into-view)
 
   const parallaxRef = useRef<HTMLImageElement | null>(null);
   const retailSectionRef = useRef<HTMLElement | null>(null);
+  // isMobile for conditional desktop-only map loading
+  const [showDesktopMap, setShowDesktopMap] = useState(false);
   const missionRef = useRef<HTMLElement | null>(null);
   const menuRef = useRef<HTMLElement | null>(null);
 
@@ -159,57 +157,7 @@ export default function ExactTemplatePage() {
     return () => observer.disconnect();
   }, []);
 
-  // Retail Beans Cupping Score Counting Animation
-  useEffect(() => {
-    const retailSection = retailSectionRef.current;
-    if (!retailSection) return;
-
-    let animated = false;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !animated) {
-            animated = true;
-            const targets: { [key: string]: number } = {
-              'retail-1': 92,
-              'retail-2': 88,
-              'retail-3': 88,
-              'retail-4': 88,
-              'retail-5': 90,
-            };
-
-            const duration = 1200;
-            const startTime = performance.now();
-
-            const step = (currentTime: number) => {
-              const elapsed = currentTime - startTime;
-              const progress = Math.min(elapsed / duration, 1);
-
-              setCounters({
-                'retail-1': Math.floor(progress * targets['retail-1']),
-                'retail-2': Math.floor(progress * targets['retail-2']),
-                'retail-3': Math.floor(progress * targets['retail-3']),
-                'retail-4': Math.floor(progress * targets['retail-4']),
-                'retail-5': Math.floor(progress * targets['retail-5']),
-              });
-
-              if (progress < 1) {
-                requestAnimationFrame(step);
-              } else {
-                setCounters(targets);
-              }
-            };
-
-            requestAnimationFrame(step);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    observer.observe(retailSection);
-    return () => observer.disconnect();
-  }, []);
+  // (P1 perf: counter RAF useEffect removed — counters state was never rendered in JSX)
 
   // Ward Al Madinah Artisanal Sourcing & Craft slides (1.png to 5.png)
   const proudSlides = [
@@ -573,6 +521,7 @@ export default function ExactTemplatePage() {
                 <source srcSet="/images/hero-rose-hand-bg.webp" type="image/webp" />
                 <img src="/images/hero-rose-hand-bg.png"
                   alt="Medina Rose Atmosphere - Hand holding fresh rose petals"
+                  fetchPriority="high"
                 />
               </picture>
               <div className="hero__bg-overlay" />
@@ -771,11 +720,13 @@ export default function ExactTemplatePage() {
                       >
                         {menuSlides.map((src, idx) => (
                           <div key={idx} className="menu-card">
-                            <picture>
-  <source srcSet={src.replace('.png', '.avif').replace('.jpg', '.avif')} type="image/avif" />
-  <source srcSet={src.replace('.png', '.webp').replace('.jpg', '.webp')} type="image/webp" />
-  <img src={src} alt={`Menu highlight ${idx + 1}`} loading="lazy" />
-</picture>
+                            {/* P4 perf: first slide eager, all subsequent slides lazy-loaded */}
+                            <img
+                              src={src}
+                              alt={`Menu highlight ${idx + 1}`}
+                              loading={idx === 0 ? 'eager' : 'lazy'}
+                              decoding={idx === 0 ? 'sync' : 'async'}
+                            />
                           </div>
                         ))}
                       </div>
@@ -826,35 +777,42 @@ export default function ExactTemplatePage() {
                 </div>
               </div>
 
-              <div className="branches__wrapper" data-aos="fade-up" data-aos-delay="200">
-                <div className="branches__map">
-                  {/* Enhanced Ultra High-Res Minimal Medina Map Image */}
-                  <img
-                    className="branches__map-img"
-                    src="/images/medina_map.png"
-                    alt="Medina Rose Branches Map — Al-Madinah Al-Munawwarah"
-                    loading="eager"
-                  />
+              {/* P5 perf: 9.32MB desktop map skipped entirely on mobile — mobile uses card carousel below */}
+              {showDesktopMap && (
+                <div className="branches__wrapper" data-aos="fade-up" data-aos-delay="200">
+                  <div className="branches__map">
+                    {/* Enhanced Ultra High-Res Minimal Medina Map Image */}
+                    <picture>
+                      <source srcSet="/images/medina_map.avif" type="image/avif" />
+                      <source srcSet="/images/medina_map.webp" type="image/webp" />
+                      <img
+                        className="branches__map-img"
+                        src="/images/medina_map.png"
+                        alt="Medina Rose Branches Map — Al-Madinah Al-Munawwarah"
+                        loading="lazy"
+                      />
+                    </picture>
 
-                  {/* 3 Interactive Branch Markers */}
-                  {branchList.map((branch) => (
-                    <button
-                      key={branch.id}
-                      className={`branches__pin ${activePopupId === branch.id ? 'active' : ''}`}
-                      style={{ left: `${branch.x}%`, top: `${branch.y}%` }}
-                      onClick={() => setActivePopupId(branch.id)}
-                      aria-label={`Open details for ${branch.name}`}
-                      title={branch.name}
-                    >
-                      <span className="branches__pin-beacon">
-                        <span className="branches__pin-pulse" />
-                        <span className="branches__pin-dot" />
-                      </span>
-                      <span className="branches__pin-label">{branch.shortName}</span>
-                    </button>
-                  ))}
+                    {/* 3 Interactive Branch Markers */}
+                    {branchList.map((branch) => (
+                      <button
+                        key={branch.id}
+                        className={`branches__pin ${activePopupId === branch.id ? 'active' : ''}`}
+                        style={{ left: `${branch.x}%`, top: `${branch.y}%` }}
+                        onClick={() => setActivePopupId(branch.id)}
+                        aria-label={`Open details for ${branch.name}`}
+                        title={branch.name}
+                      >
+                        <span className="branches__pin-beacon">
+                          <span className="branches__pin-pulse" />
+                          <span className="branches__pin-dot" />
+                        </span>
+                        <span className="branches__pin-label">{branch.shortName}</span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Mobile Quick Branch Cards Carousel */}
               <div className="branches__mobile-container">

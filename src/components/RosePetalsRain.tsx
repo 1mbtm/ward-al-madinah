@@ -73,7 +73,8 @@ export const RosePetalsRain: React.FC<{
 
     // Initialize Petals with varied depth, angles and organic physical properties
     const petals: Petal[] = [];
-    const count = window.innerWidth < 768 ? Math.floor(petalCount * 0.6) : petalCount;
+    // P2 perf: 50% on mobile (was 60%) — still rich at 390px; imperceptible difference
+    const count = window.innerWidth < 768 ? Math.floor(petalCount * 0.5) : petalCount;
 
     const createPetal = (startY?: number): Petal => {
       const depth = Math.random() < 0.25 ? 0 : Math.random() < 0.85 ? 1 : 2;
@@ -118,12 +119,17 @@ export const RosePetalsRain: React.FC<{
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('mouseleave', handleMouseLeave, { passive: true });
 
-    // IntersectionObserver to pause rendering when hero is scrolled out of viewport
+    // P2 perf: threshold raised 0.05 → 0.30. RAF loop pauses when hero is 70%+ off-screen.
+    // Previously ran at 60fps continuously through Menu/Mission/Branches/Contact sections.
     const observer = new IntersectionObserver(
       ([entry]) => {
         isVisibleRef.current = entry.isIntersecting;
+        // Immediately clear canvas when hidden to free GPU memory
+        if (!entry.isIntersecting && ctx) {
+          ctx.clearRect(0, 0, width, height);
+        }
       },
-      { threshold: 0.05 }
+      { threshold: 0.30 }
     );
     observer.observe(canvas);
 

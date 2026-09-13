@@ -141,11 +141,13 @@ ul, ol {
   transition-property: opacity, transform;
   transition-duration: 1s;
   transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: transform, opacity;
+  /* P8 perf: will-change moved to aos-animate only — prevents 21+ permanent GPU layers */
 }
 
 [data-aos].aos-animate {
   opacity: 1;
+  /* P8 perf: will-change applied here only — browser promotes layer at the moment of animation */
+  will-change: transform, opacity;
   transform: translateZ(0);
 }
 
@@ -3826,5 +3828,22 @@ ul, ol {
   .retail-swiper-box {
     width: 270px !important;
     height: 440px !important;
+  }
+
+  /* ─── P9 GPU: suppress expensive backdrop-filters on mobile ──────────────
+     24 social cards each with backdrop-filter:blur(20px) = major compositing cost.
+     Cards use a dark/colored bg with rgba backgrounds \u2014 removing blur is invisible
+     since the background behind is already a solid section bg.
+  ─────────────────────────────────────────────────────────────────────────── */
+  .social-scroll-card {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Header ::before already has background-color: rgba(143,65,81,0.95) \u2014 nearly
+     opaque, so blur(20px) does nothing perceptible. Remove the layer on mobile. */
+  .header::before {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 }
