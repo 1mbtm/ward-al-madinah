@@ -3318,7 +3318,8 @@ ul, ol {
   }
 
   .menu-carousel-viewport {
-    width: 100% !important;
+    width: 240px !important;
+    max-width: 100% !important;
     overflow: hidden !important;
     background: transparent !important;
     border: none !important;
