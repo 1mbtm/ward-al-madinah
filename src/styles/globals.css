@@ -3003,24 +3003,21 @@ ul, ol {
     line-height: 1.6 !important;
   }
 
-  /* 4. Mission Section — Mobile Editorial Poster Composition
-     ─────────────────────────────────────────────────────────
-     KEY INSIGHT: medina-rose-hand-mobile.png is PORTRAIT (941×1671,
-     ratio ≈ 0.56). At width:55vw it renders ~366px tall at 375px —
-     large and editorial. The desktop frame image (medina-rose-hand.png)
-     is LANDSCAPE (1448×1086) and was causing the small result; we hide
-     it on mobile and use the correct portrait asset instead.
-  ─────────────────────────────────────────────────────────────────────── */
+  /* 4. Mission Section — Mobile Editorial Composition (shape-outside)
+     ─────────────────────────────────────────────────────────────────
+     medina-rose-hand-mobile.png: 941×1671 portrait (ratio 0.56).
+     shape-outside: url() traces the PNG alpha so text wraps the actual
+     crown / hands / arm silhouette — not a rectangular exclusion zone.
+     shape-outside REQUIRES float + block formatting context (NOT flex).
+  ─────────────────────────────────────────────────────────────────── */
   .mission {
     position: relative !important;
-    /* Tall enough for crown + arm + whitespace below arm */
-    min-height: 560px !important;
+    /* min-height is a safety net; clearfix below makes content drive height */
+    min-height: 520px !important;
     display: block !important;
-    /* 100px top: clears fixed navbar (~64px) + generous gap */
-    padding: 100px 0 80px !important;
-    /* Clips right-bleed pixel — never creates a scrollbar */
+    padding: 100px 0 72px !important;
+    /* Clips the float's right bleed — never creates a horizontal scrollbar */
     overflow: hidden !important;
-    /* Cream background (matches desktop — removes any stray dark bg) */
     background: #f4ece5 !important;
   }
 
@@ -3038,61 +3035,66 @@ ul, ol {
     z-index: 3;
   }
 
-  /* Text column: full width flex, paragraphs max-width controls left column */
+  /* Block — NOT flex. shape-outside only works in a block formatting context. */
   .mission__content {
     max-width: 100% !important;
     width: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 16px !important;
+    display: block !important;
     position: relative;
-    /* Text layer sits ABOVE the crown so it's never obscured */
     z-index: 4;
   }
 
-  /* ─── PORTRAIT MOBILE IMAGE — absolutely positioned on the right ──────
-     Position relative to <section.mission> (which is position:relative).
-     - width: 55vw drives the size; height follows naturally from the
-       portrait ratio (0.56) → ~366px tall at 375px viewport.
-     - right: -3% = slight bleed past right edge; overflow:hidden clips it.
-     - top: 68px ≈ where the heading sits → crown appears at heading level.
-     - NO bottom constraint — arm ends where the image naturally ends.
-     The section's min-height + padding-bottom guarantee whitespace below.
-  ─────────────────────────────────────────────────────────────────────── */
-  .mission__float-img {
-    display: block !important;
-    float: none !important;
-    position: absolute !important;
-    right: -3% !important;
-    top: 68px !important;
-    width: 55vw !important;
-    height: auto !important;   /* portrait ratio makes this ~366px at 375px */
-    max-width: none !important;
-    z-index: 2 !important;
-    pointer-events: none !important;
-    /* Natural rendering — no object-fit gymnastics needed */
+  /* Clearfix: mission__content grows to contain the float vertically */
+  .mission__content::after {
+    content: '';
+    display: table;
+    clear: both;
   }
 
-  /* Heading: left side, no max-width constraint */
+  /* ─── Crown float + shape-outside ────────────────────────────────────
+     float: right — places image in normal flow on the right.
+     margin-top: 40px — float starts BELOW the h2, so heading spans
+       full width (h2 is ~35px tall at the clamp size; float at 40px).
+     margin-right: -8% — slight right bleed past container edge;
+       overflow:hidden on .mission clips it without a scrollbar.
+     margin-left: 10px — breathing room between crown and text.
+     shape-outside: url() — text exclusion follows the PNG's alpha channel
+       so lines curve around the crown, hands and arm naturally.
+     shape-image-threshold: 0.1 — pixels >10% opacity define the shape.
+     shape-margin: 10px — 10px clearance around the silhouette edge.
+  ─────────────────────────────────────────────────────────────────── */
+  .mission__float-img {
+    display: block !important;
+    float: right !important;
+    position: static !important;
+    width: 52vw !important;
+    height: auto !important;
+    margin: 40px -8% 0 10px !important;
+    shape-outside: url('/images/medina-rose-hand-mobile.png') !important;
+    shape-image-threshold: 0.1 !important;
+    shape-margin: 10px !important;
+    max-width: none !important;
+  }
+
+  /* Heading — full width because float starts at 40px (below h2 bottom ~35px) */
   .mission__content h2 {
-    order: unset !important;
     font-size: clamp(30px, 8.5vw, 46px) !important;
     color: #23161C !important;
     line-height: 1.1 !important;
-    margin-bottom: 0;
+    margin-bottom: 14px !important;
   }
 
-  /* Paragraphs: left-column text, max-width leaves room for the crown */
+  /* Paragraphs: NO max-width rectangle — shape-outside controls line lengths */
   .mission__content p {
-    order: unset !important;
-    max-width: 58% !important;
-    width: 100% !important;
-    font-size: 15px !important;
+    font-size: 18px !important;
     line-height: 1.65 !important;
     color: #4A3E45 !important;
+    margin-bottom: 14px !important;
+    max-width: none !important;
+    width: auto !important;
   }
 
-  /* Desktop landscape frame — hidden on mobile; portrait asset used instead */
+  /* Desktop landscape frame — hidden on mobile; float-img used instead */
   .mission__frame-slot {
     display: none !important;
   }
