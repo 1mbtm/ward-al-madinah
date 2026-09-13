@@ -3070,14 +3070,15 @@ ul, ol {
   .mission__mobile-bg-img {
     position: absolute;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
+    right: 0;
+    left: auto;
+    transform: none;
+    width: 95%;
     max-width: 440px;
-    height: 52%;
-    max-height: 480px;
+    height: 56%;
+    max-height: 520px;
     object-fit: contain;
-    object-position: center bottom;
+    object-position: right bottom;
     display: block;
   }
 
