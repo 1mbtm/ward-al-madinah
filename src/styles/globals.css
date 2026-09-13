@@ -1294,6 +1294,11 @@ ul, ol {
   pointer-events: none;
 }
 
+#retail .menu__frame-slot {
+  width: 40vw;
+  max-width: 580px;
+}
+
 .menu__frame-img {
   width: 100%;
   height: 100%;
