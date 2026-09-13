@@ -575,6 +575,16 @@ export default function ExactTemplatePage() {
 
           {/* 4. OUR MISSION SECTION */}
           <section className="mission" ref={missionRef}>
+            {/* Mobile Background Image Layer (Mobile Only) */}
+            <div className="mission__mobile-bg" aria-hidden="true">
+              <img
+                src="/images/medina-rose-hand-mobile.png"
+                alt=""
+                className="mission__mobile-bg-img"
+              />
+              <div className="mission__mobile-bg-overlay" />
+            </div>
+
             <div className="container">
               <div className="mission__card">
                 <div className="mission__content" data-aos="fade-right">
@@ -586,15 +596,6 @@ export default function ExactTemplatePage() {
                     As Medina Rose grows and welcomes visitors from around the globe in Al-Madinah, we apply these standards at scale—raising expectations for flavor quality, spatial design, and authentic Saudi hospitality. Our goal is to create unforgettable dessert rituals near the Prophet&apos;s Mosque that guests return to and cherish.
                   </p>
                 </div>
-              </div>
-
-              {/* Mobile Mission Image Frame (Shown on mobile screens) */}
-              <div className="mission__mobile-frame" data-aos="fade-up">
-                <img
-                  src="/images/medina-rose-hand-mobile.png"
-                  alt="Medina Rose Signature Artisanal Gelato"
-                  className="mission__mobile-img"
-                />
               </div>
             </div>
             <div className="mission__frame-slot">
