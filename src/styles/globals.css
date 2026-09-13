@@ -3371,10 +3371,11 @@ ul, ol {
      position:absolute within .container (position:relative).
      top:0 → cone starts at the top of the container content area,
        aligning the cone with the "Menu" heading level.
-     right:0 → flush with container edge; overflow:hidden on container clips any bleed.
-     width:50vw, max-width:200px → image is 1:1 square so this also
-       caps the HEIGHT at 200px, keeping the cone fully inside the
-       intro area (above carousel) at all widths from 320px to 768px.
+     right:0 → flush with container right edge.
+     width:42vw, max-width:145px → with 1:1.5 image ratio, this caps
+       the visible height at ~200px, so the bottom of the sleeve finishes
+       cleanly ABOVE the carousel with an intentional vertical gap.
+     overflow:visible → prevents clipping of the sleeve edge.
      z-index:2 → behind text (z-index:4) — text stays readable.
   ─────────────────────────────────────────────────────────────────── */
   .menu__mobile-frame {
@@ -3382,12 +3383,12 @@ ul, ol {
     position: absolute !important;
     right: 0 !important;
     top: 0 !important;
-    width: 50vw !important;
+    width: 42vw !important;
     height: auto !important;
-    max-width: 200px !important;
+    max-width: 145px !important;
     background: transparent !important;
     border-radius: 0 !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     pointer-events: none !important;
     z-index: 2 !important;
     margin: 0 !important;
