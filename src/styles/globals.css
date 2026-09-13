@@ -2115,18 +2115,49 @@ ul, ol {
   }
 
   .social-scroll-card {
-    width: 250px;
-    height: 140px;
-    padding: 16px;
+    width: 260px !important;
+    height: auto !important;
+    min-height: 240px !important;
+    padding: 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
+  }
+
+  .social-scroll-card-top {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    gap: 12px !important;
+  }
+
+  .social-scroll-card-bottom {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+    padding-top: 16px !important;
+    margin-top: auto !important;
+    gap: 12px !important;
   }
 
   .social-scroll-title {
-    font-size: 14px;
+    font-size: 16px !important;
+    margin-bottom: 4px !important;
   }
 
   .social-scroll-handle {
-    font-size: 11px;
-    max-width: 150px;
+    font-size: 13px !important;
+    max-width: 100% !important;
+  }
+
+  .social-scroll-arrow {
+    align-self: flex-start !important;
   }
 }
 
@@ -3604,31 +3635,31 @@ ul, ol {
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: 32px !important;
-    padding: 90px 0 30px !important;
+    gap: 0 !important;
+    padding: 80px 0 60px !important;
     overflow: hidden !important;
   }
 
   .contact .container {
     width: 100% !important;
     max-width: 100% !important;
-    padding: 0 20px !important;
+    padding: 0 24px !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     text-align: center !important;
-    gap: 14px !important;
-    margin: 0 auto !important;
+    gap: 0 !important;
+    margin: 0 auto 40px !important;
   }
 
   .contact h2 {
     font-size: clamp(32px, 8vw, 42px) !important;
-    margin-bottom: 2px !important;
+    margin-bottom: 24px !important;
     text-align: center !important;
   }
 
   .contact address {
-    gap: 10px !important;
+    gap: 0 !important;
     max-width: 100% !important;
     width: 100% !important;
     display: flex !important;
@@ -3637,11 +3668,27 @@ ul, ol {
     text-align: center !important;
   }
 
-  .contact address p,
-  .contact address a {
-    font-size: 15px !important;
-    line-height: 1.4 !important;
+  .contact address p {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
     text-align: center !important;
+    margin-bottom: 20px !important;
+  }
+
+  .contact address a[href^="mailto"] {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+    text-align: center !important;
+    margin-bottom: 8px !important;
+    display: block !important;
+  }
+
+  .contact address a[href^="tel"] {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+    text-align: center !important;
+    margin-bottom: 0 !important;
+    display: block !important;
   }
 
   .social-scroll-section {
