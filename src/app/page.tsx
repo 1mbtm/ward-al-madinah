@@ -69,7 +69,12 @@ export default function ExactTemplatePage() {
     offset: ["start end", "end start"]
   });
 
-  const missionImgX = useTransform(missionScrollProgress, [0, 0.5, 1], ["180px", "0px", "0px"]);
+  // Hand animation completes at ~70% of scroll progress with natural deceleration
+  const missionImgX = useTransform(
+    missionScrollProgress,
+    [0, 0.35, 0.7, 1],
+    ["180px", "40px", "0px", "0px"]
+  );
 
   const { scrollYProgress: menuScrollProgress } = useScroll({
     target: menuRef,
