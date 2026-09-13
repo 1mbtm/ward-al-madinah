@@ -3006,11 +3006,11 @@ ul, ol {
   /* 4. Mission Section (Full Integrated Mobile Background Architecture) */
   .mission {
     position: relative !important;
-    min-height: auto !important;
+    min-height: 100vh !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-start !important;
-    padding: 110px 0 330px !important;
+    padding: 100px 0 280px !important;
     overflow: hidden !important;
     background: #FFFFFF !important;
   }
@@ -3069,16 +3069,11 @@ ul, ol {
 
   .mission__mobile-bg-img {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    left: auto;
-    transform: none;
-    width: 95%;
-    max-width: 440px;
-    height: 56%;
-    max-height: 520px;
-    object-fit: contain;
-    object-position: right bottom;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
     display: block;
   }
 
