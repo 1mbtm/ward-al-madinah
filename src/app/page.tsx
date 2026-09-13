@@ -69,10 +69,17 @@ export default function ExactTemplatePage() {
     offset: ["start end", "end start"]
   });
 
-  // Hand animation completes at ~70% of scroll progress with natural deceleration
-  const missionImgX = useTransform(
+  // Desktop Hand animation completes at ~70% of scroll progress
+  const missionImgXDesktop = useTransform(
     missionScrollProgress,
     [0, 0.35, 0.7, 1],
+    ["180px", "40px", "0px", "0px"]
+  );
+
+  // Mobile Hand animation completes exactly at 90% to match Menu
+  const missionImgXMobile = useTransform(
+    missionScrollProgress,
+    [0, 0.45, 0.9, 1],
     ["180px", "40px", "0px", "0px"]
   );
 
@@ -84,10 +91,11 @@ export default function ExactTemplatePage() {
   const menuImgXDesktop = useTransform(menuScrollProgress, [0, 0.5, 1], ["180px", "0px", "0px"]);
 
   // Mobile hand animation completes at ~90% of scroll progress, holding position before the section ends
+  // Final position is pulled to -45px to ensure the full sleeve is visible
   const menuImgXMobile = useTransform(
     menuScrollProgress,
     [0, 0.45, 0.9, 1],
-    ["180px", "40px", "0px", "0px"]
+    ["180px", "40px", "-45px", "-45px"]
   );
 
   const { scrollYProgress: retailScrollProgress } = useScroll({
@@ -558,14 +566,14 @@ export default function ExactTemplatePage() {
             </div>
             <div className="hero__bg--image">
               <picture>
-                <source media="(max-width: 768px)" srcSet="/images/hero-rose-hand-mobile-bg.png" />
-                <picture>
-  <source srcSet="/images/hero-rose-hand-bg.avif" type="image/avif" />
-  <source srcSet="/images/hero-rose-hand-bg.webp" type="image/webp" />
-  <img src="/images/hero-rose-hand-bg.png"
+                <source media="(max-width: 768px)" srcSet="/images/hero-rose-hand-mobile-bg.avif" type="image/avif" />
+                <source media="(max-width: 768px)" srcSet="/images/hero-rose-hand-mobile-bg.webp" type="image/webp" />
+                <source media="(max-width: 768px)" srcSet="/images/hero-rose-hand-mobile-bg.png" type="image/png" />
+                <source srcSet="/images/hero-rose-hand-bg.avif" type="image/avif" />
+                <source srcSet="/images/hero-rose-hand-bg.webp" type="image/webp" />
+                <img src="/images/hero-rose-hand-bg.png"
                   alt="Medina Rose Atmosphere - Hand holding fresh rose petals"
                 />
-</picture>
               </picture>
               <div className="hero__bg-overlay" />
             </div>
@@ -616,7 +624,7 @@ export default function ExactTemplatePage() {
                     alt="Medina Rose"
                     className="mission__float-img"
                     aria-hidden="true"
-                    style={{ x: missionImgX }}
+                    style={{ x: missionImgXMobile }}
                   />
 </picture>
                   <h2 data-aos="fade-right">Our Mission</h2>
@@ -637,7 +645,7 @@ export default function ExactTemplatePage() {
                 alt="Medina Rose Gelato"
                 className="mission__frame-img"
                 style={{
-                  x: missionImgX,
+                  x: missionImgXDesktop,
                   transformOrigin: 'right bottom',
                 }}
               />
