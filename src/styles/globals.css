@@ -3003,17 +3003,25 @@ ul, ol {
     line-height: 1.6 !important;
   }
 
-  /* 4. Mission Section — Mobile Editorial Poster Composition */
+  /* 4. Mission Section — Mobile Editorial Poster Composition
+     ─────────────────────────────────────────────────────────
+     KEY INSIGHT: medina-rose-hand-mobile.png is PORTRAIT (941×1671,
+     ratio ≈ 0.56). At width:55vw it renders ~366px tall at 375px —
+     large and editorial. The desktop frame image (medina-rose-hand.png)
+     is LANDSCAPE (1448×1086) and was causing the small result; we hide
+     it on mobile and use the correct portrait asset instead.
+  ─────────────────────────────────────────────────────────────────────── */
   .mission {
     position: relative !important;
-    min-height: auto !important;
-    /* Switch off flex so the section height is purely text-driven */
+    /* Tall enough for crown + arm + whitespace below arm */
+    min-height: 560px !important;
     display: block !important;
-    /* 100px top: clears fixed navbar (~64px) + generous breathing room */
-    padding: 100px 0 72px !important;
-    /* Clips right-bleed of the crown image without creating a scrollbar */
+    /* 100px top: clears fixed navbar (~64px) + generous gap */
+    padding: 100px 0 80px !important;
+    /* Clips right-bleed pixel — never creates a scrollbar */
     overflow: hidden !important;
-    background: #FFFFFF !important;
+    /* Cream background (matches desktop — removes any stray dark bg) */
+    background: #f4ece5 !important;
   }
 
   .mission .container {
@@ -3030,84 +3038,63 @@ ul, ol {
     z-index: 3;
   }
 
-  /* Flex column so we can easily order children */
+  /* Text column: full width flex, paragraphs max-width controls left column */
   .mission__content {
     max-width: 100% !important;
     width: 100% !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 18px !important;
+    gap: 16px !important;
     position: relative;
-    /* Above the crown layer so text is never obscured by opaque pixels */
+    /* Text layer sits ABOVE the crown so it's never obscured */
     z-index: 4;
   }
 
-  /* Hide the float image — crown is delivered via mission__frame-slot */
+  /* ─── PORTRAIT MOBILE IMAGE — absolutely positioned on the right ──────
+     Position relative to <section.mission> (which is position:relative).
+     - width: 55vw drives the size; height follows naturally from the
+       portrait ratio (0.56) → ~366px tall at 375px viewport.
+     - right: -3% = slight bleed past right edge; overflow:hidden clips it.
+     - top: 68px ≈ where the heading sits → crown appears at heading level.
+     - NO bottom constraint — arm ends where the image naturally ends.
+     The section's min-height + padding-bottom guarantee whitespace below.
+  ─────────────────────────────────────────────────────────────────────── */
   .mission__float-img {
-    display: none !important;
+    display: block !important;
     float: none !important;
+    position: absolute !important;
+    right: -3% !important;
+    top: 68px !important;
+    width: 55vw !important;
+    height: auto !important;   /* portrait ratio makes this ~366px at 375px */
+    max-width: none !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+    /* Natural rendering — no object-fit gymnastics needed */
   }
 
-  /* Heading — left-aligned, font constrained so it doesn't run under the crown */
+  /* Heading: left side, no max-width constraint */
   .mission__content h2 {
     order: unset !important;
-    font-size: clamp(30px, 8vw, 48px) !important;
+    font-size: clamp(30px, 8.5vw, 46px) !important;
     color: #23161C !important;
     line-height: 1.1 !important;
     margin-bottom: 0;
-    /* Allow heading to span most of the width */
-    max-width: 65%;
   }
 
-  /* Paragraphs stay in the left column; max-width keeps text clear of crown */
+  /* Paragraphs: left-column text, max-width leaves room for the crown */
   .mission__content p {
     order: unset !important;
-    max-width: 62% !important;
+    max-width: 58% !important;
     width: 100% !important;
     font-size: 15px !important;
     line-height: 1.65 !important;
     color: #4A3E45 !important;
   }
 
-  /* ─── EDITORIAL CROWN POSITIONING ──────────────────────────────────────
-     mission__frame-slot is a direct child of <section.mission> (outside
-     the container), so position:absolute here is relative to the section.
-     top/bottom anchors keep the crown prominent without the arm touching
-     the section's lower edge. right:-6vw lets it bleed slightly past the
-     viewport edge; overflow:hidden on .mission clips it without scroll.
-  ─────────────────────────────────────────────────────────────────────── */
+  /* Desktop landscape frame — hidden on mobile; portrait asset used instead */
   .mission__frame-slot {
-    display: flex !important;
-    position: absolute !important;
-    /* Slight right bleed for editorial feel — clipped by overflow:hidden */
-    right: -6vw !important;
-    /* Top anchor: crown appears at heading level within the section */
-    top: 32px !important;
-    /* Bottom anchor: ensures arm/sleeve never grazes the section edge */
-    bottom: 44px !important;
-    height: auto !important;
-    width: 62vw !important;
-    max-width: none !important;
-    background: transparent !important;
-    border: none !important;
-    border-radius: 0 !important;
-    z-index: 2 !important;
-    pointer-events: none !important;
-    /* Align image from top-right so crown is prominent */
-    align-items: flex-start !important;
-    justify-content: flex-end !important;
-    overflow: visible !important;
-    box-sizing: border-box !important;
-  }
-
-  /* Image fills the slot; object-position keeps crown anchored top-right */
-  .mission__frame-img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain !important;
-    object-position: top right !important;
-    transform-origin: top right !important;
-    display: block !important;
+    display: none !important;
   }
 
   /* Hide old mobile bg/frame approaches */
