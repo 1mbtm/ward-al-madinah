@@ -375,7 +375,8 @@ export default function ExactTemplatePage() {
             <div className="header__content">
               {/* Brand Logo */}
               <div className="header__logo" style={{ width: 'auto' }}>
-                <a href="#hero" style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#FFF' }}>
+                <a href="#hero" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#FFF' }}>
+                  <img src="/images/logo.png" alt="Medina Rose Logo" style={{ height: '32px', width: 'auto', borderRadius: '4px' }} />
                   <span style={{ fontSize: '22px', fontWeight: 700, letterSpacing: '1px' }}>MEDINA ROSE | ميد روز</span>
                 </a>
               </div>
@@ -465,7 +466,10 @@ export default function ExactTemplatePage() {
         {/* Luxury Burgundy Rose Mobile Slide-in Drawer */}
         <div className={`header__mobile-drawer ${mobileMenuOpen ? 'active' : ''}`}>
           <div className="header__mobile-drawer-header">
-            <span className="header__mobile-logo">MEDINA ROSE | ميد روز</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <img src="/images/logo.png" alt="Medina Rose Logo" style={{ height: '28px', width: 'auto', borderRadius: '4px' }} />
+              <span className="header__mobile-logo">MEDINA ROSE | ميد روز</span>
+            </div>
             <button
               onClick={() => setMobileMenuOpen(false)}
               className="header__mobile-close"
