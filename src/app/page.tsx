@@ -88,11 +88,12 @@ export default function ExactTemplatePage() {
 
   const menuImgXDesktop = useTransform(menuScrollProgress, [0, 0.5, 1], ["180px", "0px", "0px"]);
 
-  // Mobile hand animation completes at ~90% of scroll progress, holding position before the section ends
-  // Final position is pulled to -45px to ensure the full sleeve is visible
+  // Mobile: animation completes at 55% progress (section still centered in viewport).
+  // Was [0, 0.45, 0.9, 1] — hand arrived at final pos only when section was 90% scrolled past.
+  // Now [0, 0.30, 0.55, 1] — hand settles at final pos well before section ends.
   const menuImgXMobile = useTransform(
     menuScrollProgress,
-    [0, 0.45, 0.9, 1],
+    [0, 0.30, 0.55, 1],
     ["180px", "40px", "-45px", "-45px"]
   );
 
@@ -720,12 +721,11 @@ export default function ExactTemplatePage() {
                       >
                         {menuSlides.map((src, idx) => (
                           <div key={idx} className="menu-card">
-                            {/* P4 perf: first slide eager, all subsequent slides lazy-loaded */}
+                            {/* P4 perf: slide 0 eager, slides 1-9 lazy. No decoding=sync (blocks render on slow external fetch) */}
                             <img
                               src={src}
                               alt={`Menu highlight ${idx + 1}`}
                               loading={idx === 0 ? 'eager' : 'lazy'}
-                              decoding={idx === 0 ? 'sync' : 'async'}
                             />
                           </div>
                         ))}
