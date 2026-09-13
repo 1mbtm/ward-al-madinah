@@ -1281,8 +1281,8 @@ ul, ol {
   bottom: 0;
   top: 0;
   height: 100%;
-  width: 48vw;
-  max-width: 760px;
+  width: 30vw;
+  max-width: 440px;
   border: none;
   background: transparent;
   z-index: 10;
