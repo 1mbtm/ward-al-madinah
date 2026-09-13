@@ -2907,18 +2907,39 @@ ul, ol {
     max-width: 100vw;
   }
 
-  /* 1. Header */
+  /* 1. Header — mobile refined
+     ─────────────────────────────────────────────────────────────────
+     width: calc(100% - 40px) → 20px each side (tighter than desktop's 32px)
+     padding: 16px 0 → total height ≈ 16+32+16 = 64px
+     border-radius: 18px → full pill on mobile (desktop is top-only 26px)
+     top: 8px → slightly closer to top edge on small screens
+  ─────────────────────────────────────────────────────────────────── */
   .header {
-    padding: 14px 0;
+    padding: 16px 0 !important;
+    width: calc(100% - 40px) !important;
+    top: 8px !important;
+    border-radius: 18px !important;
+  }
+
+  /* ::before carries the burgundy bg — must match new border-radius */
+  .header::before {
+    border-radius: 18px !important;
   }
 
   .header__content {
     gap: 12px;
   }
 
+  /* Logo text slightly smaller for better balance with burger icon */
   .header__logo a span {
-    font-size: 17px !important;
-    letter-spacing: 0.5px;
+    font-size: 16px !important;
+    letter-spacing: 0.4px;
+  }
+
+  /* Burger — clean, minimal, white lines only. No circular bg or border. */
+  .header__burger {
+    width: 26px !important;
+    height: 18px !important;
   }
 
   .header__branches-dropdown {
