@@ -40,13 +40,11 @@ export default function ExactTemplatePage() {
   const [menuSlideIndex, setMenuSlideIndex] = useState(0);
   const [heritageSlideIndex, setHeritageSlideIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [showDesktopMap, setShowDesktopMap] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth <= 768;
       setIsMobile(mobile);
-      setShowDesktopMap(!mobile);
     };
     handleResize();
     window.addEventListener('resize', handleResize, { passive: true });
@@ -768,42 +766,40 @@ export default function ExactTemplatePage() {
                 </div>
               </div>
 
-              {/* Desktop Medina Map & Interactive Markers */}
-              {(!isMobile || showDesktopMap) && (
-                <div className="branches__wrapper" data-aos="fade-up" data-aos-delay="200">
-                  <div className="branches__map">
-                    {/* Enhanced Ultra High-Res Minimal Medina Map Image */}
-                    <picture>
-                      <source srcSet="/images/medina_map.avif" type="image/avif" />
-                      <source srcSet="/images/medina_map.webp" type="image/webp" />
-                      <img
-                        className="branches__map-img"
-                        src="/images/medina_map.png"
-                        alt="Medina Rose Branches Map — Al-Madinah Al-Munawwarah"
-                        loading="lazy"
-                      />
-                    </picture>
+              {/* Medina Map & Interactive Markers */}
+              <div className="branches__wrapper" data-aos="fade-up" data-aos-delay="200">
+                <div className="branches__map">
+                  {/* Enhanced Ultra High-Res Minimal Medina Map Image */}
+                  <picture>
+                    <source srcSet="/images/medina_map.avif" type="image/avif" />
+                    <source srcSet="/images/medina_map.webp" type="image/webp" />
+                    <img
+                      className="branches__map-img"
+                      src="/images/medina_map.png"
+                      alt="Medina Rose Branches Map — Al-Madinah Al-Munawwarah"
+                      loading="lazy"
+                    />
+                  </picture>
 
-                    {/* 3 Interactive Branch Markers */}
-                    {branchList.map((branch) => (
-                      <button
-                        key={branch.id}
-                        className={`branches__pin ${activePopupId === branch.id ? 'active' : ''}`}
-                        style={{ left: `${branch.x}%`, top: `${branch.y}%` }}
-                        onClick={() => setActivePopupId(branch.id)}
-                        aria-label={`Open details for ${branch.name}`}
-                        title={branch.name}
-                      >
-                        <span className="branches__pin-beacon">
-                          <span className="branches__pin-pulse" />
-                          <span className="branches__pin-dot" />
-                        </span>
-                        <span className="branches__pin-label">{branch.shortName}</span>
-                      </button>
-                    ))}
-                  </div>
+                  {/* 3 Interactive Branch Markers */}
+                  {branchList.map((branch) => (
+                    <button
+                      key={branch.id}
+                      className={`branches__pin ${activePopupId === branch.id ? 'active' : ''}`}
+                      style={{ left: `${branch.x}%`, top: `${branch.y}%` }}
+                      onClick={() => setActivePopupId(branch.id)}
+                      aria-label={`Open details for ${branch.name}`}
+                      title={branch.name}
+                    >
+                      <span className="branches__pin-beacon">
+                        <span className="branches__pin-pulse" />
+                        <span className="branches__pin-dot" />
+                      </span>
+                      <span className="branches__pin-label">{branch.shortName}</span>
+                    </button>
+                  ))}
                 </div>
-              )}
+              </div>
 
               {/* Mobile Quick Branch Cards Carousel */}
               <div className="branches__mobile-container">
