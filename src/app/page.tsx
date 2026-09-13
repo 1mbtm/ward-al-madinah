@@ -81,7 +81,14 @@ export default function ExactTemplatePage() {
     offset: ["start end", "end start"]
   });
 
-  const menuImgX = useTransform(menuScrollProgress, [0, 0.5, 1], ["180px", "0px", "0px"]);
+  const menuImgXDesktop = useTransform(menuScrollProgress, [0, 0.5, 1], ["180px", "0px", "0px"]);
+
+  // Mobile hand animation completes at ~90% of scroll progress, holding position before the section ends
+  const menuImgXMobile = useTransform(
+    menuScrollProgress,
+    [0, 0.45, 0.9, 1],
+    ["180px", "40px", "0px", "0px"]
+  );
 
   const { scrollYProgress: retailScrollProgress } = useScroll({
     target: retailSectionRef,
@@ -770,7 +777,7 @@ export default function ExactTemplatePage() {
               </div>
 
               {/* Mobile Menu Image Frame */}
-              <motion.div className="menu__mobile-frame" data-aos="fade-up" style={{ x: menuImgX }}>
+              <motion.div className="menu__mobile-frame" data-aos="fade-up" style={{ x: menuImgXMobile }}>
                 <picture>
   <source srcSet="/images/menu-hand.avif" type="image/avif" />
   <source srcSet="/images/menu-hand.webp" type="image/webp" />
@@ -792,7 +799,7 @@ export default function ExactTemplatePage() {
                 alt="Medina Rose Ice Cream Hand"
                 className="menu__frame-img"
                 style={{
-                  x: menuImgX,
+                  x: menuImgXDesktop,
                   transformOrigin: 'right bottom',
                 }}
               />
