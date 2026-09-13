@@ -3003,14 +3003,15 @@ ul, ol {
     line-height: 1.6 !important;
   }
 
-  /* 4. Mission Section (Full Integrated Mobile Background Architecture) */
+  /* 4. Mission Section — Mobile Layout Fix */
   .mission {
     position: relative !important;
-    min-height: 100vh !important;
+    min-height: auto !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-start !important;
-    padding: 100px 0 280px !important;
+    /* Top padding clears the fixed navbar (~64px) with comfortable breathing room */
+    padding: 96px 0 56px !important;
     overflow: hidden !important;
     background: #FFFFFF !important;
   }
@@ -3026,25 +3027,47 @@ ul, ol {
 
   .mission__card {
     width: 100%;
-    justify-content: flex-start;
+    display: block !important;
     position: relative;
     z-index: 2;
   }
 
+  /* Use flex column + order to push crown image below the text
+     without modifying the HTML (float-img is first child in DOM) */
   .mission__content {
     max-width: 100% !important;
-    gap: 18px;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
     position: relative;
     z-index: 2;
   }
 
-  .mission__content h2 {
-    font-size: clamp(34px, 8.5vw, 50px) !important;
-    color: #23161C !important;
-    margin-bottom: 2px;
+  /* Crown image: no float, placed below text via order, right-balanced */
+  .mission__float-img {
+    display: block !important;
+    float: none !important;
+    order: 10 !important;
+    align-self: flex-end !important;
+    width: 68% !important;
+    max-width: 260px !important;
+    height: auto !important;
+    margin: 16px 0 0 0 !important;
   }
 
+  /* Heading appears first */
+  .mission__content h2 {
+    order: 1 !important;
+    font-size: clamp(34px, 8.5vw, 50px) !important;
+    color: #23161C !important;
+    margin-bottom: 0;
+  }
+
+  /* Both paragraphs appear after the heading, before the image */
   .mission__content p {
+    order: 2 !important;
+    width: 100% !important;
     font-size: 15.5px !important;
     line-height: 1.65 !important;
     color: #4A3E45 !important;
@@ -3055,41 +3078,8 @@ ul, ol {
     display: none !important;
   }
 
-  /* Full Integrated Mobile Background Image */
-  .mission__mobile-bg {
-    display: block !important;
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  .mission__mobile-bg-img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    display: block;
-  }
-
-  .mission__mobile-bg-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      180deg,
-      #FFFFFF 0%,
-      rgba(255, 255, 255, 0.98) 46%,
-      rgba(255, 255, 255, 0.3) 64%,
-      rgba(255, 255, 255, 0) 80%
-    );
-    pointer-events: none;
-  }
-
+  /* Hide old mobile bg/frame approaches */
+  .mission__mobile-bg,
   .mission__mobile-frame {
     display: none !important;
   }
