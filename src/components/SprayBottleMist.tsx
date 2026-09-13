@@ -433,13 +433,7 @@ export default function SprayBottleMist({ className = '' }: { className?: string
       {/* 2. Wide Overlay Canvas (Extends leftward across menu space without clipping) */}
       <canvas ref={canvasRef} className="menu-spray-canvas" />
 
-      {/* 3. Subtle Luxury Hint Badge */}
-      {hintVisible && (
-        <div className="menu-spray-hint" aria-hidden="true">
-          <span className="menu-spray-hint-pulse" />
-          <span className="menu-spray-hint-text">Tap to spray</span>
-        </div>
-      )}
+
     </div>
   );
 }

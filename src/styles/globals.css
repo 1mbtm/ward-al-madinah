@@ -3536,6 +3536,23 @@ ul, ol {
     gap: 36px;
   }
 
+  /* Mobile image reorder: content (h2 + paragraphs) first, image second */
+  .sustainability .proud-wrapper {
+    flex-direction: column !important;
+  }
+
+  /* h2 + paragraphs appear first */
+  .sustainability .proud-content {
+    order: 1 !important;
+    width: 100% !important;
+  }
+
+  /* Image appears after text */
+  .sustainability .proud-slider {
+    order: 2 !important;
+    width: 100% !important;
+  }
+
   .proud-wrapper-box {
     flex-direction: column;
     padding: 24px 18px;
