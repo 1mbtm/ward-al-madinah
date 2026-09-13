@@ -3257,9 +3257,7 @@ ul, ol {
     height: auto !important;
     min-height: auto !important;
     max-height: none !important;
-    /* Fix 3: was 90px — only 10px clearance above fixed header (bottom ≈80px from top)
-       110px gives a comfortable 30px gap so heading never clips behind navbar */
-    padding: 110px 0 64px !important;
+    padding: 90px 0 64px !important;
     position: relative !important;
     overflow: hidden !important;
   }
@@ -3370,10 +3368,7 @@ ul, ol {
     display: block !important;
     position: absolute !important;
     right: -6% !important;
-    /* Fix 4: was top:0 (top of container), which overlapped the "Menu" heading.
-       50px pushes the artwork below the heading line so it sits beside the
-       description paragraph and show-me button — a more intentional composition. */
-    top: 50px !important;
+    top: 0 !important;
     width: 50vw !important;
     height: auto !important;
     max-width: 200px !important;
