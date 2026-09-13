@@ -3190,49 +3190,73 @@ ul, ol {
     gap: 5px !important;
   }
 
-  /* 6. Menu Section */
+  /* 6. Menu Section — Mobile Editorial Composition
+     ──────────────────────────────────────────────────────────────────
+     menu-hand.png is SQUARE (1254×1254, ratio 1:1).
+     menu__mobile-frame → position:absolute within .container
+     (container: position:relative) so the cone sits in the upper-right
+     of the intro area beside the heading/description rather than stacked
+     below the carousel. menu-content z-index:4 keeps text above the cone.
+  ────────────────────────────────────────────────────────────────── */
   .menu {
     height: auto !important;
     min-height: auto !important;
     max-height: none !important;
-    padding: 80px 20px !important;
+    padding: 90px 0 64px !important;
+    position: relative !important;
+    overflow: hidden !important;
   }
 
+  /* position:relative makes menu__mobile-frame absolute within container */
   .menu .container {
-    padding: 0 !important;
+    padding: 0 24px !important;
+    position: relative !important;
   }
 
   .menu__card {
     flex-direction: column !important;
+    position: relative !important;
   }
 
+  /* Text column: flex column, sits above the cone in z-order */
   .menu-content {
     padding: 0 !important;
     max-width: 100% !important;
-    gap: 18px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    position: relative !important;
+    z-index: 4 !important;
   }
 
+  /* Heading — full width; short "Menu" won't collide with cone */
   .menu-content h2 {
     font-size: clamp(32px, 8vw, 48px) !important;
   }
 
+  /* Paragraph — constrained to left column; cone occupies the right */
   .menu-content p {
     font-size: 16px !important;
     line-height: 1.6 !important;
-    margin-bottom: 20px !important;
+    max-width: 58% !important;
+    margin-bottom: 0 !important;
   }
 
+  /* "Show me" button — stays left, below paragraph */
   .menu-content-link {
-    font-size: 18px !important;
-    padding: 12px 24px !important;
-    width: 100% !important;
-    max-width: 260px !important;
+    font-size: 17px !important;
+    padding: 11px 22px !important;
+    width: auto !important;
+    max-width: 180px !important;
+    align-self: flex-start !important;
   }
 
+  /* Carousel — full width, below intro composition */
   .menu-carousel {
     max-width: 100% !important;
     width: 100% !important;
-    padding: 10px 0 !important;
+    padding: 8px 0 !important;
+    margin-top: 8px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -3275,22 +3299,33 @@ ul, ol {
     right: 4px !important;
   }
 
-  .menu__frame-slot {
-    display: none !important;
-  }
-
+  /* ─── CONE: absolutely positioned in upper-right of intro area ──────
+     position:absolute within .container (position:relative).
+     top:0 → cone starts at the top of the container content area,
+       aligning the cone with the "Menu" heading level.
+     right:-6% → slight right bleed; overflow:hidden on .menu clips it.
+     width:60vw → square image renders 60vw × 60vw (225px at 375px).
+     z-index:2 → behind text (z-index:4) — text stays readable.
+  ─────────────────────────────────────────────────────────────────── */
   .menu__mobile-frame {
     display: block !important;
-    width: 100% !important;
-    max-width: 440px !important;
-    height: 480px !important;
-    margin: 28px auto 0 !important;
+    position: absolute !important;
+    right: -6% !important;
+    top: 0 !important;
+    width: 60vw !important;
+    height: auto !important;
+    max-width: none !important;
     background: transparent !important;
     border-radius: 0 !important;
     overflow: visible !important;
-    box-shadow: none !important;
-    position: relative !important;
     pointer-events: none !important;
+    z-index: 2 !important;
+    margin: 0 !important;
+  }
+
+  /* Desktop frame stays hidden on mobile */
+  .menu__frame-slot {
+    display: none !important;
   }
 
   .menu-spray-hint {
