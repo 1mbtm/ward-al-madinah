@@ -40,12 +40,12 @@ export default function ExactTemplatePage() {
   const [menuSlideIndex, setMenuSlideIndex] = useState(0);
   const [heritageSlideIndex, setHeritageSlideIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [showDesktopMap, setShowDesktopMap] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth <= 768;
       setIsMobile(mobile);
-      // P5: Only show the 9.32MB desktop map when on a non-mobile screen
       setShowDesktopMap(!mobile);
     };
     handleResize();
@@ -57,8 +57,6 @@ export default function ExactTemplatePage() {
 
   const parallaxRef = useRef<HTMLImageElement | null>(null);
   const retailSectionRef = useRef<HTMLElement | null>(null);
-  // isMobile for conditional desktop-only map loading
-  const [showDesktopMap, setShowDesktopMap] = useState(false);
   const missionRef = useRef<HTMLElement | null>(null);
   const menuRef = useRef<HTMLElement | null>(null);
 
@@ -88,14 +86,7 @@ export default function ExactTemplatePage() {
 
   const menuImgXDesktop = useTransform(menuScrollProgress, [0, 0.5, 1], ["180px", "0px", "0px"]);
 
-  // Mobile: animation completes at 55% progress (section still centered in viewport).
-  // Was [0, 0.45, 0.9, 1] — hand arrived at final pos only when section was 90% scrolled past.
-  // Now [0, 0.30, 0.55, 1] — hand settles at final pos well before section ends.
-  const menuImgXMobile = useTransform(
-    menuScrollProgress,
-    [0, 0.30, 0.55, 1],
-    ["180px", "40px", "-45px", "-45px"]
-  );
+
 
   const { scrollYProgress: retailScrollProgress } = useScroll({
     target: retailSectionRef,
@@ -735,8 +726,8 @@ export default function ExactTemplatePage() {
                 </div>
               </div>
 
-              {/* Mobile Menu Image Frame */}
-              <motion.div className="menu__mobile-frame" data-aos="fade-up" style={{ x: menuImgXMobile }}>
+              {/* Mobile Menu Image Frame (Static) */}
+              <div className="menu__mobile-frame">
                 <picture>
   <source srcSet="/images/menu-hand.avif" type="image/avif" />
   <source srcSet="/images/menu-hand.webp" type="image/webp" />
@@ -746,7 +737,7 @@ export default function ExactTemplatePage() {
                   style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }}
                 />
 </picture>
-              </motion.div>
+              </div>
             </div>
 
             {/* Desktop Menu Hand with Ice Cream Slot */}
@@ -777,8 +768,8 @@ export default function ExactTemplatePage() {
                 </div>
               </div>
 
-              {/* P5 perf: 9.32MB desktop map skipped entirely on mobile — mobile uses card carousel below */}
-              {showDesktopMap && (
+              {/* Desktop Medina Map & Interactive Markers */}
+              {(!isMobile || showDesktopMap) && (
                 <div className="branches__wrapper" data-aos="fade-up" data-aos-delay="200">
                   <div className="branches__map">
                     {/* Enhanced Ultra High-Res Minimal Medina Map Image */}
