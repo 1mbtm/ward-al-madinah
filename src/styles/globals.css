@@ -3372,9 +3372,8 @@ ul, ol {
      top:0 → cone starts at the top of the container content area,
        aligning the cone with the "Menu" heading level.
      right:0 → flush with container right edge.
-     width:42vw, max-width:145px → with 1:1.5 image ratio, this caps
-       the visible height at ~200px, so the bottom of the sleeve finishes
-       cleanly ABOVE the carousel with an intentional vertical gap.
+     width:47vw, max-width:165px → enlarged by ~12% for medium editorial balance;
+       visible height ~215px finishes cleanly ABOVE the carousel with zero overlap.
      overflow:visible → prevents clipping of the sleeve edge.
      z-index:2 → behind text (z-index:4) — text stays readable.
   ─────────────────────────────────────────────────────────────────── */
@@ -3383,9 +3382,9 @@ ul, ol {
     position: absolute !important;
     right: 0 !important;
     top: 0 !important;
-    width: 42vw !important;
+    width: 47vw !important;
     height: auto !important;
-    max-width: 145px !important;
+    max-width: 165px !important;
     background: transparent !important;
     border-radius: 0 !important;
     overflow: visible !important;
