@@ -3257,7 +3257,8 @@ ul, ol {
     height: auto !important;
     min-height: auto !important;
     max-height: none !important;
-    padding: 90px 0 24px !important;
+    padding: 72px 0 24px !important;
+    scroll-margin-top: 80px !important;
     position: relative !important;
     overflow: hidden !important;
   }
