@@ -616,6 +616,11 @@ export default function ExactTemplatePage() {
           {/* 5. PROUD OF QUALITY / SOURCING EXCELLENCE SECTION */}
           <section className="proud">
             <div className="container">
+              {/* Mobile Header: Displayed cleanly above the photo frame on mobile */}
+              <div className="proud-mobile-header" data-aos="fade-up">
+                <h2>Artisanal Heritage</h2>
+              </div>
+
               <div className="proud-wrapper">
                 {/* Carousel Slider */}
                 <div className="proud-slider" data-aos="fade-right">
@@ -626,27 +631,7 @@ export default function ExactTemplatePage() {
                     {proudSlides.map((slide, idx) => (
                       <div key={idx} className="proud-slide" style={{ position: 'relative' }}>
                         <img src={slide.src} alt={slide.alt} />
-                        <div
-                          style={{
-                            position: 'absolute',
-                            bottom: '16px',
-                            left: '16px',
-                            background: 'rgba(26, 8, 14, 0.42)',
-                            backdropFilter: 'blur(10px)',
-                            WebkitBackdropFilter: 'blur(10px)',
-                            padding: '5px 13px',
-                            borderRadius: '16px',
-                            border: '1px solid rgba(255, 255, 255, 0.18)',
-                            color: 'rgba(255, 255, 255, 0.95)',
-                            fontSize: '11px',
-                            fontWeight: 500,
-                            letterSpacing: '0.3px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
-                            pointerEvents: 'none',
-                          }}
-                        >
+                        <div className="proud-slide-badge">
                           <span>{slide.caption}</span>
                         </div>
                       </div>
@@ -659,14 +644,14 @@ export default function ExactTemplatePage() {
                     onClick={() => setProudSlideIndex((prev) => (prev > 0 ? prev - 1 : proudSlides.length - 1))}
                     aria-label="Previous slide"
                   >
-                    <ChevronLeft size={17} strokeWidth={2.2} color="#23161C" />
+                    <ChevronLeft size={15} strokeWidth={2} color="#23161C" />
                   </button>
                   <button
                     className="proud-slider-next swiper-button-next"
                     onClick={() => setProudSlideIndex((prev) => (prev < proudSlides.length - 1 ? prev + 1 : 0))}
                     aria-label="Next slide"
                   >
-                    <ChevronRight size={17} strokeWidth={2.2} color="#23161C" />
+                    <ChevronRight size={15} strokeWidth={2} color="#23161C" />
                   </button>
 
                   {/* Pagination Bullets */}
@@ -683,7 +668,7 @@ export default function ExactTemplatePage() {
 
                 {/* Artisanal Heritage Narrative */}
                 <div className="proud-content" data-aos="fade-left">
-                  <h2>Artisanal <br /> Heritage</h2>
+                  <h2 className="proud-desktop-title">Artisanal <br /> Heritage</h2>
                   <div className="proud-content-description">
                     <p>
                       Ward Al Madinah sources hand-picked organic roses directly from the historic valley farms of Al-Madinah Al-Munawwarah. Each batch undergoes traditional slow distillation to capture the pure floral fragrance and natural essential oils.
