@@ -584,7 +584,7 @@ export default function ExactTemplatePage() {
           <section className="mission" ref={missionRef}>
             <div className="container">
               <div className="mission__card">
-                <div className="mission__content" data-aos="fade-right">
+                <div className="mission__content">
                   {/* Float image — mobile only, no frame */}
                   <motion.img
                     src="/images/medina-rose-hand-mobile.png"
@@ -593,11 +593,11 @@ export default function ExactTemplatePage() {
                     aria-hidden="true"
                     style={{ x: missionImgX }}
                   />
-                  <h2>Our Mission</h2>
-                  <p>
+                  <h2 data-aos="fade-right">Our Mission</h2>
+                  <p data-aos="fade-right" data-aos-delay="100">
                     Our mission is clear: to craft exceptional artisanal ice cream and gelato while setting the highest standards across every part of our experience. From organic Madinah rose water distillation to natural ingredients, every detail matters.
                   </p>
-                  <p>
+                  <p data-aos="fade-right" data-aos-delay="200">
                     As Medina Rose grows and welcomes visitors from around the globe in Al-Madinah, we apply these standards at scale—raising expectations for flavor quality, spatial design, and authentic Saudi hospitality. Our goal is to create unforgettable dessert rituals near the Prophet&apos;s Mosque that guests return to and cherish.
                   </p>
                 </div>
