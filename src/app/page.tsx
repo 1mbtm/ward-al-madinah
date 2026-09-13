@@ -83,6 +83,7 @@ export default function ExactTemplatePage() {
   });
 
   const menuImgXDesktop = useTransform(menuScrollProgress, [0, 0.5, 1], ["180px", "0px", "0px"]);
+  const menuImgXMobile = useTransform(menuScrollProgress, [0, 0.5, 1], ["180px", "0px", "0px"]);
 
 
 
@@ -724,18 +725,19 @@ export default function ExactTemplatePage() {
                 </div>
               </div>
 
-              {/* Mobile Menu Image Frame (Static) */}
-              <div className="menu__mobile-frame">
+              {/* Mobile Menu Image Frame (Right-to-Left Scroll Slide) */}
+              <motion.div className="menu__mobile-frame" style={{ x: menuImgXMobile }}>
                 <picture>
-  <source srcSet="/images/menu-hand.avif" type="image/avif" />
-  <source srcSet="/images/menu-hand.webp" type="image/webp" />
-  <img src="/images/menu-hand.png"
-                  alt="Medina Rose Ice Cream Hand"
-                  className="menu__mobile-img"
-                  style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }}
-                />
-</picture>
-              </div>
+                  <source srcSet="/images/menu-hand.avif" type="image/avif" />
+                  <source srcSet="/images/menu-hand.webp" type="image/webp" />
+                  <img
+                    src="/images/menu-hand.png"
+                    alt="Medina Rose Ice Cream Hand"
+                    className="menu__mobile-img"
+                    style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }}
+                  />
+                </picture>
+              </motion.div>
             </div>
 
             {/* Desktop Menu Hand with Ice Cream Slot */}
