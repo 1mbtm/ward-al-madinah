@@ -69,18 +69,21 @@ export default function ExactTemplatePage() {
     offset: ["start end", "end start"]
   });
 
-  const missionImgX = useTransform(missionScrollProgress, [0, 0.5, 1], ["60%", "0%", "60%"]);
-  const missionImgScale = useTransform(missionScrollProgress, [0, 0.5, 1], [0.85, 1, 0.85]);
-  const missionImgOpacity = useTransform(missionScrollProgress, [0, 0.5, 1], [0.3, 1, 0.3]);
+  const missionImgX = useTransform(missionScrollProgress, [0, 0.5, 1], ["180px", "0px", "0px"]);
 
   const { scrollYProgress: menuScrollProgress } = useScroll({
     target: menuRef,
     offset: ["start end", "end start"]
   });
 
-  const menuImgX = useTransform(menuScrollProgress, [0, 0.5, 1], ["60%", "0%", "60%"]);
-  const menuImgScale = useTransform(menuScrollProgress, [0, 0.5, 1], [0.85, 1, 0.85]);
-  const menuImgOpacity = useTransform(menuScrollProgress, [0, 0.5, 1], [0.3, 1, 0.3]);
+  const menuImgX = useTransform(menuScrollProgress, [0, 0.5, 1], ["180px", "0px", "0px"]);
+
+  const { scrollYProgress: retailScrollProgress } = useScroll({
+    target: retailSectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const retailImgX = useTransform(retailScrollProgress, [0, 0.5, 1], ["180px", "0px", "0px"]);
 
   // Parallax Scroll Listener (Clamped to safe image buffer to prevent image running out)
   useEffect(() => {
@@ -575,19 +578,17 @@ export default function ExactTemplatePage() {
 
           {/* 4. OUR MISSION SECTION */}
           <section className="mission" ref={missionRef}>
-            {/* Mobile Background Image Layer (Mobile Only) */}
-            <div className="mission__mobile-bg" aria-hidden="true">
-              <img
-                src="/images/medina-rose-hand-mobile.png"
-                alt=""
-                className="mission__mobile-bg-img"
-              />
-              <div className="mission__mobile-bg-overlay" />
-            </div>
-
             <div className="container">
               <div className="mission__card">
                 <div className="mission__content" data-aos="fade-right">
+                  {/* Float image — mobile only, no frame */}
+                  <motion.img
+                    src="/images/medina-rose-hand-mobile.png"
+                    alt="Medina Rose"
+                    className="mission__float-img"
+                    aria-hidden="true"
+                    style={{ x: missionImgX }}
+                  />
                   <h2>Our Mission</h2>
                   <p>
                     Our mission is clear: to craft exceptional artisanal ice cream and gelato while setting the highest standards across every part of our experience. From organic Madinah rose water distillation to natural ingredients, every detail matters.
@@ -604,9 +605,7 @@ export default function ExactTemplatePage() {
                 alt="Medina Rose Gelato"
                 className="mission__frame-img"
                 style={{
-                  x: isMobile ? '0%' : missionImgX,
-                  scale: isMobile ? 1 : missionImgScale,
-                  opacity: isMobile ? 1 : missionImgOpacity,
+                  x: missionImgX,
                   transformOrigin: 'right bottom',
                 }}
               />
@@ -737,14 +736,14 @@ export default function ExactTemplatePage() {
               </div>
 
               {/* Mobile Menu Image Frame */}
-              <div className="menu__mobile-frame" data-aos="fade-up">
+              <motion.div className="menu__mobile-frame" data-aos="fade-up" style={{ x: menuImgX }}>
                 <img
                   src="/images/menu-hand.png"
                   alt="Medina Rose Ice Cream Hand"
                   className="menu__mobile-img"
                   style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }}
                 />
-              </div>
+              </motion.div>
             </div>
 
             {/* Desktop Menu Hand with Ice Cream Slot */}
@@ -754,9 +753,7 @@ export default function ExactTemplatePage() {
                 alt="Medina Rose Ice Cream Hand"
                 className="menu__frame-img"
                 style={{
-                  x: isMobile ? '0%' : menuImgX,
-                  scale: isMobile ? 1 : menuImgScale,
-                  opacity: isMobile ? 1 : menuImgOpacity,
+                  x: menuImgX,
                   transformOrigin: 'right bottom',
                 }}
               />
@@ -1050,15 +1047,15 @@ export default function ExactTemplatePage() {
               </div>
 
               {/* Mobile Heritage Goods Image Frame */}
-              <div className="menu__mobile-frame" data-aos="fade-up">
+              <motion.div className="menu__mobile-frame" data-aos="fade-up" style={{ x: retailImgX }}>
                 <SprayBottleMist />
-              </div>
+              </motion.div>
             </div>
 
             {/* Desktop Heritage Goods Spray Bottle Slot (Static PNG with Interactive Mist) */}
-            <div className="menu__frame-slot">
+            <motion.div className="menu__frame-slot" style={{ x: retailImgX }}>
               <SprayBottleMist />
-            </div>
+            </motion.div>
           </section>
 
 
