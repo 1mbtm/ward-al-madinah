@@ -3266,6 +3266,7 @@ ul, ol {
   .menu .container {
     padding: 0 24px !important;
     position: relative !important;
+    overflow: hidden !important;
   }
 
   .menu__card {
@@ -3315,6 +3316,7 @@ ul, ol {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
+    overflow: hidden !important;
   }
 
   .menu-carousel-viewport {
@@ -3368,7 +3370,7 @@ ul, ol {
      position:absolute within .container (position:relative).
      top:0 → cone starts at the top of the container content area,
        aligning the cone with the "Menu" heading level.
-     right:-6% → slight right bleed; overflow:hidden on .menu clips it.
+     right:0 → flush with container edge; overflow:hidden on container clips any bleed.
      width:50vw, max-width:200px → image is 1:1 square so this also
        caps the HEIGHT at 200px, keeping the cone fully inside the
        intro area (above carousel) at all widths from 320px to 768px.
@@ -3377,14 +3379,14 @@ ul, ol {
   .menu__mobile-frame {
     display: block !important;
     position: absolute !important;
-    right: -6% !important;
+    right: 0 !important;
     top: 0 !important;
     width: 50vw !important;
     height: auto !important;
     max-width: 200px !important;
     background: transparent !important;
     border-radius: 0 !important;
-    overflow: visible !important;
+    overflow: hidden !important;
     pointer-events: none !important;
     z-index: 2 !important;
     margin: 0 !important;
