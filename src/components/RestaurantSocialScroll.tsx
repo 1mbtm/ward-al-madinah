@@ -14,46 +14,71 @@ export interface SocialCardItem {
     icon: ReactNode;
 }
 
-// 🎯 CIRCULAR REAL APP LOGOS USING USER-PROVIDED ICONS
+// Helper to dynamically resolve AVIF, WebP and original fallback image paths
+const getIconPath = (src: string) => {
+    const lastDot = src.lastIndexOf('.');
+    if (lastDot === -1) return { avif: src, webp: src, fallback: src };
+    const base = src.substring(0, lastDot);
+    return {
+        avif: `${base}.avif`,
+        webp: `${base}.webp`,
+        fallback: src,
+    };
+};
+
 const CircularAppIcon = ({
     src,
     alt,
     bg = '#FFFFFF',
     shadow,
+    size = 46,
+    fillPct = '68%',
+    imgStyle,
 }: {
     src: string;
     alt: string;
     bg?: string;
     shadow?: string;
-}) => (
-    <div
-        style={{
-            width: '42px',
-            height: '42px',
-            borderRadius: '50%',
-            overflow: 'hidden',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: bg,
-            boxShadow: shadow || '0 4px 14px rgba(0, 0, 0, 0.35)',
-            border: '1.5px solid rgba(255, 255, 255, 0.35)',
-            flexShrink: 0,
-            position: 'relative',
-        }}
-    >
-        <picture style={{ display: 'flex', width: '60%', height: '60%', alignItems: 'center', justifyContent: 'center' }}>
-  <source srcSet={src.replace('.png', '.avif').replace('.jpg', '.avif')} type="image/avif" />
-  <source srcSet={src.replace('.png', '.webp').replace('.jpg', '.webp')} type="image/webp" />
-  <img src={src} alt={alt} style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'contain',
-                display: 'block',
-            }} />
-</picture>
-    </div>
-);
+    size?: number;
+    fillPct?: string;
+    imgStyle?: React.CSSProperties;
+}) => {
+    const sources = getIconPath(src);
+    return (
+        <div
+            style={{
+                width: `${size}px`,
+                height: `${size}px`,
+                borderRadius: '50%',
+                overflow: 'hidden',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: bg,
+                boxShadow: shadow || '0 4px 14px rgba(0, 0, 0, 0.35)',
+                border: '1.5px solid rgba(255, 255, 255, 0.35)',
+                flexShrink: 0,
+                position: 'relative',
+            }}
+        >
+            <picture style={{ display: 'flex', width: fillPct, height: fillPct, alignItems: 'center', justifyContent: 'center' }}>
+                <source srcSet={sources.avif} type="image/avif" />
+                <source srcSet={sources.webp} type="image/webp" />
+                <img
+                    src={sources.fallback}
+                    alt={alt}
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain',
+                        display: 'block',
+                        ...imgStyle,
+                    }}
+                />
+            </picture>
+        </div>
+    );
+};
 
 // 🍽️ 6 RESTAURANT SOCIAL & CONTACT CHANNELS (BURGUNDY ROSE LUXURY CARDS WITH CIRCULAR LOGOS)
 export const RESTAURANT_CHANNELS: SocialCardItem[] = [
@@ -65,8 +90,10 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
         url: 'https://www.instagram.com/medinarose.sa',
         icon: (
             <CircularAppIcon
-                src="/images/icons/instagram.jpg"
+                src="/images/icons/instagram-padded.png"
                 alt="Instagram"
+                bg="#FFFFFF"
+                fillPct="90%"
                 shadow="0 4px 14px rgba(225, 48, 108, 0.45)"
             />
         ),
@@ -139,10 +166,11 @@ export const RESTAURANT_CHANNELS: SocialCardItem[] = [
         url: 'tel:+966543300570',
         icon: (
             <CircularAppIcon
-                src="/images/icons/call.avif"
+                src="/images/icons/call-white.png"
                 alt="Direct Call"
-                bg="#4CD964"
-                shadow="0 4px 14px rgba(76, 217, 100, 0.45)"
+                bg="#34C759"
+                fillPct="72%"
+                shadow="0 4px 14px rgba(52, 199, 89, 0.45)"
             />
         ),
     },

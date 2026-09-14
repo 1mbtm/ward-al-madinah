@@ -23,6 +23,10 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { RestaurantSocialScroll } from '@/components/RestaurantSocialScroll';
 import { RosePetalsRain } from '@/components/RosePetalsRain';
 import SprayBottleMist from '@/components/SprayBottleMist';
+import MenuCard from '@/components/MenuCard';
+import { menuSlides } from '@/data/menuData';
+import GoodsCard from '@/components/GoodsCard';
+import { heritageSlides } from '@/data/goodsData';
 
 export default function ExactTemplatePage() {
   // Navigation & Drawer State
@@ -40,18 +44,58 @@ export default function ExactTemplatePage() {
   const [menuSlideIndex, setMenuSlideIndex] = useState(0);
   const [heritageSlideIndex, setHeritageSlideIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [viewportWidth, setViewportWidth] = useState(0);
+
+  // Touch state for Heritage Goods mobile swipe
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth <= 768;
       setIsMobile(mobile);
+      setViewportWidth(window.innerWidth);
     };
     handleResize();
     window.addEventListener('resize', handleResize, { passive: true });
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // (P1 perf: counters state removed — was never consumed in JSX, caused ~72 full-page re-renders per scroll-into-view)
+  // Mobile swipe handlers for Heritage Goods
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const minSwipeDistance = 50;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe) {
+      setHeritageSlideIndex((prev) => (prev < heritageSlides.length - (isMobile ? 1 : 3) ? prev + 1 : 0));
+    }
+    if (isRightSwipe) {
+      setHeritageSlideIndex((prev) => (prev > 0 ? prev - 1 : heritageSlides.length - (isMobile ? 1 : 3)));
+    }
+  };
+
+  const getHeritageTransform = () => {
+    if (!isMobile) return `translateX(-${heritageSlideIndex * 288}px)`;
+    // Mobile perfect centering:
+    // Card width (240) + Gap (14) = 254
+    // Center of Nth card = 4 (track left padding) + N * 254 + 120 (half card) = 124 + N * 254
+    // To center in viewport, offset by viewportWidth / 2
+    const centerOfCard = 124 + (heritageSlideIndex * 254);
+    const translation = centerOfCard - (viewportWidth / 2);
+    return `translateX(-${translation}px)`;
+  };
 
   const parallaxRef = useRef<HTMLImageElement | null>(null);
   const retailSectionRef = useRef<HTMLElement | null>(null);
@@ -63,11 +107,11 @@ export default function ExactTemplatePage() {
     offset: ["start end", "end start"]
   });
 
-  // Desktop Hand animation completes at ~70% of scroll progress
+  // Desktop Hand animation: ultra-smooth slide [0, 0.5, 1] -> ["180px", "0px", "0px"]
   const missionImgXDesktop = useTransform(
     missionScrollProgress,
-    [0, 0.35, 0.7, 1],
-    ["180px", "40px", "0px", "0px"]
+    [0, 0.5, 1],
+    ["180px", "0px", "0px"]
   );
 
   // Mobile Hand animation completes at 50% scroll progress (section fully visible)
@@ -179,19 +223,8 @@ export default function ExactTemplatePage() {
     },
   ];
 
-  // Menu slides
-  const menuSlides = [
-    'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/menu-content-image.jpg',
-    'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/menu-content-image2.JPG',
-    'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/menu-content-image1.JPG',
-    'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/menu-content-image3.JPG',
-    'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/menu-content-image4.JPG',
-    'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/menu-content-image5.JPG',
-    'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/menu-content-image6.JPG',
-    'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/menu-content-image7.JPG',
-    'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/menu-content-image8.JPG',
-    'https://roasterscoffee.ae/wp-content/themes/generatepress/assets/images/menu-content-image9.JPG',
-  ];
+  // Menu slides — 21 real Medina Rose photos, optimized (AVIF/WebP/JPEG)
+  // Data lives in src/data/menuData.ts; images in public/images/menu/
 
   // 3 Medina Rose Branches (Verified Real Locations)
   const branchList = [
@@ -236,84 +269,9 @@ export default function ExactTemplatePage() {
     },
   ];
 
-  // Madinah Heritage Goods & Rose Elixirs Slides
-  const heritageSlides = [
-    {
-      src: '/images/goods/rose-mist-bottle.png',
-      title: 'Musk & Rose Water Mist',
-      subtitle: 'بالمسك والورد المديني 250ml',
-    },
-    {
-      src: '/images/goods/shouraik-bread.png',
-      title: 'Traditional Shouraik Bread',
-      subtitle: 'شريك مديني طازج بالسمسم',
-    },
-    {
-      src: '/images/goods/dried-roses.png',
-      title: 'Dried Medina Rose Buds',
-      subtitle: 'ورد مديني مجفف للضيافة',
-    },
-    {
-      src: '/images/goods/botanical-sprays.png',
-      title: 'Botanical Rose Elixirs',
-      subtitle: 'مجموعة رذاذ الورد الطبيعي',
-    },
-    {
-      src: '/images/goods/madinah-tea-shelves.png',
-      title: 'Madinah Tea & Rose Syrups',
-      subtitle: 'شاي مديني مخلوط وخيرات المدينة',
-    },
-    {
-      src: '/images/3.png',
-      title: 'Authentic Ajwa Dates',
-      subtitle: 'عجوة المدينة المنورة الفاخرة',
-    },
-    {
-      src: '/images/5.png',
-      title: 'Signature Rose Mist Elixir',
-      subtitle: 'رذاذ الورد الطبيعي الفاخر',
-    },
-  ];
-
-  // Verified Guest Reviews & Community Voices (4.3 ★ 701+ Google Reviews)
-  const communityVoices = [
-    {
-      name: 'Fahad Al-Harbi',
-      role: 'Verified Google Reviewer • 5.0 ★',
-      quote: 'أجمل تجربة آيس كريم ورد في المدينة، منعش جداً بعد الصلاة في الحرم وبوابة 339 قريبة جداً.',
-      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      name: 'Sarah Rahman',
-      role: 'Pilgrim from UK • 5.0 ★',
-      quote: 'The organic rose mist and authentic Medina rose gelato are unforgettable. A must-visit ritual in Madinah!',
-      image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      name: 'Mohammed Al-Otaibi',
-      role: 'Local Resident • 5.0 ★',
-      quote: 'طعم الورد المديني الأصلي والآيسكريم ناعم وبارد، مفتوحين 24 ساعة وخدمتهم سريعة وممتازة.',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      name: 'Fatima Zahra',
-      role: 'Visitor from Morocco • 5.0 ★',
-      quote: 'نكهة العجوة باللوز والورد الطبيعي قمة الإتقان، من أجمل الذكريات في طيبة الطيبة.',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      name: 'Dr. Tariq Al-Ghamdi',
-      role: 'Saudi Guide • 5.0 ★',
-      quote: '700+ reviews on Google Maps are well deserved. Truly the signature taste of Madinah.',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      name: 'Lina Al-Mansoor',
-      role: 'Food Explorer • 5.0 ★',
-      quote: 'الريحة لحالها ترد الروح ورذاذ ماء الورد ممتع جداً. شكراً ورد المدينة!',
-      image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80'
-    }
-  ];
+  // Real reviews should be fetched from Google Business Profile API.
+  // Currently, API authorization is missing, so we display an empty state or CTA.
+  const communityVoices: any[] = [];
 
   const [toastMessage, setToastMessage] = useState('Added to cart');
 
@@ -332,60 +290,19 @@ export default function ExactTemplatePage() {
         <header className="header">
           <div className="container">
             <div className="header__content">
-              {/* Brand Logo */}
+              {/* Brand Logo — Logo 1: white flower, transparent bg */}
               <div className="header__logo" style={{ width: 'auto' }}>
                 <a href="#hero" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#FFF' }}>
                   <picture>
-  <source srcSet="/images/logo.avif" type="image/avif" />
-  <source srcSet="/images/logo.webp" type="image/webp" />
-  <img src="/images/logo.png" alt="Medina Rose Logo" style={{ height: '32px', width: 'auto', borderRadius: '4px' }} />
-</picture>
+                    <source srcSet="/images/brand/logo-white-mark.avif" type="image/avif" />
+                    <source srcSet="/images/brand/logo-white-mark.webp" type="image/webp" />
+                    <img src="/images/brand/logo-white-mark.png" alt="Ward Al Madinah Logo" style={{ height: '34px', width: 'auto' }} />
+                  </picture>
                   <span style={{ fontSize: '22px', fontWeight: 700, letterSpacing: '1px' }}>MEDINA ROSE | ميد روز</span>
                 </a>
               </div>
 
-              {/* Desktop Navigation with 0.5s cubic-bezier transition */}
-              <nav className="header__nav">
-                <ul className="header__menu">
-                  <li><a href="#hero">Main</a></li>
-                  <li><a href="#about-scene">About Us</a></li>
-                  <li><a href="#branches">Branches</a></li>
-                  <li><a href="#menu">Menu</a></li>
-                  <li><a href="#retail">Heritage Goods</a></li>
-                  <li><a href="#contact">Contacts</a></li>
-                </ul>
-              </nav>
 
-              {/* Right: Branches Dropdown */}
-              <div className="header__branches-dropdown" onMouseLeave={() => setBranchDropdownOpen(false)}>
-                <button
-                  className="header__branches-btn"
-                  onMouseEnter={() => setBranchDropdownOpen(true)}
-                  onClick={() => setBranchDropdownOpen(!branchDropdownOpen)}
-                  aria-expanded={branchDropdownOpen}
-                >
-                  <span>Our Branches</span>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polyline points="6 9 12 15 18 9" />
-                  </svg>
-                </button>
-                {branchDropdownOpen && (
-                  <div className="header__branches-menu">
-                    <a href="#branches" className="header__branches-menu-item" onClick={() => setBranchDropdownOpen(false)}>
-                      <span className="header__branches-dot" />
-                      Grand Plaza Hotel (Gate 339)
-                    </a>
-                    <a href="#branches" className="header__branches-menu-item" onClick={() => setBranchDropdownOpen(false)}>
-                      <span className="header__branches-dot" />
-                      Dar Al-Hijra (Northern Central)
-                    </a>
-                    <a href="#branches" className="header__branches-menu-item" onClick={() => setBranchDropdownOpen(false)}>
-                      <span className="header__branches-dot" />
-                      Quba Walkway & Heritage Ave
-                    </a>
-                  </div>
-                )}
-              </div>
 
               {/* Mobile Burger Toggle */}
               <button
@@ -430,11 +347,12 @@ export default function ExactTemplatePage() {
         <div className={`header__mobile-drawer ${mobileMenuOpen ? 'active' : ''}`}>
           <div className="header__mobile-drawer-header">
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              {/* Mobile drawer — Logo 1: white flower, transparent bg */}
               <picture>
-  <source srcSet="/images/logo.avif" type="image/avif" />
-  <source srcSet="/images/logo.webp" type="image/webp" />
-  <img src="/images/logo.png" alt="Medina Rose Logo" style={{ height: '28px', width: 'auto', borderRadius: '4px' }} />
-</picture>
+                <source srcSet="/images/brand/logo-white-mark.avif" type="image/avif" />
+                <source srcSet="/images/brand/logo-white-mark.webp" type="image/webp" />
+                <img src="/images/brand/logo-white-mark.png" alt="Ward Al Madinah Logo" style={{ height: '28px', width: 'auto' }} />
+              </picture>
               <span className="header__mobile-logo">MEDINA ROSE | ميد روز</span>
             </div>
             <button
@@ -709,15 +627,14 @@ export default function ExactTemplatePage() {
                         className="menu-track"
                         style={{ transform: `translateX(-${menuSlideIndex * (isMobile ? 254 : 288)}px)` }}
                       >
-                        {menuSlides.map((src, idx) => (
-                          <div key={idx} className="menu-card">
-                            {/* P4 perf: slide 0 eager, slides 1-9 lazy. No decoding=sync (blocks render on slow external fetch) */}
-                            <img
-                              src={src}
-                              alt={`Menu highlight ${idx + 1}`}
-                              loading={idx === 0 ? 'eager' : 'lazy'}
-                            />
-                          </div>
+                        {menuSlides.map((slide, idx) => (
+                          <MenuCard
+                            key={slide.slug}
+                            slide={slide}
+                            index={idx}
+                            currentIndex={menuSlideIndex}
+                            total={menuSlides.length}
+                          />
                         ))}
                       </div>
                     </div>
@@ -1031,27 +948,23 @@ export default function ExactTemplatePage() {
                     <div className="menu-carousel-viewport">
                       <div
                         className="menu-track"
-                        style={{ transform: `translateX(-${heritageSlideIndex * (isMobile ? 254 : 288)}px)` }}
+                        style={{ 
+                          transform: getHeritageTransform(),
+                          transition: 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)'
+                        }}
+                        onTouchStart={onTouchStart}
+                        onTouchMove={onTouchMove}
+                        onTouchEnd={onTouchEnd}
                       >
                         {heritageSlides.map((item, idx) => (
-                          <div key={idx} className="heritage-card-unit">
-                            <div className="menu-card">
-                              <picture>
-  <source srcSet={item.src.replace('.png', '.avif').replace('.jpg', '.avif')} type="image/avif" />
-  <source srcSet={item.src.replace('.png', '.webp').replace('.jpg', '.webp')} type="image/webp" />
-  <img src={item.src} alt={item.title} loading="lazy" />
-</picture>
-                            </div>
-                            <button
-                              type="button"
-                              className="heritage-cart-btn"
-                              onClick={() => handleAddToCart(item.title)}
-                              aria-label={`Add ${item.title} to cart`}
-                            >
-                              <Plus size={13} strokeWidth={2.4} />
-                              <span>Add to cart</span>
-                            </button>
-                          </div>
+                          <GoodsCard
+                            key={item.slug}
+                            item={item}
+                            index={idx}
+                            currentIndex={heritageSlideIndex}
+                            total={heritageSlides.length}
+                            onAddToCart={handleAddToCart}
+                          />
                         ))}
                       </div>
                     </div>
@@ -1083,16 +996,34 @@ export default function ExactTemplatePage() {
               </div>
               <div className="team-track-container" data-aos="fade-left">
                 <div className="team-track">
-                  {communityVoices.map((item, idx) => (
-                    <div key={idx} className="team-item" style={{ minWidth: '300px', padding: '1.75rem', textAlign: 'left' }}>
-                      <div className="team-item-image" style={{ width: '70px', height: '70px', borderRadius: '50%', marginBottom: '1rem', overflow: 'hidden' }}>
-                        <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  {communityVoices.length > 0 ? (
+                    communityVoices.map((item, idx) => (
+                      <div key={idx} className="team-item">
+                        <div className="team-item-image">
+                          <img src={item.image} alt={item.name} />
+                        </div>
+                        <h3>{item.name}</h3>
+                        <p className="review-meta">{item.role}</p>
+                        <p className="review-text">&ldquo;{item.quote}&rdquo;</p>
                       </div>
-                      <h3 style={{ fontSize: '1.1rem', marginBottom: '0.25rem' }}>{item.name}</h3>
-                      <p style={{ fontSize: '0.8rem', color: '#E29D52', marginBottom: '0.75rem', fontWeight: 600 }}>{item.role}</p>
-                      <p style={{ fontSize: '0.9rem', fontStyle: 'italic', lineHeight: 1.6, opacity: 0.88 }}>&ldquo;{item.quote}&rdquo;</p>
+                    ))
+                  ) : (
+                    <div className="team-item" style={{ width: '100%', maxWidth: '600px', minHeight: 'auto', justifyContent: 'center', alignItems: 'center', textAlign: 'center', backgroundColor: '#FDFDFD', margin: '0 auto', boxShadow: 'none' }}>
+                      <h3 style={{ fontSize: '18px', color: '#2D2323', marginBottom: '8px' }}>Google API Configuration Required</h3>
+                      <p className="review-text" style={{ fontSize: '15px', marginBottom: '24px', opacity: 0.8 }}>
+                        This section requires an authorized Google Business Profile connection to display real customer reviews. 
+                        No placeholder or fake reviews are displayed to maintain authenticity.
+                      </p>
+                      <a 
+                        href="https://www.google.com/maps/search/Ward+Al+Madinah" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        style={{ display: 'inline-block', padding: '12px 24px', backgroundColor: '#8B2C46', color: '#FFF', borderRadius: '6px', textDecoration: 'none', fontSize: '15px', fontWeight: 600, transition: 'background-color 0.2s' }}
+                      >
+                        Read all reviews on Google
+                      </a>
                     </div>
-                  ))}
+                  )}
                 </div>
               </div>
             </div>
@@ -1107,11 +1038,21 @@ export default function ExactTemplatePage() {
           <div className="container">
             <div className="footer__content">
               <div className="footer__col">
-                <a className="footer__logo" href="#hero" style={{ fontSize: '20px', letterSpacing: '1px' }}>
-                  MEDINA ROSE | ميد روز
+                {/* Footer brand — Logo 1: white flower, transparent bg */}
+                <a href="#hero" style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px', textDecoration: 'none' }}>
+                  <picture>
+                    <source srcSet="/images/brand/logo-white-mark.avif" type="image/avif" />
+                    <source srcSet="/images/brand/logo-white-mark.webp" type="image/webp" />
+                    <img
+                      src="/images/brand/logo-white-mark.png"
+                      alt="Ward Al Madinah"
+                      style={{ height: '48px', width: 'auto', flexShrink: 0 }}
+                    />
+                  </picture>
+                  <span style={{ fontSize: '18px', fontWeight: 700, letterSpacing: '0.5px', color: '#FAF0F3' }}>MEDINA ROSE | ميد روز</span>
                 </a>
                 <p className="footer__text">
-                  Crafted with authentic Medina rose water & organic ingredients near the Prophet&apos;s Mosque.
+                  Crafted with authentic Medina rose water &amp; organic ingredients near the Prophet&apos;s Mosque.
                 </p>
                 <div className="footer__socials">
                   <a href="https://www.instagram.com/medinarose.sa" target="_blank" rel="noopener noreferrer" aria-label="Instagram">

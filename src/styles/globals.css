@@ -367,7 +367,7 @@ ul, ol {
 }
 
 .header__burger {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 30px;
@@ -1927,7 +1927,7 @@ ul, ol {
    ========================================================================== */
 .social-scroll-section {
   width: 100%;
-  padding: 40px 0 10px;
+  padding: 40px 0 40px;
   overflow: hidden;
   position: relative;
   contain: paint layout;
@@ -1937,20 +1937,24 @@ ul, ol {
 .social-scroll-row {
   overflow: hidden;
   width: 100%;
-  padding: 12px 0;
+  /* Generous vertical padding so card box-shadows render fully without clipping */
+  padding: 20px 0 28px;
   contain: content;
 }
 
 .social-scroll-track {
   display: flex;
-  gap: 20px;
+  gap: 18px;
   width: max-content;
-  padding: 8px 0;
+  /* No vertical padding — row padding handles it */
+  padding: 0;
   will-change: transform;
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
   touch-action: pan-y;
+  /* Align all cards on the same baseline */
+  align-items: stretch;
 }
 
 .social-scroll-track:active {
@@ -1958,8 +1962,9 @@ ul, ol {
 }
 
 .social-scroll-card {
-  width: 280px;
-  height: 155px;
+  /* Fixed dimensions — same for every card */
+  width: 268px;
+  height: 158px;
   border-radius: 20px;
   flex-shrink: 0;
   position: relative;
@@ -1969,17 +1974,19 @@ ul, ol {
     linear-gradient(145deg, #8C2235 0%, #5E1423 48%, #360712 100%);
   border: 1px solid rgba(255, 255, 255, 0.32);
   border-top: 1.5px solid rgba(255, 255, 255, 0.65);
+  /* Tighter, upward-biased shadow — no large downward bleed */
   box-shadow:
-    0 16px 40px rgba(58, 10, 20, 0.42),
-    0 4px 12px rgba(0, 0, 0, 0.28),
+    0 4px 16px rgba(58, 10, 20, 0.32),
+    0 1px 4px rgba(0, 0, 0, 0.22),
     inset 0 1.5px 2px rgba(255, 255, 255, 0.55),
     inset 0 -1.5px 3px rgba(0, 0, 0, 0.35),
     inset 0 0 20px rgba(255, 255, 255, 0.08);
   transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Flex column — icon+category header fixed at top, title+handle at bottom */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px;
+  padding: 18px 18px 16px;
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
@@ -2014,8 +2021,8 @@ ul, ol {
   border-top-color: rgba(255, 255, 255, 0.88);
   transform: translateY(-5px);
   box-shadow:
-    0 22px 54px rgba(140, 34, 53, 0.55),
-    0 6px 18px rgba(0, 0, 0, 0.35),
+    0 8px 24px rgba(140, 34, 53, 0.42),
+    0 2px 8px rgba(0, 0, 0, 0.28),
     inset 0 2px 3px rgba(255, 255, 255, 0.78),
     inset 0 -2px 4px rgba(0, 0, 0, 0.45),
     inset 0 0 24px rgba(255, 255, 255, 0.15);
@@ -2048,14 +2055,20 @@ ul, ol {
 }
 
 .social-scroll-card-top {
+  /* Fixed height so 2-line category labels (e.g. Snapchat) don't push content lower */
+  min-height: 46px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   position: relative;
   z-index: 10;
+  flex-shrink: 0;
 }
 
+/* Unified icon container — same 46×46 footprint for all logos */
 .social-scroll-icon {
+  width: 46px;
+  height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2069,11 +2082,19 @@ ul, ol {
 
 .social-scroll-category {
   font-family: monospace, sans-serif;
-  font-size: 10px;
+  font-size: 9.5px;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
+  letter-spacing: 1.1px;
   color: rgba(245, 218, 224, 0.72);
   font-weight: 600;
+  /* Align text to the right; clamp to max 2 lines at consistent height */
+  text-align: right;
+  max-width: 148px;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .social-scroll-card-bottom {
@@ -2082,8 +2103,10 @@ ul, ol {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  padding-top: 12px;
+  padding-top: 11px;
   border-top: 1px solid rgba(230, 168, 182, 0.18);
+  /* Pushes to bottom of card regardless of top-area height */
+  margin-top: auto;
 }
 
 .social-scroll-title {
@@ -2118,28 +2141,46 @@ ul, ol {
 
 @media (max-width: 768px) {
   .social-scroll-section {
-    padding: 24px 0 10px;
+    padding: 24px 0 32px;
+  }
+
+  .social-scroll-row {
+    padding: 16px 0 20px;
   }
 
   .social-scroll-card {
-    width: 260px !important;
+    width: 240px !important;
     height: auto !important;
-    min-height: 240px !important;
-    padding: 24px !important;
+    min-height: 220px !important;
+    padding: 20px !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-start !important;
     align-items: flex-start !important;
-    gap: 16px !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
+    gap: 14px !important;
+    /* Tight mobile shadow — no shadow strip */
+    box-shadow: 0 3px 10px rgba(58, 10, 20, 0.28), inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
   }
 
   .social-scroll-card-top {
+    min-height: unset !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: flex-start !important;
     width: 100% !important;
-    gap: 12px !important;
+    gap: 10px !important;
+  }
+
+  .social-scroll-icon {
+    width: 46px !important;
+    height: 46px !important;
+  }
+
+  .social-scroll-category {
+    text-align: left !important;
+    max-width: 100% !important;
+    -webkit-line-clamp: unset !important;
+    overflow: visible !important;
   }
 
   .social-scroll-card-bottom {
@@ -2148,9 +2189,9 @@ ul, ol {
     align-items: flex-start !important;
     width: 100% !important;
     border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
-    padding-top: 16px !important;
+    padding-top: 14px !important;
     margin-top: auto !important;
-    gap: 12px !important;
+    gap: 10px !important;
   }
 
   .social-scroll-title {
@@ -2495,17 +2536,18 @@ ul, ol {
 }
 
 .team-item {
-  width: 280px;
-  height: 380px;
-  border-radius: 8px;
+  width: 320px;
+  min-height: 250px;
+  background-color: #FFFFFF;
+  border-radius: 12px;
   position: relative;
   display: flex;
-  justify-content: flex-end;
   flex-direction: column;
   padding: 24px;
-  overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
   transition: transform 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+  opacity: 1 !important;
 }
 
 .team-item:hover {
@@ -2513,11 +2555,13 @@ ul, ol {
 }
 
 .team-item-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 16px;
+  background-color: #F5EDE3;
+  flex-shrink: 0;
 }
 
 .team-item-image img {
@@ -2527,26 +2571,34 @@ ul, ol {
 }
 
 .team-item-image::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+  display: none;
 }
 
 .team-item h3 {
-  color: #FFF;
-  font-size: 24px;
+  color: #2D2323;
+  font-size: 18px;
   font-weight: 700;
   position: relative;
   z-index: 2;
+  margin-bottom: 4px;
 }
 
-.team-item p {
-  color: #DDD;
-  font-size: 16px;
+.team-item p.review-meta {
+  color: #7D6B6B;
+  font-size: 14px;
   position: relative;
   z-index: 2;
-  margin-top: 4px;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.team-item p.review-text {
+  color: #3A3232;
+  font-size: 15px;
+  position: relative;
+  z-index: 2;
+  line-height: 1.6;
+  opacity: 1;
 }
 
 /* ==========================================================================
