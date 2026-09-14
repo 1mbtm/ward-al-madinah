@@ -47,8 +47,8 @@ export default function ExactTemplatePage() {
   const [viewportWidth, setViewportWidth] = useState(0);
 
   // Touch state for Heritage Goods mobile swipe
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -61,41 +61,30 @@ export default function ExactTemplatePage() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Mobile swipe handlers for Heritage Goods
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
+  // Carousel Tracking Refs
+  const menuTrackRef = useRef<HTMLDivElement>(null);
+  const heritageTrackRef = useRef<HTMLDivElement>(null);
 
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const minSwipeDistance = 50;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-    
-    if (isLeftSwipe) {
-      setHeritageSlideIndex((prev) => (prev < heritageSlides.length - (isMobile ? 1 : 3) ? prev + 1 : 0));
-    }
-    if (isRightSwipe) {
-      setHeritageSlideIndex((prev) => (prev > 0 ? prev - 1 : heritageSlides.length - (isMobile ? 1 : 3)));
+  // Sync React state when user natively swipes on mobile
+  const onMenuScroll = () => {
+    if (!isMobile || !menuTrackRef.current) return;
+    const scrollLeft = menuTrackRef.current.scrollLeft;
+    // Card is 250px + 14px gap = 264px
+    const index = Math.round(scrollLeft / 264);
+    if (index !== menuSlideIndex) {
+      setMenuSlideIndex(index);
     }
   };
 
-  const getHeritageTransform = () => {
-    if (!isMobile) return `translateX(-${heritageSlideIndex * 288}px)`;
-    // Mobile perfect centering:
-    // Card width (240) + Gap (14) = 254
-    // Center of Nth card = 4 (track left padding) + N * 254 + 120 (half card) = 124 + N * 254
-    // To center in viewport, offset by viewportWidth / 2
-    const centerOfCard = 124 + (heritageSlideIndex * 254);
-    const translation = centerOfCard - (viewportWidth / 2);
-    return `translateX(-${translation}px)`;
+  const onHeritageScroll = () => {
+    if (!isMobile || !heritageTrackRef.current) return;
+    const scrollLeft = heritageTrackRef.current.scrollLeft;
+    const index = Math.round(scrollLeft / 264);
+    if (index !== heritageSlideIndex) {
+      setHeritageSlideIndex(index);
+    }
   };
+
 
   const parallaxRef = useRef<HTMLImageElement | null>(null);
   const retailSectionRef = useRef<HTMLElement | null>(null);
@@ -609,14 +598,26 @@ export default function ExactTemplatePage() {
                   <div className="menu-carousel" data-aos="fade-up" data-aos-delay="150">
                     <button
                       className="menu-nav-arrow menu-nav-arrow--prev"
-                      onClick={() => setMenuSlideIndex((prev) => (prev > 0 ? prev - 1 : menuSlides.length - (isMobile ? 1 : 3)))}
+                      onClick={() => {
+                        const nextIdx = menuSlideIndex > 0 ? menuSlideIndex - 1 : menuSlides.length - (isMobile ? 1 : 3);
+                        setMenuSlideIndex(nextIdx);
+                        if (isMobile && menuTrackRef.current) {
+                          menuTrackRef.current.scrollTo({ left: nextIdx * 264, behavior: 'smooth' });
+                        }
+                      }}
                       aria-label="Previous menu items"
                     >
                       <ChevronLeft size={32} strokeWidth={1.75} />
                     </button>
                     <button
                       className="menu-nav-arrow menu-nav-arrow--next"
-                      onClick={() => setMenuSlideIndex((prev) => (prev < menuSlides.length - (isMobile ? 1 : 3) ? prev + 1 : 0))}
+                      onClick={() => {
+                        const nextIdx = menuSlideIndex < menuSlides.length - (isMobile ? 1 : 3) ? menuSlideIndex + 1 : 0;
+                        setMenuSlideIndex(nextIdx);
+                        if (isMobile && menuTrackRef.current) {
+                          menuTrackRef.current.scrollTo({ left: nextIdx * 264, behavior: 'smooth' });
+                        }
+                      }}
                       aria-label="Next menu items"
                     >
                       <ChevronRight size={32} strokeWidth={1.75} />
@@ -625,7 +626,12 @@ export default function ExactTemplatePage() {
                     <div className="menu-carousel-viewport">
                       <div
                         className="menu-track"
-                        style={{ transform: `translateX(-${menuSlideIndex * (isMobile ? 254 : 288)}px)` }}
+                        ref={menuTrackRef}
+                        onScroll={onMenuScroll}
+                        style={!isMobile ? {
+                          transform: `translateX(-${menuSlideIndex * 288}px)`,
+                          transition: 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)'
+                        } : undefined}
                       >
                         {menuSlides.map((slide, idx) => (
                           <MenuCard
@@ -800,19 +806,25 @@ export default function ExactTemplatePage() {
                     borderRadius: '14px',
                     overflow: 'hidden',
                     position: 'relative',
-                    marginBottom: '16px'
+                    marginBottom: '16px',
+                    backgroundColor: '#FAF7F2' // Subtle premium placeholder background
                   }}
                 >
-                  <img
-                    src={currentBranch.image}
-                    alt={currentBranch.name}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      display: 'block'
-                    }}
-                  />
+                  <picture>
+                    <source srcSet={currentBranch.image.replace('.png', '.avif').replace('.jpg', '.avif')} type="image/avif" />
+                    <source srcSet={currentBranch.image.replace('.png', '.webp').replace('.jpg', '.webp')} type="image/webp" />
+                    <img
+                      src={currentBranch.image}
+                      alt={currentBranch.name}
+                      fetchPriority="high"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        display: 'block'
+                      }}
+                    />
+                  </picture>
                 </div>
                 <div className="branches__info">
                   <div className="branches__info-top">
@@ -932,14 +944,26 @@ export default function ExactTemplatePage() {
                   <div className="menu-carousel">
                     <button
                       className="menu-nav-arrow menu-nav-arrow--prev"
-                      onClick={() => setHeritageSlideIndex((prev) => (prev > 0 ? prev - 1 : heritageSlides.length - (isMobile ? 1 : 3)))}
+                      onClick={() => {
+                        const nextIdx = heritageSlideIndex > 0 ? heritageSlideIndex - 1 : heritageSlides.length - (isMobile ? 1 : 3);
+                        setHeritageSlideIndex(nextIdx);
+                        if (isMobile && heritageTrackRef.current) {
+                          heritageTrackRef.current.scrollTo({ left: nextIdx * 264, behavior: 'smooth' });
+                        }
+                      }}
                       aria-label="Previous heritage goods items"
                     >
                       <ChevronLeft size={32} strokeWidth={1.75} />
                     </button>
                     <button
                       className="menu-nav-arrow menu-nav-arrow--next"
-                      onClick={() => setHeritageSlideIndex((prev) => (prev < heritageSlides.length - (isMobile ? 1 : 3) ? prev + 1 : 0))}
+                      onClick={() => {
+                        const nextIdx = heritageSlideIndex < heritageSlides.length - (isMobile ? 1 : 3) ? heritageSlideIndex + 1 : 0;
+                        setHeritageSlideIndex(nextIdx);
+                        if (isMobile && heritageTrackRef.current) {
+                          heritageTrackRef.current.scrollTo({ left: nextIdx * 264, behavior: 'smooth' });
+                        }
+                      }}
                       aria-label="Next heritage goods items"
                     >
                       <ChevronRight size={32} strokeWidth={1.75} />
@@ -948,13 +972,12 @@ export default function ExactTemplatePage() {
                     <div className="menu-carousel-viewport">
                       <div
                         className="menu-track"
-                        style={{ 
-                          transform: getHeritageTransform(),
+                        ref={heritageTrackRef}
+                        onScroll={onHeritageScroll}
+                        style={!isMobile ? { 
+                          transform: `translateX(-${heritageSlideIndex * 288}px)`,
                           transition: 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)'
-                        }}
-                        onTouchStart={onTouchStart}
-                        onTouchMove={onTouchMove}
-                        onTouchEnd={onTouchEnd}
+                        } : undefined}
                       >
                         {heritageSlides.map((item, idx) => (
                           <GoodsCard

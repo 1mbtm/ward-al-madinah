@@ -3386,16 +3386,28 @@ ul, ol {
   }
 
   .menu-track {
-    padding: 0 4px !important;
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    /* Card is 250px. 50vw - 125px perfectly centers the first and last card */
+    padding: 10px calc(50vw - 125px) 20px !important;
     gap: 14px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
+    scrollbar-width: none;
+    scroll-behavior: smooth !important;
+  }
+  
+  .menu-track::-webkit-scrollbar {
+    display: none;
   }
 
   .menu-card {
-    flex: 0 0 240px !important;
-    height: 240px !important;
+    flex: 0 0 250px !important;
+    height: 290px !important;
+    scroll-snap-align: center !important;
   }
 
   .menu-nav-arrow {
