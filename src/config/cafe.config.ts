@@ -2,12 +2,12 @@ import { CafeConfig } from '@/types';
 
 export const cafeConfig: CafeConfig = {
   meta: {
-    brandName: 'Medina Rose (ورد المدينة)',
+    brandName: 'Madinah Rose (ورد المدينة)',
     tagline: 'منتجات مدينية - اسكريم بالورد المديني 🌸🍦 | Authentic Madinah Rose Ice Cream',
     description: 'Artisanal soft serve misted with authentic Medina rose water, premium gelato, and authentic local flavors near Al-Masjid an-Nabawi.',
     foundedYear: 2022,
     headquarters: 'Madinah, Saudi Arabia',
-    logoText: 'MEDINA ROSE | ورد المدينة',
+    logoText: 'MADINAH ROSE | ورد المدينة',
   },
 
   features: {

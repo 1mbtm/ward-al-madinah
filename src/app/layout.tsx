@@ -13,10 +13,10 @@ const philosopher = Philosopher({
 });
 
 export const metadata: Metadata = {
-  title: 'Medina Rose | Signature Rose Ice Cream & Gelateria - Madinah',
+  title: 'Madinah Rose | Signature Rose Ice Cream & Gelateria - Madinah',
   description: 'Experience the famous viral Medina Rose Ice Cream misted with authentic Madinah rose water near Al-Masjid an-Nabawi.',
   openGraph: {
-    title: 'Medina Rose | Signature Rose Ice Cream & Gelateria - Madinah',
+    title: 'Madinah Rose | Signature Rose Ice Cream & Gelateria - Madinah',
     description: 'The famous viral Medina Rose Ice Cream misted with authentic Madinah rose water.',
     type: 'website',
   },

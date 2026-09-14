@@ -298,7 +298,7 @@ export default function ExactTemplatePage() {
                     <source srcSet="/images/brand/logo-white-mark.webp" type="image/webp" />
                     <img src="/images/brand/logo-white-mark.png" alt="Ward Al Madinah Logo" style={{ height: '34px', width: 'auto' }} />
                   </picture>
-                  <span style={{ fontSize: '22px', fontWeight: 700, letterSpacing: '1px' }}>MEDINA ROSE | ميد روز</span>
+                  <span style={{ fontSize: '22px', fontWeight: 700, letterSpacing: '1px' }}>MADINAH ROSE | ورد المدينة</span>
                 </a>
               </div>
 
@@ -353,7 +353,7 @@ export default function ExactTemplatePage() {
                 <source srcSet="/images/brand/logo-white-mark.webp" type="image/webp" />
                 <img src="/images/brand/logo-white-mark.png" alt="Ward Al Madinah Logo" style={{ height: '28px', width: 'auto' }} />
               </picture>
-              <span className="header__mobile-logo">MEDINA ROSE | ميد روز</span>
+              <span className="header__mobile-logo">MADINAH ROSE | ورد المدينة</span>
             </div>
             <button
               onClick={() => setMobileMenuOpen(false)}
@@ -403,7 +403,7 @@ export default function ExactTemplatePage() {
                 <Phone size={18} />
               </a>
             </div>
-            <p className="header__mobile-copyright">© 2026 Medina Rose. All rights reserved.</p>
+            <p className="header__mobile-copyright">© 2026 Madinah Rose. All rights reserved.</p>
           </div>
         </div>
         {mobileMenuOpen && (
@@ -1049,7 +1049,7 @@ export default function ExactTemplatePage() {
                       style={{ height: '48px', width: 'auto', flexShrink: 0 }}
                     />
                   </picture>
-                  <span style={{ fontSize: '18px', fontWeight: 700, letterSpacing: '0.5px', color: '#FAF0F3' }}>MEDINA ROSE | ميد روز</span>
+                  <span style={{ fontSize: '18px', fontWeight: 700, letterSpacing: '0.5px', color: '#FAF0F3' }}>MADINAH ROSE | ورد المدينة</span>
                 </a>
                 <p className="footer__text">
                   Crafted with authentic Medina rose water &amp; organic ingredients near the Prophet&apos;s Mosque.
@@ -1094,7 +1094,7 @@ export default function ExactTemplatePage() {
               </div>
             </div>
             <div className="footer__bottom">
-              <p>© 2026 Medina Rose. All rights reserved.</p>
+              <p>© 2026 Madinah Rose. All rights reserved.</p>
             </div>
           </div>
         </footer>
